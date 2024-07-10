@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{3132051B-AE2D-48A9-9BCA-E3AC091447EC}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NijhofAddIn", "NijhofAddIn\NijhofAddIn.csproj", "{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "Build\Build.csproj", "{7651F122-7E28-4346-95A9-548B175AA337}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		2023|Any CPU = 2023|Any CPU
+		2024|Any CPU = 2024|Any CPU
+		2025|Any CPU = 2025|Any CPU
+		Debug 2023|Any CPU = Debug 2023|Any CPU
+		Debug 2024|Any CPU = Debug 2024|Any CPU
+		Debug 2025|Any CPU = Debug 2025|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2023|Any CPU.ActiveCfg = 2023|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2023|Any CPU.Build.0 = 2023|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2024|Any CPU.ActiveCfg = 2024|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2024|Any CPU.Build.0 = 2024|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2025|Any CPU.ActiveCfg = 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.2025|Any CPU.Build.0 = 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2023|Any CPU.ActiveCfg = Debug 2023|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2023|Any CPU.Build.0 = Debug 2023|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2024|Any CPU.ActiveCfg = Debug 2024|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2024|Any CPU.Build.0 = Debug 2024|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2025|Any CPU.ActiveCfg = Debug 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug 2025|Any CPU.Build.0 = Debug 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug|Any CPU.ActiveCfg = Debug 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Debug|Any CPU.Build.0 = Debug 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Release|Any CPU.ActiveCfg = Debug 2025|Any CPU
+		{9DE104AB-B1FC-4CE0-96C2-886CE0B3BC1D}.Release|Any CPU.Build.0 = Debug 2025|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2023|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2023|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2024|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2024|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2025|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.2025|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2023|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2023|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2024|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2024|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2025|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug 2025|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7651F122-7E28-4346-95A9-548B175AA337}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F43FA59-5970-4B04-B133-0CD3044FD5F6}
+	EndGlobalSection
+EndGlobal
