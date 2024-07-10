@@ -8,16 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -
 
 ## [1.0.0] / 2024-07-10
-
 - Eerste release op nieuwe template
-
 ### Fixed
-
 - Support voor Revit 2025 toegevoegd
 - Correcte namespaces voor de buttons
-
-
-
 
 
 
