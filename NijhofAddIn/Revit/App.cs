@@ -421,7 +421,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonC3D = (PushButton)panel1.AddItem(Creator3D);
             buttonC3D.Enabled = true;
             ContextualHelp contextHelpC3D = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#prefab-3d-creator");
             buttonC3D.SetContextualHelp(contextHelpC3D);
 
             panel1.AddSeparator(); //Voegt een verticale lijn toe
@@ -665,31 +665,36 @@ namespace NijhofAddIn.Revit
             /// voeg de eerste knop toe aan de vwa stack
             PushButton buttonVWAtag25 = SBvwa_Button.AddPushButton(btndataVWAtag25);
             buttonVWAtag25.Enabled = true;
-            ContextualHelp contexthelpvwatag25 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contexthelpvwatag25 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
             buttonVWAtag25.SetContextualHelp(contexthelpvwatag25);
 
             /// Voeg de tweede knop toe aan de vwa stack
             PushButton buttonVWAtag35 = SBvwa_Button.AddPushButton(btndataVWAtag35);
             buttonVWAtag35.Enabled = true;
-            ContextualHelp contextHelpVWAtag35 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpVWAtag35 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
             buttonVWAtag35.SetContextualHelp(contextHelpVWAtag35);
 
             /// Voeg de derde knop toe aan de vwa stack
             PushButton buttonVWAtag50 = SBvwa_Button.AddPushButton(btndataVWAtag50);
             buttonVWAtag50.Enabled = true;
-            ContextualHelp contextHelpVWAtag50 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpVWAtag50 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
             buttonVWAtag50.SetContextualHelp(contextHelpVWAtag50);
 
             /// Voeg de vierde knop toe aan de vwa stack
             PushButton buttonVWAtag75 = SBvwa_Button.AddPushButton(btndataVWAtag75);
             buttonVWAtag75.Enabled = true;
-            ContextualHelp contextHelpVWAtag75 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpVWAtag75 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
             buttonVWAtag75.SetContextualHelp(contextHelpVWAtag75);
 
             /// Voeg de vijfde knop toe aan de vwa stack
             PushButton buttonVWAtag100 = SBvwa_Button.AddPushButton(btndataVWAtag100);
             buttonVWAtag100.Enabled = true;
-            ContextualHelp contextHelpVWAtag100 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpVWAtag100 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
             buttonVWAtag100.SetContextualHelp(contextHelpVWAtag100);
             #endregion
 
@@ -697,31 +702,36 @@ namespace NijhofAddIn.Revit
             /// Voeg de eerste knop toe aan hwa stack
             PushButton buttonHWAtag25 = SBhwa_Button.AddPushButton(btndataHWAtag25);
             buttonHWAtag25.Enabled = true;
-            ContextualHelp contextHelpHWAtag25 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpHWAtag25 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
             buttonHWAtag25.SetContextualHelp(contextHelpHWAtag25);
 
             /// Voeg de tweede knop toe aan hwa stack
             PushButton buttonHWAtag35 = SBhwa_Button.AddPushButton(btndataHWAtag35);
             buttonHWAtag35.Enabled = true;
-            ContextualHelp contextHelpHWAtag35 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpHWAtag35 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
             buttonHWAtag35.SetContextualHelp(contextHelpHWAtag35);
 
             /// Voeg de derde knop toe aan hwa stack
             PushButton buttonHWAtag50 = SBhwa_Button.AddPushButton(btndataHWAtag50);
             buttonHWAtag50.Enabled = true;
-            ContextualHelp contextHelpHWAtag50 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpHWAtag50 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
             buttonHWAtag50.SetContextualHelp(contextHelpHWAtag50);
 
             /// Voeg de vierde knop toe aan hwa stack
             PushButton buttonHWAtag75 = SBhwa_Button.AddPushButton(btndataHWAtag75);
             buttonHWAtag75.Enabled = true;
-            ContextualHelp contextHelpHWAtag75 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpHWAtag75 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
             buttonHWAtag75.SetContextualHelp(contextHelpHWAtag75);
 
             /// Voeg de vijfde knop toe aan hwa stack
             PushButton buttonHWAtag100 = SBhwa_Button.AddPushButton(btndataHWAtag100);
             buttonHWAtag100.Enabled = true;
-            ContextualHelp contextHelpHWAtag100 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpHWAtag100 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
             buttonHWAtag100.SetContextualHelp(contextHelpHWAtag100);
             #endregion
 
@@ -729,31 +739,36 @@ namespace NijhofAddIn.Revit
             /// Voeg de eerst knop toe aan mv stack
             PushButton buttonMVtag25 = SBmv_Button.AddPushButton(btndataMVtag25);
             buttonMVtag25.Enabled = true;
-            ContextualHelp contextHelpMVtag25 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVtag25 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag25.SetContextualHelp(contextHelpMVtag25);
 
             /// Voeg de tweede knop toe aan mv stack
             PushButton buttonMVtag35 = SBmv_Button.AddPushButton(btndataMVtag35);
             buttonMVtag35.Enabled = true;
-            ContextualHelp contextHelpMVtag35 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVtag35 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag35.SetContextualHelp(contextHelpMVtag35);
 
             /// Voeg de derde knop toe aan mv stack
             PushButton buttonMVtag50 = SBmv_Button.AddPushButton(btndataMVtag50);
             buttonMVtag50.Enabled = true;
-            ContextualHelp contextHelpMVtag50 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVtag50 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag50.SetContextualHelp(contextHelpMVtag50);
 
             /// Voeg de vierde knop toe aan mv stack
             PushButton buttonMVtag75 = SBmv_Button.AddPushButton(btndataMVtag75);
             buttonMVtag75.Enabled = true;
-            ContextualHelp contextHelpMVtag75 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVtag75 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag75.SetContextualHelp(contextHelpMVtag75);
 
             /// Voeg de vijfde knop toe aan mv stack
             PushButton buttonMVtag100 = SBmv_Button.AddPushButton(btndataMVtag100);
             buttonMVtag100.Enabled = true;
-            ContextualHelp contextHelpMVtag100 = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVtag100 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag100.SetContextualHelp(contextHelpMVtag100);
             #endregion
             #endregion
@@ -779,7 +794,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonRV = (PushButton)panel9.AddItem(btndataRV);
             buttonRV.Enabled = true;
             ContextualHelp contextHelpRV = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Berekenen#rekenpunten-verwijderen");
             buttonRV.SetContextualHelp(contextHelpRV);
 
             //panel9.AddSeparator(); //Voegt een verticale lijn toe
@@ -820,7 +835,8 @@ namespace NijhofAddIn.Revit
             /// Voeg hoofdactie toe aan de splitbutton
             PushButton GPSloadButton = splitButtonGPSload.AddPushButton(GPSloadButtonData);
             GPSloadButton.Enabled = true;
-            ContextualHelp contextHelpGPSload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpGPSload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-inladen");
             GPSloadButton.SetContextualHelp(contextHelpGPSload);
 
             /// Voegt een horizontale lijn toe onder de eerste knop
@@ -843,7 +859,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de tweede knop toe aan de dropdown
             PushButton buttonRload = splitButtonGPSload.AddPushButton(btndataRload);
             buttonRload.Enabled = true;
-            ContextualHelp contextHelpRload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpRload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonRload.SetContextualHelp(contextHelpRload);
 
             /// Knopgegevens instellen voor de derde knop onder de dropdown
@@ -863,7 +880,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de derde knop toe aan de dropdown
             PushButton buttonMVload = splitButtonGPSload.AddPushButton(btndataMVload);
             buttonMVload.Enabled = true;
-            ContextualHelp contextHelpMVload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonMVload.SetContextualHelp(contextHelpMVload);
 
             /// Knopgegevens instellen voor de vierde knop onder de dropdown
@@ -883,7 +901,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vierde knop toe aan de dropdown
             PushButton buttonKWload = splitButtonGPSload.AddPushButton(btndataKWload);
             buttonKWload.Enabled = true;
-            ContextualHelp contextHelpKWload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpKWload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonKWload.SetContextualHelp(contextHelpKWload);
 
             /// Knopgegevens instellen voor de vijfde knop onder de dropdown
@@ -903,7 +922,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vijfde knop toe aan de dropdown
             PushButton buttonWWload = splitButtonGPSload.AddPushButton(btndataWWload);
             buttonWWload.Enabled = true;
-            ContextualHelp contextHelpWWload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpWWload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonWWload.SetContextualHelp(contextHelpWWload);
 
             /// Knopgegevens instellen voor de zesde knop onder de dropdown
@@ -923,7 +943,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de zesde knop toe aan de dropdown
             PushButton buttonEleload = splitButtonGPSload.AddPushButton(btndataEleload);
             buttonEleload.Enabled = true;
-            ContextualHelp contextHelpEleload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpEleload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonEleload.SetContextualHelp(contextHelpEleload);
 
             /// Knopgegevens instellen voor de zevende knop onder de dropdown
@@ -943,7 +964,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de zevende knop toe aan de dropdown
             PushButton buttonMKload = splitButtonGPSload.AddPushButton(btndataMKload);
             buttonMKload.Enabled = true;
-            ContextualHelp contextHelpMKload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMKload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonMKload.SetContextualHelp(contextHelpMKload);
 
             /// Knopgegevens instellen voor de achtste knop onder de dropdown
@@ -963,7 +985,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de achtste knop toe aan de dropdown
             PushButton buttonTIload = splitButtonGPSload.AddPushButton(btndataTIload);
             buttonTIload.Enabled = true;
-            ContextualHelp contextHelpTIload = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpTIload = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#plaats-");
             buttonTIload.SetContextualHelp(contextHelpTIload);
 
             //panel2.AddSeparator(); //Voegt een verticale lijn toe
@@ -995,7 +1018,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt GPS Punten toe",
-                LongDescription = "Plaatst Riool, Lucht, Warmwater en Koudwater GPS punten toe op de door de code bepaalde locaties.",
+                LongDescription = "Voegt Riool, Lucht, Warmwater en Koudwater GPS punten toe op de door de code bepaalde locaties.",
                 Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1003,7 +1026,8 @@ namespace NijhofAddIn.Revit
             /// Voeg hoofdactie toe aan de splitbutton
             PushButton GPSButton = splitButtonGPS.AddPushButton(GPSButtonData);
             GPSButton.Enabled = true;
-            ContextualHelp contextHelpGPSButton = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpGPSButton = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-toevoegen");
             GPSButton.SetContextualHelp(contextHelpGPSButton);
 
             /// Voegt een horizontale lijn toe onder de eerste knop
@@ -1018,7 +1042,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Riool GPS Punten toe",
-                LongDescription = "Plaatst alleen Riool GPS punten op alle speciedeksels in het model.",
+                LongDescription = "Voegt alleen Riool GPS punten toe op alle speciedeksels in het model.",
                 Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1026,7 +1050,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de tweede knop toe aan de dropdown
             PushButton buttonR = splitButtonGPS.AddPushButton(btndataR);
             buttonR.Enabled = true;
-            ContextualHelp contextHelpR = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpR = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-toevoegen");
             buttonR.SetContextualHelp(contextHelpR);
 
             /// Knopgegevens instellen voor de derde knop onder de dropdown
@@ -1038,7 +1063,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Lucht GPS Punten toe",
-                LongDescription = "Plaatst alleen Lucht GPS punten op alle ventielen in het model",
+                LongDescription = "Voegt alleen Lucht GPS punten toe op alle ventielen in het model",
                 Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1046,7 +1071,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de derde knop toe aan de dropdown
             PushButton buttonMV = splitButtonGPS.AddPushButton(btndataMV);
             buttonMV.Enabled = true;
-            ContextualHelp contextHelpMV = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMV = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-toevoegen");
             buttonMV.SetContextualHelp(contextHelpMV);
 
             /// Knopgegevens instellen voor de vierde knop onder de dropdown
@@ -1058,7 +1084,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Koud Water GPS Punten toe",
-                LongDescription = "Plaatst alleen Koud Water GPS punten op alle open einden van opgaande waterleidingen.",
+                LongDescription = "Voegt alleen Koud Water GPS punten toe op alle open einden van opgaande waterleidingen.",
                 Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1066,7 +1092,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vierde knop toe aan de dropdown
             PushButton buttonKW = splitButtonGPS.AddPushButton(btndataKW);
             buttonKW.Enabled = true;
-            ContextualHelp contextHelpKW = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpKW = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-toevoegen");
             buttonKW.SetContextualHelp(contextHelpKW);
 
             /// Knopgegevens instellen voor de vijfde knop onder de dropdown
@@ -1078,7 +1105,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Warm Water GPS Punten toe",
-                LongDescription = "Plaatst alleen Warm Water GPS punten op alle open einden van opgaande waterleidingen.",
+                LongDescription = "Voegt alleen Warm Water GPS punten toe op alle open einden van opgaande waterleidingen.",
                 Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1086,7 +1113,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vijfde knop toe aan de dropdown
             PushButton buttonWW = splitButtonGPS.AddPushButton(btndataWW);
             buttonWW.Enabled = true;
-            ContextualHelp contextHelpWW = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpWW = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-toevoegen");
             buttonWW.SetContextualHelp(contextHelpWW);
 
             #endregion
@@ -1124,7 +1152,8 @@ namespace NijhofAddIn.Revit
             /// Voeg hoofdactie toe aan de splitbutton
             PushButton delButton = splitButtonGPSdel.AddPushButton(delButtonData);
             delButton.Enabled = true;
-            ContextualHelp contextHelpdelButton = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpdelButton = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-verwijderen");
             delButton.SetContextualHelp(contextHelpdelButton);
 
             /// Voegt een horizontale lijn toe onder de eerste knop
@@ -1147,7 +1176,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de tweede knop toe aan de dropdown
             PushButton buttonRdel = splitButtonGPSdel.AddPushButton(btndataRdel);
             buttonRdel.Enabled = true;
-            ContextualHelp contextHelpRdel = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpRdel = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-verwijderen");
             buttonRdel.SetContextualHelp(contextHelpRdel);
 
             /// Knopgegevens instellen voor de derde knop onder de dropdown
@@ -1167,7 +1197,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de derde knop toe aan de dropdown
             PushButton buttonMVdel = splitButtonGPSdel.AddPushButton(btndataMVdel);
             buttonMVdel.Enabled = true;
-            ContextualHelp contextHelpMVdel = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMVdel = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-verwijderen");
             buttonMVdel.SetContextualHelp(contextHelpMVdel);
 
             /// Knopgegevens instellen voor de vierde knop onder de dropdown
@@ -1187,7 +1218,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vierde knop toe aan de dropdown
             PushButton buttonKWdel = splitButtonGPSdel.AddPushButton(btndataKWdel);
             buttonKWdel.Enabled = true;
-            ContextualHelp contextHelpKWdel = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpKWdel = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-verwijderen");
             buttonKWdel.SetContextualHelp(contextHelpKWdel);
 
             /// Knopgegevens instellen voor de vijfde knop onder de dropdown
@@ -1207,7 +1239,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de vijfde knop toe aan de dropdown
             PushButton buttonWWdel = splitButtonGPSdel.AddPushButton(btndataWWdel);
             buttonWWdel.Enabled = true;
-            ContextualHelp contextHelpWWdel = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpWWdel = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/GPS-Punten#gps-verwijderen");
             buttonWWdel.SetContextualHelp(contextHelpWWdel);
 
             #endregion
@@ -1234,7 +1267,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonMS = (PushButton)panel3.AddItem(btndataMS);
             buttonMS.Enabled = false;
             ContextualHelp contextHelpMS = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#muur-sparingen");
             buttonMS.SetContextualHelp(contextHelpMS);
 
             //panel2.AddSeparator(); //Voegt een verticale lijn toe
@@ -1260,7 +1293,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonBS = (PushButton)panel3.AddItem(btndataBS);
             buttonBS.Enabled = false;
             ContextualHelp contextHelpBS = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#balk-sparingen");
             buttonBS.SetContextualHelp(contextHelpBS);
 
             panel3.AddSeparator(); //Voegt een verticale lijn toe
@@ -1299,12 +1332,12 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataOntstop = new PushButtonData
                 (
                 "Onstoppingsstuk aanpassen",
-                "Ontstop.\nOmzetten",
+                "Ontstoppings-\nstuk",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Wijzigen.OntstoppingsstukOmzetten" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Veranderd alle Manchet Ontstoppingsstukken van Pipe Accessories naar Pipe Fittings",
+                ToolTip = "Veranderd de 'Family Type' van alle Ontstoppingsstukken",
                 LongDescription = "Deze functie zoekt in het hele model naar Manchet Ontstoppingsstukken van category Pipe Accessories. Deze zet hij om naar Pipe fittings" +
                                   "en laad deze in het model. Ontstoppingsstukken zonder manchet worden niet omgezet.",
                 Image = Ontstop16Scr,
@@ -1314,7 +1347,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonOntstop = (PushButton)panel4.AddItem(btndataOntstop);
             buttonOntstop.Enabled = true;
             ContextualHelp contextHelpOntstop = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#ontstoppingsstuk");
             buttonOntstop.SetContextualHelp(contextHelpOntstop);
             #endregion
 
@@ -1322,13 +1355,13 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataArtikeln = new PushButtonData
                 (
                 "HWA Artikelnummer Updaten",
-                "Update HWA\n Artikelnr.",
+                "HWA\n Artikelnr.",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Wijzigen.UpdateHWAArtikelnummer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Past alle artikel nummers van HWA ø80 aan naar de juiste die we bij Nijhof gebruiken",
-                LongDescription = "Deze tool past van alle ø80 HWA met type name: HWA 6m, HWA 5,55m en PVC 5,55m het article nummer aan naar 20033890.",
+                ToolTip = "Past de artikelnummers van HWA ø80 aan naar die we bij Nijhof gebruiken",
+                LongDescription = "Deze tool past van alle ø80 HWA met type name: HWA 6m, HWA 5,55m en PVC 5,55m het artikelnummer aan naar 20033890.",
                 Image = UpdateArtikel16Scr,
                 LargeImage = UpdateArtikel32Scr,
             };
@@ -1336,7 +1369,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonArtikeln = (PushButton)panel4.AddItem(btndataArtikeln);
             buttonArtikeln.Enabled = true;
             ContextualHelp contextHelpArtikeln = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#hwa-artikelnr");
             buttonArtikeln.SetContextualHelp(contextHelpArtikeln);
             #endregion
 
@@ -1344,14 +1377,13 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataUpdater = new PushButtonData
                 (
                 "HWA Lengte Updaten",
-                "HWA Lengte\nUpdater",
+                "HWA\nLengte",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Wijzigen.UpdateHWALengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Past de opgaande lengte van HWA ø80 en ø100 aan naar 800mm",
-                LongDescription = "Trek een selectieveld over het hele HWA systeem. Het maakt niet uit als er andere pipes in voorkomen zolang de pipes waarom het gaat maar in de selectie vallen." +
-                                  "Deze tool zoekt naar alle pipes van het type: HWA 6m, HWA 5,55m en PVC 5,55m en of deze ø80 of ø100 heeft en veranderd de lengte naar 800mm.",
+                ToolTip = "Past de opgaande lengte van HWA aan",
+                LongDescription = "Deze tool zoekt naar alle pipes van het type: HWA 6m, HWA 5,55m en PVC 5,55m en of deze ø80 of ø100 heeft en veranderd de lengte naar 800mm.",
                 Image = Regen16Scr,
                 LargeImage = Regen32Scr,
             };
@@ -1359,7 +1391,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonUpdater = (PushButton)panel4.AddItem(btndataUpdater);
             buttonUpdater.Enabled = true;
             ContextualHelp contextHelpUpdater = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#hwa-lengte");
             buttonUpdater.SetContextualHelp(contextHelpUpdater);
             #endregion
 
@@ -1367,7 +1399,7 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataStllengte = new PushButtonData
                 (
                 "Standleiding Lengte Aanpassen",
-                "Stl. Lengte\nAanpassen",
+                "Standleiding\nLengte",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Wijzigen.StandleidingLengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
@@ -1381,7 +1413,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonStllengte = (PushButton)panel4.AddItem(btndataStllengte);
             buttonStllengte.Enabled = true;
             ContextualHelp contextHelpStllengte = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#standleiding-lengte");
             buttonStllengte.SetContextualHelp(contextHelpStllengte);
             #endregion
             #endregion
@@ -1483,7 +1515,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de knop toe aan het Ribbon Panel
             PushButton buttonMateriaalExport = (PushButton)panel5.AddItem(btndataMateriaalExport);
             buttonMateriaalExport.Enabled = true;
-            ContextualHelp contextHelpMateriaalExport = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpMateriaalExport = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#materiaal-export");
             buttonMateriaalExport.SetContextualHelp(contextHelpMateriaalExport);
 
             // panel5.AddSeparator(); // Voegt een verticale lijn toe indien nodig
@@ -1508,7 +1541,8 @@ namespace NijhofAddIn.Revit
             /// Voeg de knop toe aan het Ribbon Panel
             PushButton buttonZaaglijstExport = (PushButton)panel5.AddItem(btndataZaaglijstExport);
             buttonZaaglijstExport.Enabled = true;
-            ContextualHelp contextHelpZaaglijstExport = new ContextualHelp(ContextualHelpType.Url, "http://www.autodesk.com");
+            ContextualHelp contextHelpZaaglijstExport = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#zaaglijst-export");
             buttonZaaglijstExport.SetContextualHelp(contextHelpZaaglijstExport);
 
             // panel5.AddSeparator(); // Voegt een verticale lijn toe indien nodig
@@ -1534,7 +1568,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonSwitchCode = (PushButton)panel6.AddItem(btndataSwitchCode);
             buttonSwitchCode.Enabled = true;
             ContextualHelp contextHelpSwitchCode = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Elektra#switchcodes");
             buttonSwitchCode.SetContextualHelp(contextHelpSwitchCode);
             #endregion
 
@@ -1556,7 +1590,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonTagGN = (PushButton)panel6.AddItem(btndataTagGN);
             buttonTagGN.Enabled = true;
             ContextualHelp contextHelpTagGN = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Elektra#tag-groepnummer");
             buttonTagGN.SetContextualHelp(contextHelpTagGN);
             #endregion
 
@@ -1578,7 +1612,7 @@ namespace NijhofAddIn.Revit
             PushButton buttonTagSC = (PushButton)panel6.AddItem(btndataTagSC);
             buttonTagSC.Enabled = true;
             ContextualHelp contextHelpTagSC = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Elektra#tag-switchcodes");
             buttonTagSC.SetContextualHelp(contextHelpTagSC);
             #endregion
             #endregion
@@ -1601,9 +1635,6 @@ namespace NijhofAddIn.Revit
 
             PushButton buttonKlik = (PushButton)panel7.AddItem(btndataKlik);
             buttonKlik.Enabled = true;
-            ContextualHelp contextHelpKlik = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
-            buttonKlik.SetContextualHelp(contextHelpKlik);
             #endregion
 
             #region pushButton (Help)
@@ -1623,9 +1654,6 @@ namespace NijhofAddIn.Revit
 
             PushButton buttonHelp = (PushButton)panel7.AddItem(btndataHelp);
             buttonHelp.Enabled = true;
-            ContextualHelp contextHelpHelp = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
-            buttonHelp.SetContextualHelp(contextHelpHelp);
             #endregion
 
             #region pushButton (Info)
@@ -1645,9 +1673,6 @@ namespace NijhofAddIn.Revit
 
             PushButton buttonInfo = (PushButton)panel7.AddItem(btndataInfo);
             buttonInfo.Enabled = true;
-            ContextualHelp contextHelpInfo = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
-            buttonInfo.SetContextualHelp(contextHelpInfo);
             #endregion
             #endregion
 
