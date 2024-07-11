@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 -
 
+## [1.0.1] / 2024-07-11
+### Fixed
+- Links voor 'Contextual Help' naar de juiste Wiki geüpdate
+- Tooltip beschrijving beknopter
+### Changed
+- Knop 'Ontstop. Omzetten' gewijzigd naar 'Ontstoppingsstuk'
+- Knop 'Update HWA Artikelnr.' gewijzigd naar 'HWA Artikelnr.'
+- Knop 'HWA Lengte Updater' gewijzigd naar 'HWA Lengte'
+- Knop 'Stl. Lengte Aanpassen' gewijzigd naar 'Standleiding Lengte'
+### Removed
+- Bij verschillende knoppen de 'Contextual Help' verwijderd
+
 ## [1.0.0] / 2024-07-10
 - Eerste release op nieuwe template
 ### Fixed
