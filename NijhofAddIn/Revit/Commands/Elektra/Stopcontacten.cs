@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
@@ -24,21 +25,21 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             UIDocument uidoc = uiApp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            /// Family name to check
+            // Family name to check
             string familyName = "WCD_BJ_Future_1v_Wit";
 
-            /// Path to the family file
+            // Path to the family file
             string familyPath2023 = @"G:\Mijn Drive\2. Werk\2. Nijhof\3. Revit\2. Families\60. Elektra\1. Busch Jaeger\1. Future Linear\2. Wit R24\2. Stopcontacten\1. Definitief\WCD_BJ_Future_1v_Wit.rfa";
             string familyPath2024 = @"G:\Mijn Drive\2. Werk\2. Nijhof\3. Revit\2. Families\60. Elektra\1. Busch Jaeger\1. Future Linear\2. Wit R24\2. Stopcontacten\1. Definitief\WCD_BJ_Future_1v_Wit.rfa";
             string familyPath2025 = @"G:\Mijn Drive\2. Werk\2. Nijhof\3. Revit\2. Families\60. Elektra\1. Busch Jaeger\1. Future Linear\2. Wit R24\2. Stopcontacten\1. Definitief\WCD_BJ_Future_1v_Wit.rfa";
 
-            /// Check if the family is already loaded
+            // Check if the family is already loaded
             bool isFamilyLoaded = IsFamilyLoaded(doc, familyName);
 
 #if RELEASE2023
             if (!isFamilyLoaded)
             {
-                /// Load the family if not already loaded
+                // Load the family if not already loaded
                 if (!LoadFamily(doc, familyPath2023))
                 {
                     message = "Failed to load family.";
@@ -46,32 +47,58 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                 }
             }
 #elif RELEASE2024
-            if (!isFamilyLoaded)
+        if (!isFamilyLoaded)
+        {
+            // Load the family if not already loaded
+            if (!LoadFamily(doc, familyPath2024))
             {
-                /// Load the family if not already loaded
-                if (!LoadFamily(doc, familyPath2024))
-                {
-                    message = "Failed to load family.";
-                    return Result.Failed;
-                }
+                message = "Failed to load family.";
+                return Result.Failed;
             }
+        }
 #elif RELEASE2025
-            if (!isFamilyLoaded)
+        if (!isFamilyLoaded)
+        {
+            // Load the family if not already loaded
+            if (!LoadFamily(doc, familyPath2025))
             {
-                /// Load the family if not already loaded
-                if (!LoadFamily(doc, familyPath2025))
-                {
-                    message = "Failed to load family.";
-                    return Result.Failed;
-                }
+                message = "Failed to load family.";
+                return Result.Failed;
             }
+        }
 #endif
 
-            /// Place the family with a mouse click
+            // Place the family at a specified point
             FamilySymbol familySymbol = GetFamilySymbol(doc, familyName);
             if (familySymbol != null)
             {
-                PlaceFamilyWithClick(uiApp, familySymbol);
+                // Start the transaction before prompting for point selection
+                using (Transaction trans = new Transaction(doc, "Place Family Instance"))
+                {
+                    trans.Start();
+                    try
+                    {
+                        XYZ insertionPoint = uidoc.Selection.PickPoint("Select a point to place the family instance.");
+                        if (!familySymbol.IsActive)
+                        {
+                            familySymbol.Activate();
+                        }
+                        doc.Create.NewFamilyInstance(insertionPoint, familySymbol, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
+                        trans.Commit();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        trans.RollBack();
+                        message = "Operation cancelled.";
+                        return Result.Cancelled;
+                    }
+                    catch (Exception ex)
+                    {
+                        trans.RollBack();
+                        message = ex.Message;
+                        return Result.Failed;
+                    }
+                }
                 return Result.Succeeded;
             }
             else
@@ -135,21 +162,6 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                 }
             }
             return null;
-        }
-
-        private void PlaceFamilyWithClick(UIApplication uiApp, FamilySymbol familySymbol)
-        {
-            if (!familySymbol.IsActive)
-            {
-                using (Transaction trans = new Transaction(uiApp.ActiveUIDocument.Document, "Activate Family Symbol"))
-                {
-                    trans.Start();
-                    familySymbol.Activate();
-                    trans.Commit();
-                }
-            }
-
-            uiApp.ActiveUIDocument.PromptForFamilyInstancePlacement(familySymbol);
         }
     }
     #endregion

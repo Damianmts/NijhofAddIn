@@ -2089,8 +2089,8 @@ namespace NijhofAddIn.Revit
             #region splitButton (Schakelaar)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataSchakelaar = new SplitButtonData(
-                "WCD Plaatsen",
-                "WCD")
+                "Schakelaar Plaatsen",
+                "Schakelaar")
             {
                 Image = PlaceHolder16Scr,
                 LargeImage = PlaceHolder32Scr,
@@ -2255,8 +2255,8 @@ namespace NijhofAddIn.Revit
             #region splitButton (Verlichting)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataVerlichting = new SplitButtonData(
-                "WCD Plaatsen",
-                "WCD")
+                "Verlichting Plaatsen",
+                "Verlichting")
             {
                 Image = PlaceHolder16Scr,
                 LargeImage = PlaceHolder32Scr,
@@ -2421,8 +2421,8 @@ namespace NijhofAddIn.Revit
             #region splitButton (Overig)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataOverig = new SplitButtonData(
-                "WCD Plaatsen",
-                "WCD")
+                "Overig Plaatsen",
+                "Overig")
             {
                 Image = PlaceHolder16Scr,
                 LargeImage = PlaceHolder32Scr,
