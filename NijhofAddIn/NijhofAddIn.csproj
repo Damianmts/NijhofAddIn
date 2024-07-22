@@ -92,7 +92,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Company>Bluetech Engineering - Nijhof Installaties</Company>
+    <Company>Damian M. @ Bluetech Engineering - Nijhof Installaties</Company>
     <Authors>Damian M.</Authors>
     <Description>Revit Plugin Description for $(PackageId).</Description>
     <CopyrightYears>$([System.DateTime]::Now.ToString('yyyy'))</CopyrightYears>
