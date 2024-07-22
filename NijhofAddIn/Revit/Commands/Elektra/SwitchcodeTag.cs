@@ -116,7 +116,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                 bool ElementHasRelevantTag(Document document, Element elem)
                 {
 
-                    // Define the family names of the relevant tags
+                    /// Define the family names of the relevant tags
                     string electricalFixtureTagFamilyName = "Switch Code - Electrical Fixture";
                     string lightingDeviceTagFamilyName = "Switch Code - Lighting Device";
 

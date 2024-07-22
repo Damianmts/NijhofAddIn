@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [UNRELEASED]
 -
 
+## [1.1.0] / 2024-07-22
+### Changed
+- Knop 'Tag Groepnummer' verplaatst naar 'Nijhof Elektra'
+- Knop 'Tag Switchcode' verplaatst naar 'Nijhof Elektra'
+- Knop 'Switchcodes' verplaatst naar 'Nijhof Elektra'
+### Added
+- Nieuw tabblad 'Nijhof Elektra'
+- Paneel 'Plaats'
+- Paneel 'Tag'
+- Paneel 'Overig'
+- Knop 'WCD'
+- Knop 'Schakelaar'
+- Knop 'Aansluitpunt'
+- Knop 'Data'
+- Knop 'Verlichting'
+- Knop 'Overig'
+### Removed
+- Paneel 'Elektra' bij 'Nijhof Tools'
+
 ## [1.0.1] / 2024-07-11
 ### Fixed
 - Links voor 'Contextual Help' naar de juiste Wiki geüpdate
