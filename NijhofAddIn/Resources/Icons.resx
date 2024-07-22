@@ -262,6 +262,30 @@
   <data name="wall_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wall-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WCDDubbel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDDubbel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDEnkel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDEnkel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDKracht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDKracht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDOpbouw_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDOpbouw_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDPerilex_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDPerilex_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDVloer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDVloer_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDWater1v_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDWater1v_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WCDWater2v_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>WCDWater2v_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_3d_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>3d-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

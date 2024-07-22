@@ -29,6 +29,8 @@ namespace NijhofAddIn.Revit
 
         public Result OnStartup(UIControlledApplication app)
         {
+            //Nijhof Tools
+
             #region Tabblad Tools
             /// Maakt Ribbon Tabblad aan
             try
@@ -193,6 +195,8 @@ namespace NijhofAddIn.Revit
             }
             #endregion
 
+            //Nijhof Elektra
+
             #region Tabblad Elektra
             /// Maakt Ribbon Tabblad aan
             try
@@ -261,6 +265,8 @@ namespace NijhofAddIn.Revit
                 panel11 = app.CreateRibbonPanel(RIBBON_TAB2, RIBBON_PANEL11);
             }
             #endregion
+
+            //Nijhof Tools
 
             #region Icons
             AppIcons appBase = new AppIcons();
@@ -422,6 +428,41 @@ namespace NijhofAddIn.Revit
             ///ImageSource HWA_Article_ImgScr = appBase.GetImageSource(HWA_Article_Img);
 
             #endregion
+
+            //Nijhof Elektra
+
+            #region Icons
+            //Stopcontacten
+            Image WCDEnkel32 = Icons.WCDEnkel_32;
+            ImageSource WCDEnkel32Scr = appBase.GetImageSource(WCDEnkel32);
+
+            Image WCDDubbel32 = Icons.WCDDubbel_32;
+            ImageSource WCDDubbel32Scr = appBase.GetImageSource(WCDDubbel32);
+
+            Image WCDOpbouw32 = Icons.WCDOpbouw_32;
+            ImageSource WCDOpbouw32Scr = appBase.GetImageSource(WCDOpbouw32);
+
+            Image WCDEnkelWater32 = Icons.WCDWater1v_32;
+            ImageSource WCDEnkelWater32Scr = appBase.GetImageSource(WCDEnkelWater32);
+
+            Image WCDDubbelWater32 = Icons.WCDWater2v_32;
+            ImageSource WCDDubbelWater32Scr = appBase.GetImageSource(WCDDubbelWater32);
+
+            Image WCDPerilex32 = Icons.WCDPerilex_32;
+            ImageSource WCDPerilex32Scr = appBase.GetImageSource(WCDPerilex32);
+
+            Image WCDKracht32 = Icons.WCDKracht_32;
+            ImageSource WCDKracht32Scr = appBase.GetImageSource(WCDKracht32);
+
+            Image WCDVloer32 = Icons.WCDVloer_32;
+            ImageSource WCDVloer32Scr = appBase.GetImageSource(WCDVloer32);
+
+            //Aansluitpunten
+
+            //Data
+            #endregion
+
+            //Nijhof Tools
 
             #region Buttons Panel (Content)
             #region pushButton (Library)
@@ -1661,11 +1702,13 @@ namespace NijhofAddIn.Revit
             #endregion
             #endregion
 
+            //Nijhof Elektra
+
             #region Buttons Panel (Plaatsen)
             #region splitButton (WCD)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataWCD = new SplitButtonData(
-                "WCD Plaatsen",
+                "Stopcontacten Plaatsen",
                 "WCD")
             {
                 Image = PlaceHolder16Scr,
@@ -1688,16 +1731,13 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats 1-voudig stopcontact",
                 //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDEnkel32Scr,
             };
 
             /// Voeg hoofdactie toe aan de splitbutton
             PushButton WCDEnkelButton = splitButtonWCD.AddPushButton(WCDEnkelButtonData);
             WCDEnkelButton.Enabled = true;
-
-            /// Voegt een horizontale lijn toe onder de eerste knop
-            //splitButtonGPSload.AddSeparator();
 
             /// Knopgegevens instellen voor de tweede knop onder de dropdown
             PushButtonData btndataWCDDubbel = new PushButtonData(
@@ -1709,8 +1749,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats 2-voudig stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDDubbel32Scr,
             };
 
             /// Voeg de tweede knop toe aan de dropdown
@@ -1727,13 +1767,16 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats 2-voudig opbouw stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDOpbouw32Scr,
             };
 
             /// Voeg de derde knop toe aan de dropdown
             PushButton buttonWCDOpbouw = splitButtonWCD.AddPushButton(btndataWCDOpbouw);
             buttonWCDOpbouw.Enabled = true;
+
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonWCD.AddSeparator();
 
             /// Knopgegevens instellen voor de vierde knop onder de dropdown
             PushButtonData btndataWCDWater1v = new PushButtonData(
@@ -1745,8 +1788,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats 1v spatwaterdicht stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDEnkelWater32Scr,
             };
 
             /// Voeg de vierde knop toe aan de dropdown
@@ -1763,8 +1806,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats 2v spatwaterdicht stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDDubbelWater32Scr,
             };
 
             /// Voeg de vijfde knop toe aan de dropdown
@@ -1781,9 +1824,12 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats perilex stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDPerilex32Scr,
             };
+
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonWCD.AddSeparator();
 
             /// Voeg de zesde knop toe aan de dropdown
             PushButton buttonWCDPerilex = splitButtonWCD.AddPushButton(btndataWCDPerilex);
@@ -1799,13 +1845,16 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats krachtstroom stopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDKracht32Scr,
             };
 
             /// Voeg de zevende knop toe aan de dropdown
             PushButton buttonWCDKracht = splitButtonWCD.AddPushButton(btndataWCDKracht);
             buttonWCDKracht.Enabled = true;
+
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonWCD.AddSeparator();
 
             /// Knopgegevens instellen voor de achtste knop onder de dropdown
             PushButtonData btndataWCDVloer = new PushButtonData(
@@ -1817,8 +1866,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Plaats vloerstopcontact",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                //Image = PlaceHolder16Scr,
+                LargeImage = WCDVloer32Scr,
             };
 
             /// Voeg de achtste knop toe aan de dropdown
@@ -1831,8 +1880,8 @@ namespace NijhofAddIn.Revit
             #region splitButton (Aansluitpunt)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataAansluitpunt = new SplitButtonData(
-                "WCD Plaatsen",
-                "WCD")
+                "Aansluitpunten Plaatsen",
+                "Aansluitpunt")
             {
                 Image = PlaceHolder16Scr,
                 LargeImage = PlaceHolder32Scr,
@@ -1844,161 +1893,128 @@ namespace NijhofAddIn.Revit
             /// Zet IsSynchronizedWithCurrentItem op false om synchronisatie te voorkomen
             splitButtonAansluitpunt.IsSynchronizedWithCurrentItem = true;
 
-            ///// Stel hoofdactie van de splitButton in
-            //PushButtonData WCDEnkelButtonData = new PushButtonData(
-            //"1v Plaatsen", /// De naam van de standaardactie
-            //"WCD:\n1 Voudig", /// Tooltip voor de standaardactie
-            //Assembly.GetExecutingAssembly().Location,
-            //"NijhofAddIn.Revit.Commands.Elektra.Stopcontact1v" /// Vervang door de relevante namespace en klasse
-            //)
-            //{
-            //    ToolTip = "Plaats 1-voudig stopcontact",
-            //    //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Stel hoofdactie van de splitButton in
+            PushButtonData ASPBedraadButtonData = new PushButtonData(
+            "Aansluitpunt Bedraad Plaatsen", /// De naam van de standaardactie
+            "Aansluitpunt:\nBedraad", /// Tooltip voor de standaardactie
+            Assembly.GetExecutingAssembly().Location,
+            "NijhofAddIn.Revit.Commands.Elektra.AansluitpuntBedraad" /// Vervang door de relevante namespace en klasse
+            )
+            {
+                ToolTip = "Plaats een bedraad aansluitpunt",
+                //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg hoofdactie toe aan de splitbutton
-            //PushButton WCDEnkelButton = splitButtonWCD.AddPushButton(WCDEnkelButtonData);
-            //WCDEnkelButton.Enabled = true;
+            /// Voeg hoofdactie toe aan de splitbutton
+            PushButton ASPBedraadButton = splitButtonAansluitpunt.AddPushButton(ASPBedraadButtonData);
+            ASPBedraadButton.Enabled = true;
 
-            ///// Voegt een horizontale lijn toe onder de eerste knop
-            ////splitButtonGPSload.AddSeparator();
+            /// Knopgegevens instellen voor de tweede knop onder de dropdown
+            PushButtonData btndataASPOnbedraad = new PushButtonData(
+                "Aansluitpunt Onbedraad Plaatsen",
+                "Aansluitpunt:\nOnbedraad",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.AansluitpuntOnbedraad" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een onbedraad aansluitpunt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Knopgegevens instellen voor de tweede knop onder de dropdown
-            //PushButtonData btndataWCDDubbel = new PushButtonData(
-            //    "2v Plaatsen",
-            //    "WCD:\n2 Voudig",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Stopcontact2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2-voudig stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Voeg de tweede knop toe aan de dropdown
+            PushButton buttonASPOnbedraad = splitButtonAansluitpunt.AddPushButton(btndataASPOnbedraad);
+            buttonASPOnbedraad.Enabled = true;
 
-            ///// Voeg de tweede knop toe aan de dropdown
-            //PushButton buttonWCDDubbel = splitButtonWCD.AddPushButton(btndataWCDDubbel);
-            //buttonWCDDubbel.Enabled = true;
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonAansluitpunt.AddSeparator();
 
-            ///// Knopgegevens instellen voor de derde knop onder de dropdown
-            //PushButtonData btndataWCDOpbouw = new PushButtonData(
-            //    "2v Opbouw Plaatsen",
-            //    "WCD:\n2v Opbouw",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Opbouw" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2-voudig opbouw stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Knopgegevens instellen voor de derde knop onder de dropdown
+            PushButtonData btndata230v = new PushButtonData(
+                "Aansluitpunt 230v plaatsen",
+                "Aansluitpunt:\n230v",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.Enkel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een 230v aansluitpunt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg de derde knop toe aan de dropdown
-            //PushButton buttonWCDOpbouw = splitButtonWCD.AddPushButton(btndataWCDOpbouw);
-            //buttonWCDOpbouw.Enabled = true;
+            /// Voeg de derde knop toe aan de dropdown
+            PushButton button230v = splitButtonAansluitpunt.AddPushButton(btndata230v);
+            button230v.Enabled = true;
 
-            ///// Knopgegevens instellen voor de vierde knop onder de dropdown
-            //PushButtonData btndataWCDWater1v = new PushButtonData(
-            //    "1v Spatwaterdicht Plaatsen",
-            //    "WCD:\n1v Waterd.",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht1v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 1v spatwaterdicht stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Knopgegevens instellen voor de vierde knop onder de dropdown
+            PushButtonData btndata2x230v = new PushButtonData(
+                "Aansluitpunt 2x 230v Plaatsen",
+                "Aansluitpunt:\n2x 230v",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.Dubbel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een 2x 230v aansluitpunt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg de vierde knop toe aan de dropdown
-            //PushButton buttonWCDWater1v = splitButtonWCD.AddPushButton(btndataWCDWater1v);
-            //buttonWCDWater1v.Enabled = true;
+            /// Voeg de vierde knop toe aan de dropdown
+            PushButton button2x230v = splitButtonAansluitpunt.AddPushButton(btndata2x230v);
+            button2x230v.Enabled = true;
 
-            ///// Knopgegevens instellen voor de vijfde knop onder de dropdown
-            //PushButtonData btndataWCDWater2v = new PushButtonData(
-            //    "2v Spatwaterdicht Plaatsen",
-            //    "WCD:\n2v Waterd.",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2v spatwaterdicht stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Knopgegevens instellen voor de vijfde knop onder de dropdown
+            PushButtonData btndata400v = new PushButtonData(
+                "400v Plaatsen",
+                "Aansluitpunt:\n400v",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.Enkel400v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een 400v aansluitpunt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg de vijfde knop toe aan de dropdown
-            //PushButton buttonWCDWater2v = splitButtonWCD.AddPushButton(btndataWCDWater2v);
-            //buttonWCDWater2v.Enabled = true;
+            /// Voeg de vijfde knop toe aan de dropdown
+            PushButton button400v = splitButtonAansluitpunt.AddPushButton(btndata400v);
+            button400v.Enabled = true;
 
-            ///// Knopgegevens instellen voor de zesde knop onder de dropdown
-            //PushButtonData btndataWCDPerilex = new PushButtonData(
-            //    "Perilex Plaatsen",
-            //    "WCD:\nPerilex",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Perilex" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats perilex stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonAansluitpunt.AddSeparator();
 
-            ///// Voeg de zesde knop toe aan de dropdown
-            //PushButton buttonWCDPerilex = splitButtonWCD.AddPushButton(btndataWCDPerilex);
-            //buttonWCDPerilex.Enabled = true;
+            /// Knopgegevens instellen voor de zesde knop onder de dropdown
+            PushButtonData btndataAardepunt = new PushButtonData(
+                "Centraal Aardepunt Plaatsen",
+                "Aansluitpunt:\nCAP",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.CAP" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een Centraal Aardepunt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Knopgegevens instellen voor de zevende knop onder de dropdown
-            //PushButtonData btndataWCDKracht = new PushButtonData(
-            //    "Krachtstroom Plaatsen",
-            //    "WCD:\nKracht",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Krachtstroom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats krachtstroom stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Voeg de zesde knop toe aan de dropdown
+            PushButton buttonAardepunt = splitButtonAansluitpunt.AddPushButton(btndataAardepunt);
+            buttonAardepunt.Enabled = true;
 
-            ///// Voeg de zevende knop toe aan de dropdown
-            //PushButton buttonWCDKracht = splitButtonWCD.AddPushButton(btndataWCDKracht);
-            //buttonWCDKracht.Enabled = true;
-
-            ///// Knopgegevens instellen voor de achtste knop onder de dropdown
-            //PushButtonData btndataWCDVloer = new PushButtonData(
-            //    "Vloerstopcontact Plaatsen",
-            //    "WCD:\nVloer",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Vloerstopcontact" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats vloerstopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de achtste knop toe aan de dropdown
-            //PushButton buttonWCDVloer = splitButtonWCD.AddPushButton(btndataWCDVloer);
-            //buttonWCDVloer.Enabled = true;
-
-            ////panel2.AddSeparator(); //Voegt een verticale lijn toe
+            //panel2.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
             #region splitButton (Data)
             /// Instellen van de split-knopgegevens
             SplitButtonData splitButtonDataData = new SplitButtonData(
-                "WCD Plaatsen",
-                "WCD")
+                "Data Plaatsen",
+                "Data")
             {
                 Image = PlaceHolder16Scr,
                 LargeImage = PlaceHolder32Scr,
@@ -2010,152 +2026,62 @@ namespace NijhofAddIn.Revit
             /// Zet IsSynchronizedWithCurrentItem op false om synchronisatie te voorkomen
             splitButtonData.IsSynchronizedWithCurrentItem = true;
 
-            ///// Stel hoofdactie van de splitButton in
-            //PushButtonData WCDEnkelButtonData = new PushButtonData(
-            //"1v Plaatsen", /// De naam van de standaardactie
-            //"WCD:\n1 Voudig", /// Tooltip voor de standaardactie
-            //Assembly.GetExecutingAssembly().Location,
-            //"NijhofAddIn.Revit.Commands.Elektra.Stopcontact1v" /// Vervang door de relevante namespace en klasse
-            //)
-            //{
-            //    ToolTip = "Plaats 1-voudig stopcontact",
-            //    //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Stel hoofdactie van de splitButton in
+            PushButtonData DataBekabeldButtonData = new PushButtonData(
+            "Data Bekabeld Plaatsen", /// De naam van de standaardactie
+            "Data:\nBekabeld", /// Tooltip voor de standaardactie
+            Assembly.GetExecutingAssembly().Location,
+            "NijhofAddIn.Revit.Commands.Elektra.DataBekabeld" /// Vervang door de relevante namespace en klasse
+            )
+            {
+                ToolTip = "Plaats een bekabeld data punt",
+                //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg hoofdactie toe aan de splitbutton
-            //PushButton WCDEnkelButton = splitButtonWCD.AddPushButton(WCDEnkelButtonData);
-            //WCDEnkelButton.Enabled = true;
+            /// Voeg hoofdactie toe aan de splitbutton
+            PushButton DataBekabeldButton = splitButtonData.AddPushButton(DataBekabeldButtonData);
+            DataBekabeldButton.Enabled = true;
 
-            ///// Voegt een horizontale lijn toe onder de eerste knop
-            ////splitButtonGPSload.AddSeparator();
+            /// Voegt een horizontale lijn toe onder de knop
+            splitButtonData.AddSeparator();
 
-            ///// Knopgegevens instellen voor de tweede knop onder de dropdown
-            //PushButtonData btndataWCDDubbel = new PushButtonData(
-            //    "2v Plaatsen",
-            //    "WCD:\n2 Voudig",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Stopcontact2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2-voudig stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Knopgegevens instellen voor de tweede knop onder de dropdown
+            PushButtonData btndataEnkelData = new PushButtonData(
+                "Enkel Data Plaatsen",
+                "Data:\nEnkel",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.EnkelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een eenvoudig data punt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg de tweede knop toe aan de dropdown
-            //PushButton buttonWCDDubbel = splitButtonWCD.AddPushButton(btndataWCDDubbel);
-            //buttonWCDDubbel.Enabled = true;
+            /// Voeg de tweede knop toe aan de dropdown
+            PushButton buttonEnkelData = splitButtonData.AddPushButton(btndataEnkelData);
+            buttonEnkelData.Enabled = true;
 
-            ///// Knopgegevens instellen voor de derde knop onder de dropdown
-            //PushButtonData btndataWCDOpbouw = new PushButtonData(
-            //    "2v Opbouw Plaatsen",
-            //    "WCD:\n2v Opbouw",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Opbouw" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2-voudig opbouw stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
+            /// Knopgegevens instellen voor de derde knop onder de dropdown
+            PushButtonData btndataDubbelData = new PushButtonData(
+                "Dubbele Data Plaatsen",
+                "Data:\nDubbel",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.DubbelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Plaats een dubbel data punt",
+                //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
 
-            ///// Voeg de derde knop toe aan de dropdown
-            //PushButton buttonWCDOpbouw = splitButtonWCD.AddPushButton(btndataWCDOpbouw);
-            //buttonWCDOpbouw.Enabled = true;
-
-            ///// Knopgegevens instellen voor de vierde knop onder de dropdown
-            //PushButtonData btndataWCDWater1v = new PushButtonData(
-            //    "1v Spatwaterdicht Plaatsen",
-            //    "WCD:\n1v Waterd.",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht1v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 1v spatwaterdicht stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de vierde knop toe aan de dropdown
-            //PushButton buttonWCDWater1v = splitButtonWCD.AddPushButton(btndataWCDWater1v);
-            //buttonWCDWater1v.Enabled = true;
-
-            ///// Knopgegevens instellen voor de vijfde knop onder de dropdown
-            //PushButtonData btndataWCDWater2v = new PushButtonData(
-            //    "2v Spatwaterdicht Plaatsen",
-            //    "WCD:\n2v Waterd.",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats 2v spatwaterdicht stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de vijfde knop toe aan de dropdown
-            //PushButton buttonWCDWater2v = splitButtonWCD.AddPushButton(btndataWCDWater2v);
-            //buttonWCDWater2v.Enabled = true;
-
-            ///// Knopgegevens instellen voor de zesde knop onder de dropdown
-            //PushButtonData btndataWCDPerilex = new PushButtonData(
-            //    "Perilex Plaatsen",
-            //    "WCD:\nPerilex",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Perilex" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats perilex stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de zesde knop toe aan de dropdown
-            //PushButton buttonWCDPerilex = splitButtonWCD.AddPushButton(btndataWCDPerilex);
-            //buttonWCDPerilex.Enabled = true;
-
-            ///// Knopgegevens instellen voor de zevende knop onder de dropdown
-            //PushButtonData btndataWCDKracht = new PushButtonData(
-            //    "Krachtstroom Plaatsen",
-            //    "WCD:\nKracht",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Krachtstroom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats krachtstroom stopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de zevende knop toe aan de dropdown
-            //PushButton buttonWCDKracht = splitButtonWCD.AddPushButton(btndataWCDKracht);
-            //buttonWCDKracht.Enabled = true;
-
-            ///// Knopgegevens instellen voor de achtste knop onder de dropdown
-            //PushButtonData btndataWCDVloer = new PushButtonData(
-            //    "Vloerstopcontact Plaatsen",
-            //    "WCD:\nVloer",
-            //    Assembly.GetExecutingAssembly().Location,
-            //    "NijhofAddIn.Revit.Commands.Elektra.Vloerstopcontact" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-            //    )
-            //{
-            //    ToolTip = "Plaats vloerstopcontact",
-            //    //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-            //    Image = PlaceHolder16Scr,
-            //    LargeImage = PlaceHolder32Scr,
-            //};
-
-            ///// Voeg de achtste knop toe aan de dropdown
-            //PushButton buttonWCDVloer = splitButtonWCD.AddPushButton(btndataWCDVloer);
-            //buttonWCDVloer.Enabled = true;
+            /// Voeg de derde knop toe aan de dropdown
+            PushButton buttonDubbelData = splitButtonData.AddPushButton(btndataDubbelData);
+            buttonDubbelData.Enabled = true;
 
             panel10.AddSeparator(); //Voegt een verticale lijn toe
             #endregion

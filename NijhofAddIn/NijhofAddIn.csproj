@@ -105,6 +105,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\WCDDubbel_32.png" />
+    <None Remove="Resources\WCDEnkel_32.png" />
+    <None Remove="Resources\WCDKracht_32.png" />
+    <None Remove="Resources\WCDOpbouw_32.png" />
+    <None Remove="Resources\WCDPerilex_32.png" />
+    <None Remove="Resources\WCDVloer_32.png" />
+    <None Remove="Resources\WCDWater1v_32.png" />
+    <None Remove="Resources\WCDWater2v_32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
@@ -201,6 +212,14 @@
     <Resource Include="Resources\tag-32.png" />
     <Resource Include="Resources\wall-16.png" />
     <Resource Include="Resources\wall-32.png" />
+    <Resource Include="Resources\WCDDubbel_32.png" />
+    <Resource Include="Resources\WCDEnkel_32.png" />
+    <Resource Include="Resources\WCDKracht_32.png" />
+    <Resource Include="Resources\WCDOpbouw_32.png" />
+    <Resource Include="Resources\WCDPerilex_32.png" />
+    <Resource Include="Resources\WCDVloer_32.png" />
+    <Resource Include="Resources\WCDWater1v_32.png" />
+    <Resource Include="Resources\WCDWater2v_32.png" />
   </ItemGroup>
 
   <ItemGroup>
