@@ -123,6 +123,26 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Bedraad_32 {
+            get {
+                object obj = ResourceManager.GetObject("Bedraad_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CAP_32 {
+            get {
+                object obj = ResourceManager.GetObject("CAP_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap concrete_16 {
             get {
                 object obj = ResourceManager.GetObject("concrete_16", resourceCulture);
@@ -163,9 +183,59 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dubbel230v_32 {
+            get {
+                object obj = ResourceManager.GetObject("Dubbel230v_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DubbelData_32 {
+            get {
+                object obj = ResourceManager.GetObject("DubbelData_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap electrical_32 {
             get {
                 object obj = ResourceManager.GetObject("electrical_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Enkel230v_32 {
+            get {
+                object obj = ResourceManager.GetObject("Enkel230v_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Enkel400v_32 {
+            get {
+                object obj = ResourceManager.GetObject("Enkel400v_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnkelData_32 {
+            get {
+                object obj = ResourceManager.GetObject("EnkelData_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +456,16 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap manhole_32 {
             get {
                 object obj = ResourceManager.GetObject("manhole_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Onbedraad_32 {
+            get {
+                object obj = ResourceManager.GetObject("Onbedraad_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

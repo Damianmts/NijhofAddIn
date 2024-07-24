@@ -105,17 +105,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\WCDDubbel_32.png" />
-    <None Remove="Resources\WCDEnkel_32.png" />
-    <None Remove="Resources\WCDKracht_32.png" />
-    <None Remove="Resources\WCDOpbouw_32.png" />
-    <None Remove="Resources\WCDPerilex_32.png" />
-    <None Remove="Resources\WCDVloer_32.png" />
-    <None Remove="Resources\WCDWater1v_32.png" />
-    <None Remove="Resources\WCDWater2v_32.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
@@ -168,11 +157,18 @@
     <Resource Include="Resources\article-32.png" />
     <Resource Include="Resources\basket16.png" />
     <Resource Include="Resources\basket32.png" />
+    <Resource Include="Resources\Bedraad_32.png" />
+    <Resource Include="Resources\CAP_32.png" />
     <Resource Include="Resources\concrete-16.png" />
     <Resource Include="Resources\concrete-32.png" />
     <Resource Include="Resources\delete-16.png" />
     <Resource Include="Resources\delete-32.png" />
+    <Resource Include="Resources\Dubbel230v_32.png" />
+    <Resource Include="Resources\DubbelData_32.png" />
     <Resource Include="Resources\electrical-32.png" />
+    <Resource Include="Resources\Enkel230v_32.png" />
+    <Resource Include="Resources\Enkel400v_32.png" />
+    <Resource Include="Resources\EnkelData_32.png" />
     <Resource Include="Resources\error-16.png" />
     <Resource Include="Resources\error-32.png" />
     <Resource Include="Resources\export-excel-16.png" />
@@ -195,6 +191,7 @@
     <Resource Include="Resources\list-32.png" />
     <Resource Include="Resources\manhole-16.png" />
     <Resource Include="Resources\manhole-32.png" />
+    <Resource Include="Resources\Onbedraad_32.png" />
     <Resource Include="Resources\pin-16.png" />
     <Resource Include="Resources\pin-32.png" />
     <Resource Include="Resources\properties-16.png" />
