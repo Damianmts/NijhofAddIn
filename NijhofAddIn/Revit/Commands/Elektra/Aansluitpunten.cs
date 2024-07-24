@@ -28,7 +28,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Aansluitpunten\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Aansluitpunten\";
 #elif RELEASE2024
             familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Aansluitpunten\";
 #elif RELEASE2025
