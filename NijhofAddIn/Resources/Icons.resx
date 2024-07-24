@@ -136,6 +136,9 @@
   <data name="CAP_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>CAP_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="centraaldoos_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>centraaldoos_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="concrete_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>concrete-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,11 +151,20 @@
   <data name="delete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>delete-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dimmer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dimmer_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Dubbel230v_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Dubbel230v_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DubbelData_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>DubbelData_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dubbelpolig_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dubbelpolig_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dubbelwissel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dubbelwissel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="electrical_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>electrical-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -165,6 +177,9 @@
   </data>
   <data name="EnkelData_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>EnkelData_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enkelpolig_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>enkelpolig_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="error_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>error-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,11 +217,20 @@
   <data name="gps_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gps-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="inbouwspot_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>inbouwspot_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="info_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>info-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>info-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jaloezie_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>jaloezie_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kruis_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>kruis_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="length16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>length16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,6 +265,9 @@
   <data name="pin_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>pin-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="plafondlicht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>plafondlicht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="properties_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>properties-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -271,6 +298,9 @@
   <data name="saw32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>saw32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="serie_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>serie_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="switch_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>switch-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -285,6 +315,9 @@
   </data>
   <data name="wall_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wall-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wandlicht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>wandlicht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WCDDubbel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>WCDDubbel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -309,6 +342,15 @@
   </data>
   <data name="WCDWater2v_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>WCDWater2v_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wissel2x_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>wissel2x_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wisseldimmer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>wisseldimmer_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wissel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>wissel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_3d_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>3d-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

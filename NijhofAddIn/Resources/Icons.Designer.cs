@@ -143,6 +143,16 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap centraaldoos_32 {
+            get {
+                object obj = ResourceManager.GetObject("centraaldoos_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap concrete_16 {
             get {
                 object obj = ResourceManager.GetObject("concrete_16", resourceCulture);
@@ -183,6 +193,16 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dimmer_32 {
+            get {
+                object obj = ResourceManager.GetObject("dimmer_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Dubbel230v_32 {
             get {
                 object obj = ResourceManager.GetObject("Dubbel230v_32", resourceCulture);
@@ -196,6 +216,26 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap DubbelData_32 {
             get {
                 object obj = ResourceManager.GetObject("DubbelData_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dubbelpolig_32 {
+            get {
+                object obj = ResourceManager.GetObject("dubbelpolig_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dubbelwissel_32 {
+            get {
+                object obj = ResourceManager.GetObject("dubbelwissel_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +276,16 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap EnkelData_32 {
             get {
                 object obj = ResourceManager.GetObject("EnkelData_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enkelpolig_32 {
+            get {
+                object obj = ResourceManager.GetObject("enkelpolig_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,6 +413,16 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap inbouwspot_32 {
+            get {
+                object obj = ResourceManager.GetObject("inbouwspot_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap info_16 {
             get {
                 object obj = ResourceManager.GetObject("info_16", resourceCulture);
@@ -376,6 +436,26 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap info_32 {
             get {
                 object obj = ResourceManager.GetObject("info_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jaloezie_32 {
+            get {
+                object obj = ResourceManager.GetObject("jaloezie_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kruis_32 {
+            get {
+                object obj = ResourceManager.GetObject("kruis_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -493,6 +573,16 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap plafondlicht_32 {
+            get {
+                object obj = ResourceManager.GetObject("plafondlicht_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap properties_16 {
             get {
                 object obj = ResourceManager.GetObject("properties_16", resourceCulture);
@@ -593,6 +683,16 @@ namespace NijhofAddIn.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap serie_32 {
+            get {
+                object obj = ResourceManager.GetObject("serie_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap switch_32 {
             get {
                 object obj = ResourceManager.GetObject("switch_32", resourceCulture);
@@ -636,6 +736,16 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap wall_32 {
             get {
                 object obj = ResourceManager.GetObject("wall_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wandlicht_32 {
+            get {
+                object obj = ResourceManager.GetObject("wandlicht_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -716,6 +826,36 @@ namespace NijhofAddIn.Resources {
         internal static System.Drawing.Bitmap WCDWater2v_32 {
             get {
                 object obj = ResourceManager.GetObject("WCDWater2v_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wissel_32 {
+            get {
+                object obj = ResourceManager.GetObject("wissel_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wissel2x_32 {
+            get {
+                object obj = ResourceManager.GetObject("wissel2x_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wisseldimmer_32 {
+            get {
+                object obj = ResourceManager.GetObject("wisseldimmer_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
