@@ -310,10 +310,28 @@ namespace NijhofAddIn.Revit
             Image GPS32 = Icons.gps_32;
             ImageSource GPS32Scr = appBase.GetImageSource(GPS32);
 
+            Image GPSRiool32 = Icons.gpsrioollucht_32;
+            ImageSource GPSRiool32Scr = appBase.GetImageSource(GPSRiool32);
+
+            Image GPSKoudwater32 = Icons.gpskoudwater_32;
+            ImageSource GPSKoudwater32Scr = appBase.GetImageSource(GPSKoudwater32);
+
+            Image GPSWarmwater32 = Icons.gpswarmwater_32;
+            ImageSource GPSWarmwater32Scr = appBase.GetImageSource(GPSWarmwater32);
+
+            Image GPSElektra32 = Icons.gpselektra_32;
+            ImageSource GPSElektra32Scr = appBase.GetImageSource(GPSElektra32);
+
+            Image GPSMeterkast32 = Icons.gpsmeterkast_32;
+            ImageSource GPSMeterkast32Scr = appBase.GetImageSource(GPSMeterkast32);
+
+            Image GPSIntercom32 = Icons.gpsintercom_32;
+            ImageSource GPSIntercom32Scr = appBase.GetImageSource(GPSIntercom32);
+
             Image GPSimport16 = Icons.gpsimport_16;
             ImageSource GPSimport16Scr = appBase.GetImageSource(GPSimport16);
 
-            Image GPSimport32 = Icons.gpsimport_32;
+            Image GPSimport32 = Icons.gpsinladen_32;
             ImageSource GPSimport32Scr = appBase.GetImageSource(GPSimport32);
 
             Image GPSdel16 = Icons.gpsdel_16;
@@ -543,6 +561,23 @@ namespace NijhofAddIn.Revit
             ImageSource LichtWand32Scr = appBase.GetImageSource(LichtWand32);
 
             //Overig
+            Image Bediening32 = Icons.bbediening_32;
+            ImageSource Bediening32Scr = appBase.GetImageSource(Bediening32);
+
+            Image Rookmelder32 = Icons.rookmelder_32;
+            ImageSource Rookmelder32Scr = appBase.GetImageSource(Rookmelder32);
+
+            Image Deurbel32 = Icons.deurbel_32;
+            ImageSource Deurbel32Scr = appBase.GetImageSource(Deurbel32);
+
+            Image Dingdong32 = Icons.dingdong_32;
+            ImageSource Dingdong32Scr = appBase.GetImageSource(Dingdong32);
+
+            Image Intercom32 = Icons.intercom_32;
+            ImageSource Intercom32Scr = appBase.GetImageSource(Intercom32);
+
+            Image Grondkabel32 = Icons.grondkabel_32;
+            ImageSource Grondkabel32Scr = appBase.GetImageSource(Grondkabel32);
 
             #endregion
 
@@ -999,7 +1034,7 @@ namespace NijhofAddIn.Revit
             /// Stel hoofdactie van de splitButton in
             PushButtonData GPSloadButtonData = new PushButtonData(
             "GPS Inladen", /// De naam van de standaardactie
-            "GPS\nInladen", /// Tooltip voor de standaardactie
+            "Inladen", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
             "NijhofAddIn.Revit.Commands.GPS.Inladen" /// Vervang door de relevante namespace en klasse
             )
@@ -1031,7 +1066,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Riool GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de tweede knop toe aan de dropdown
@@ -1052,7 +1087,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Lucht GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de derde knop toe aan de dropdown
@@ -1073,7 +1108,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Koud Water GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSKoudwater32Scr,
             };
 
             /// Voeg de vierde knop toe aan de dropdown
@@ -1094,7 +1129,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Warm Water GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSWarmwater32Scr,
             };
 
             /// Voeg de vijfde knop toe aan de dropdown
@@ -1115,7 +1150,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Elektra GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSElektra32Scr,
             };
 
             /// Voeg de zesde knop toe aan de dropdown
@@ -1136,7 +1171,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Meterkast GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSMeterkast32Scr,
             };
 
             /// Voeg de zevende knop toe aan de dropdown
@@ -1157,7 +1192,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats Tag/ Intercom GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 Image = GPSimport16Scr,
-                LargeImage = GPSimport32Scr,
+                LargeImage = GPSIntercom32Scr,
             };
 
             /// Voeg de achtste knop toe aan de dropdown
@@ -1190,7 +1225,7 @@ namespace NijhofAddIn.Revit
             /// Stel hoofdactie van de splitButton in
             PushButtonData GPSButtonData = new PushButtonData(
                 "GPS Toevoegen", /// De naam van de standaardactie
-                "GPS\nToevoegen", /// Tooltip voor de standaardactie
+                "Toevoegen", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.AddAlles" /// Vervang door de relevante namespace en klasse
                 )
@@ -1222,7 +1257,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Voegt Riool GPS Punten toe",
                 LongDescription = "Voegt alleen Riool GPS punten toe op alle speciedeksels in het model.",
                 Image = GPS16Scr,
-                LargeImage = GPS32Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de tweede knop toe aan de dropdown
@@ -1243,7 +1278,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Voegt Lucht GPS Punten toe",
                 LongDescription = "Voegt alleen Lucht GPS punten toe op alle ventielen in het model",
                 Image = GPS16Scr,
-                LargeImage = GPS32Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de derde knop toe aan de dropdown
@@ -1264,7 +1299,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Voegt Koud Water GPS Punten toe",
                 LongDescription = "Voegt alleen Koud Water GPS punten toe op alle open einden van opgaande waterleidingen.",
                 Image = GPS16Scr,
-                LargeImage = GPS32Scr,
+                LargeImage = GPSKoudwater32Scr,
             };
 
             /// Voeg de vierde knop toe aan de dropdown
@@ -1285,7 +1320,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Voegt Warm Water GPS Punten toe",
                 LongDescription = "Voegt alleen Warm Water GPS punten toe op alle open einden van opgaande waterleidingen.",
                 Image = GPS16Scr,
-                LargeImage = GPS32Scr,
+                LargeImage = GPSWarmwater32Scr,
             };
 
             /// Voeg de vijfde knop toe aan de dropdown
@@ -1316,7 +1351,7 @@ namespace NijhofAddIn.Revit
             /// Stel hoofdactie van de SplitButton in
             PushButtonData delButtonData = new PushButtonData(
                 "GPS Verwijderen", /// De naam van de standaardactie
-                "GPS\nVerwijderen", /// Tooltip voor de standaardactie
+                "Verwijderen", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.DelAlles" /// Vervang door de relevante namespace en klasse
                 )
@@ -2480,7 +2515,7 @@ namespace NijhofAddIn.Revit
                 "Overig")
             {
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Rookmelder32Scr,
             };
 
             /// Voeg de SplitButton toe aan de panel
@@ -2490,24 +2525,6 @@ namespace NijhofAddIn.Revit
             splitButtonOverig.IsSynchronizedWithCurrentItem = true;
 
             /// Stel hoofdactie van de splitButton in
-            PushButtonData btndataBedieningLos = new PushButtonData(
-                "Bediening Los Plaatsen", /// De naam van de standaardactie
-                "Overig:\nBediening", /// Tooltip voor de standaardactie
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.BedieningLos" /// Vervang door de relevante namespace en klasse
-            )
-            {
-                ToolTip = "Plaats bediening los",
-                //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
-                //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
-            };
-
-            /// Voeg hoofdactie toe aan de splitbutton
-            PushButton buttonBedieningLos = splitButtonOverig.AddPushButton(btndataBedieningLos);
-            buttonBedieningLos.Enabled = true;
-
-            /// Knopgegevens instellen voor de tweede knop onder de dropdown
             PushButtonData btndataRookmelder = new PushButtonData(
                 "Rookmelder Plaatsen",
                 "Overig:\nRookmelder",
@@ -2518,12 +2535,30 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats een rookmelder",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Rookmelder32Scr,
+            };
+
+            /// Voeg hoofdactie toe aan de splitbutton
+            PushButton buttonRookmelder = splitButtonOverig.AddPushButton(btndataRookmelder);
+            buttonRookmelder.Enabled = true;
+
+                /// Knopgegevens instellen voor de tweede knop onder de dropdown
+                PushButtonData btndataBedieningLos = new PushButtonData(
+                "Bediening Los Plaatsen", /// De naam van de standaardactie
+                "Overig:\nBediening", /// Tooltip voor de standaardactie
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Elektra.BedieningLos" /// Vervang door de relevante namespace en klasse
+                )
+            {
+                ToolTip = "Plaats bediening los",
+                //LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
+                //Image = PlaceHolder16Scr,
+                LargeImage = Bediening32Scr,
             };
 
             /// Voeg de tweede knop toe aan de dropdown
-            PushButton buttonRookmelder = splitButtonOverig.AddPushButton(btndataRookmelder);
-            buttonRookmelder.Enabled = true;
+            PushButton buttonBedieningLos = splitButtonOverig.AddPushButton(btndataBedieningLos);
+            buttonBedieningLos.Enabled = true;
 
             /// Voegt een horizontale lijn toe onder de eerste knop
             splitButtonOverig.AddSeparator();
@@ -2539,7 +2574,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats een drukknop voor de bel",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Deurbel32Scr,
             };
 
             /// Voeg de derde knop toe aan de dropdown
@@ -2557,7 +2592,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats een schel",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Dingdong32Scr,
             };
 
             /// Voeg de vierde knop toe aan de dropdown
@@ -2575,7 +2610,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats een intercom",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Intercom32Scr,
             };
 
             /// Voeg de vijfde knop toe aan de dropdown
@@ -2596,7 +2631,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Plaats een grondkabel",
                 //LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
                 //Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
+                LargeImage = Grondkabel32Scr,
             };
 
             /// Voeg de zesde knop toe aan de dropdown

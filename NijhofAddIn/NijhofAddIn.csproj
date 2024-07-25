@@ -105,15 +105,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\bbediening_32.png" />
     <None Remove="Resources\centraaldoos_32.png" />
+    <None Remove="Resources\deurbel_32.png" />
     <None Remove="Resources\dimmer_32.png" />
+    <None Remove="Resources\dingdong_32.png" />
     <None Remove="Resources\dubbelpolig_32.png" />
     <None Remove="Resources\dubbelwissel_32.png" />
     <None Remove="Resources\enkelpolig_32.png" />
+    <None Remove="Resources\grondkabel_32.png" />
     <None Remove="Resources\inbouwspot_32.png" />
+    <None Remove="Resources\intercom_32.png" />
     <None Remove="Resources\jaloezie_32.png" />
     <None Remove="Resources\kruis_32.png" />
     <None Remove="Resources\plafondlicht_32.png" />
+    <None Remove="Resources\rookmelder_32.png" />
     <None Remove="Resources\serie_32.png" />
     <None Remove="Resources\wandlicht_32.png" />
     <None Remove="Resources\wissel2x_32.png" />
@@ -168,12 +174,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\3d-16.png" />
     <Resource Include="Resources\3d-32.png" />
     <Resource Include="Resources\article-16.png" />
     <Resource Include="Resources\article-32.png" />
     <Resource Include="Resources\basket16.png" />
     <Resource Include="Resources\basket32.png" />
+    <Resource Include="Resources\bbediening_32.png" />
     <Resource Include="Resources\Bedraad_32.png" />
     <Resource Include="Resources\CAP_32.png" />
     <Resource Include="Resources\centraaldoos_32.png" />
@@ -181,7 +187,9 @@
     <Resource Include="Resources\concrete-32.png" />
     <Resource Include="Resources\delete-16.png" />
     <Resource Include="Resources\delete-32.png" />
+    <Resource Include="Resources\deurbel_32.png" />
     <Resource Include="Resources\dimmer_32.png" />
+    <Resource Include="Resources\dingdong_32.png" />
     <Resource Include="Resources\Dubbel230v_32.png" />
     <Resource Include="Resources\DubbelData_32.png" />
     <Resource Include="Resources\dubbelpolig_32.png" />
@@ -203,9 +211,11 @@
     <Resource Include="Resources\gpsdel-32.png" />
     <Resource Include="Resources\gpsimport-16.png" />
     <Resource Include="Resources\gpsimport-32.png" />
+    <Resource Include="Resources\grondkabel_32.png" />
     <Resource Include="Resources\inbouwspot_32.png" />
     <Resource Include="Resources\info-16.png" />
     <Resource Include="Resources\info-32.png" />
+    <Resource Include="Resources\intercom_32.png" />
     <Resource Include="Resources\jaloezie_32.png" />
     <Resource Include="Resources\kruis_32.png" />
     <Resource Include="Resources\length16.png" />
@@ -228,6 +238,7 @@
     <Resource Include="Resources\rain32.png" />
     <Resource Include="Resources\reset-16.png" />
     <Resource Include="Resources\reset-32.png" />
+    <Resource Include="Resources\rookmelder_32.png" />
     <Resource Include="Resources\saw16.png" />
     <Resource Include="Resources\saw32.png" />
     <Resource Include="Resources\serie_32.png" />

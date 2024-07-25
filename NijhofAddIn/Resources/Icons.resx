@@ -130,6 +130,9 @@
   <data name="basket32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>basket32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bbediening_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>bbediening_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Bedraad_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Bedraad_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,8 +154,14 @@
   <data name="delete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>delete-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="deurbel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>deurbel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dimmer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dimmer_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dingdong_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dingdong_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Dubbel230v_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Dubbel230v_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,17 +214,41 @@
   <data name="gpsdel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpsdel-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gpselektra_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpselektra_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="gpsimport_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpsimport-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gpsimport_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpsimport-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gpsinladen_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpsinladen_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpsintercom_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpsintercom_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpskoudwater_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpskoudwater_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpsmeterkast_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpsmeterkast_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpsrioollucht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpsrioollucht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gpswarmwater_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>gpswarmwater_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="gps_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gps-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gps_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gps-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>gps_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grondkabel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>grondkabel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="inbouwspot_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>inbouwspot_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -225,6 +258,9 @@
   </data>
   <data name="info_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>info-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="intercom_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>intercom_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jaloezie_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>jaloezie_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -291,6 +327,9 @@
   </data>
   <data name="reset_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>reset-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rookmelder_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rookmelder_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="saw16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>saw16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
