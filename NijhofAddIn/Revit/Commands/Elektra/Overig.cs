@@ -2,15 +2,18 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NijhofAddIn.Revit.Commands.Elektra
 {
-    #region 1v Stopcontact
+    #region Bediening Los
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Stopcontact1v : IExternalCommand
+    public class BedieningLos : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -20,16 +23,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_BJ_Future_1v_Wit"; // Specifieke familienaam
+            string familyName = "Ovg_Bediening los"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -110,10 +113,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 
-    #region 2v Stopcontact
+    #region Rookmelder
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Stopcontact2v : IExternalCommand
+    public class Rookmelder : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -123,16 +126,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_BJ_Future_2v_Wit"; // Specifieke familienaam
+            string familyName = "Ovg_Rookmelder"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -213,10 +216,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 
-    #region Opbouw Stopcontact
+    #region Drukknop Bel
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Opbouw : IExternalCommand
+    public class Drukknopbel : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -226,16 +229,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_Gira_2v_Wit"; // Specifieke familienaam
+            string familyName = "Ovg_Drukknop Bel"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -316,10 +319,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 
-    #region 1v Spatwaterdicht
+    #region Schel
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Spatwaterdicht1v : IExternalCommand
+    public class Schel : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -329,16 +332,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_Spatwaterdicht_1v_Wit"; // Specifieke familienaam
+            string familyName = "Ovg_Schel DingDong"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -419,10 +422,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 
-    #region 2v Spatwaterdicht
+    #region Intercom
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Spatwaterdicht2v : IExternalCommand
+    public class Intercom : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -432,16 +435,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_Spatwaterdicht_2v_Wit"; // Specifieke familienaam
+            string familyName = "Ovg_Intercom"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -522,10 +525,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 
-    #region Perilex Stopcontact
+    #region Grondkabel
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class Perilex : IExternalCommand
+    public class Grondkabel : IExternalCommand
     {
         private static RequestHandler _handler;
         private static ExternalEvent _externalEvent;
@@ -535,222 +538,16 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_Perilex_ABL_Wit"; // Specifieke familienaam
-            string symbolName = "Inbouw"; // Specifieke naam van het FamilySymbol
-
-            string familyPathBase;
-#if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
-#elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
-#elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
-#endif
-
-            string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
-
-            if (!File.Exists(familyPath))
-            {
-                TaskDialog.Show("Error", "File does not exist: " + familyPath);
-                return Result.Failed;
-            }
-
-            FamilySymbol symbol = new FilteredElementCollector(doc)
-                                    .OfClass(typeof(FamilySymbol))
-                                    .Cast<FamilySymbol>()
-                                    .FirstOrDefault(e => e.FamilyName.Equals(familyName) && e.Name.Equals(symbolName));
-
-            if (symbol != null)
-            {
-                /// Familie is al geladen en symbool gevonden, externe gebeurtenis activeren
-                if (_handler == null)
-                {
-                    _handler = new RequestHandler();
-                    _externalEvent = ExternalEvent.Create(_handler);
-                }
-
-                _handler.Symbol = symbol;
-                _externalEvent.Raise();
-                return Result.Succeeded;
-            }
-
-            Family family;
-            using (Transaction tx = new Transaction(doc, "Load Family"))
-            {
-                try
-                {
-                    tx.Start();
-                    if (!doc.LoadFamily(familyPath, out family))
-                    {
-                        TaskDialog.Show("Error", "Failed to load the family.");
-                        tx.RollBack();
-                        return Result.Failed;
-                    }
-                    tx.Commit();
-                }
-                catch (Exception ex)
-                {
-                    TaskDialog.Show("Error", "An unexpected error occurred while loading the family: " + ex.Message);
-                    if (tx.GetStatus() == TransactionStatus.Started)
-                    {
-                        tx.RollBack();
-                    }
-                    return Result.Failed;
-                }
-            }
-
-            /// Zoek het specifieke FamilySymbol opnieuw na het laden van de familie
-            symbol = new FilteredElementCollector(doc)
-                        .OfClass(typeof(FamilySymbol))
-                        .Cast<FamilySymbol>()
-                        .FirstOrDefault(e => e.FamilyName.Equals(familyName) && e.Name.Equals(symbolName));
-
-            if (symbol == null)
-            {
-                TaskDialog.Show("Error", $"FamilySymbol '{symbolName}' not found for the loaded family '{familyName}'.");
-                return Result.Failed;
-            }
-
-            if (_handler == null)
-            {
-                _handler = new RequestHandler();
-                _externalEvent = ExternalEvent.Create(_handler);
-            }
-
-            _handler.Symbol = symbol;
-            _externalEvent.Raise();
-
-            return Result.Succeeded;
-        }
-    }
-    #endregion
-
-    #region Krachtstroom Stopcontact
-    [Transaction(TransactionMode.Manual)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Krachtstroom : IExternalCommand
-    {
-        private static RequestHandler _handler;
-        private static ExternalEvent _externalEvent;
-
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            Document doc = commandData.Application.ActiveUIDocument.Document;
-
-            /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_WP_Krachtstroom"; // Specifieke familienaam
+            string familyName = "Ovg_Grondkabel"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\Overig\";
 #elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
-#endif
-
-            string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
-
-            if (!File.Exists(familyPath))
-            {
-                TaskDialog.Show("Error", "File does not exist: " + familyPath);
-                return Result.Failed;
-            }
-
-            FamilySymbol symbol = new FilteredElementCollector(doc)
-                                    .OfClass(typeof(FamilySymbol))
-                                    .Cast<FamilySymbol>()
-                                    .FirstOrDefault(e => e.FamilyName.Equals(familyName) && e.Name.Equals(symbolName));
-
-            if (symbol != null)
-            {
-                /// Familie is al geladen en symbool gevonden, externe gebeurtenis activeren
-                if (_handler == null)
-                {
-                    _handler = new RequestHandler();
-                    _externalEvent = ExternalEvent.Create(_handler);
-                }
-
-                _handler.Symbol = symbol;
-                _externalEvent.Raise();
-                return Result.Succeeded;
-            }
-
-            Family family;
-            using (Transaction tx = new Transaction(doc, "Load Family"))
-            {
-                try
-                {
-                    tx.Start();
-                    if (!doc.LoadFamily(familyPath, out family))
-                    {
-                        TaskDialog.Show("Error", "Failed to load the family.");
-                        tx.RollBack();
-                        return Result.Failed;
-                    }
-                    tx.Commit();
-                }
-                catch (Exception ex)
-                {
-                    TaskDialog.Show("Error", "An unexpected error occurred while loading the family: " + ex.Message);
-                    if (tx.GetStatus() == TransactionStatus.Started)
-                    {
-                        tx.RollBack();
-                    }
-                    return Result.Failed;
-                }
-            }
-
-            /// Zoek het specifieke FamilySymbol opnieuw na het laden van de familie
-            symbol = new FilteredElementCollector(doc)
-                        .OfClass(typeof(FamilySymbol))
-                        .Cast<FamilySymbol>()
-                        .FirstOrDefault(e => e.FamilyName.Equals(familyName) && e.Name.Equals(symbolName));
-
-            if (symbol == null)
-            {
-                TaskDialog.Show("Error", $"FamilySymbol '{symbolName}' not found for the loaded family '{familyName}'.");
-                return Result.Failed;
-            }
-
-            if (_handler == null)
-            {
-                _handler = new RequestHandler();
-                _externalEvent = ExternalEvent.Create(_handler);
-            }
-
-            _handler.Symbol = symbol;
-            _externalEvent.Raise();
-
-            return Result.Succeeded;
-        }
-    }
-    #endregion
-
-    #region Vloer Stopcontact
-    [Transaction(TransactionMode.Manual)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Vloerstopcontact : IExternalCommand
-    {
-        private static RequestHandler _handler;
-        private static ExternalEvent _externalEvent;
-
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            Document doc = commandData.Application.ActiveUIDocument.Document;
-
-            /// Stel de naam van de familie en het symbool in
-            string familyName = "WCD_Vloer_1v"; // Specifieke familienaam
-            string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
-
-            string familyPathBase;
-#if RELEASE2023
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R23\WCD\";
-#elif RELEASE2024
-            familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
-#elif RELEASE2025
-        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\WCD\";
+        familyPathBase = @"F:\Stabiplan\Custom\Families\1 - Elektra\BJ Future Wit R24\Overig\";
 #endif
 
             string familyPath = Path.Combine(familyPathBase, familyName + ".rfa");
@@ -831,4 +628,3 @@ namespace NijhofAddIn.Revit.Commands.Elektra
     }
     #endregion
 }
-
