@@ -280,9 +280,6 @@ namespace NijhofAddIn.Revit
             Image PlaceHolder32 = Icons.error_32;
             ImageSource PlaceHolder32Scr = appBase.GetImageSource(PlaceHolder32);
 
-            Image Library16 = Icons.library_16;
-            ImageSource Library16Scr = appBase.GetImageSource(Library16);
-
             Image Library32 = Icons.library_32;
             ImageSource Library32Scr = appBase.GetImageSource(Library32);
 
@@ -292,20 +289,11 @@ namespace NijhofAddIn.Revit
             Image Tag32 = Icons.tag_32;
             ImageSource Tag32Scr = appBase.GetImageSource(Tag32);
 
-            Image _3D16 = Icons._3d_16;
-            ImageSource _3D16Scr = appBase.GetImageSource(_3D16);
-
             Image _3D32 = Icons._3d_32;
             ImageSource _3D32Scr = appBase.GetImageSource(_3D32);
 
-            Image Delete16 = Icons.delete_16;
-            ImageSource Delete16Scr = appBase.GetImageSource(Delete16);
-
             Image Delete32 = Icons.delete_32;
             ImageSource Delete32Scr = appBase.GetImageSource(Delete32);
-
-            Image GPS16 = Icons.gps_16;
-            ImageSource GPS16Scr = appBase.GetImageSource(GPS16);
 
             Image GPS32 = Icons.gps_32;
             ImageSource GPS32Scr = appBase.GetImageSource(GPS32);
@@ -328,50 +316,26 @@ namespace NijhofAddIn.Revit
             Image GPSIntercom32 = Icons.gpsintercom_32;
             ImageSource GPSIntercom32Scr = appBase.GetImageSource(GPSIntercom32);
 
-            Image GPSimport16 = Icons.gpsimport_16;
-            ImageSource GPSimport16Scr = appBase.GetImageSource(GPSimport16);
-
             Image GPSimport32 = Icons.gpsinladen_32;
             ImageSource GPSimport32Scr = appBase.GetImageSource(GPSimport32);
-
-            Image GPSdel16 = Icons.gpsdel_16;
-            ImageSource GPSdel16Scr = appBase.GetImageSource(GPSdel16);
 
             Image GPSdel32 = Icons.gpsdel_32;
             ImageSource GPSdel32Scr = appBase.GetImageSource(GPSdel32);
 
-            Image MuurSparing16 = Icons.wall_16;
-            ImageSource MuurSparing16Scr = appBase.GetImageSource(MuurSparing16);
-
             Image MuurSparing32 = Icons.wall_32;
             ImageSource MuurSparing32Scr = appBase.GetImageSource(MuurSparing32);
-
-            Image BalkSparing16 = Icons.concrete_16;
-            ImageSource BalkSparing16Scr = appBase.GetImageSource(BalkSparing16);
 
             Image BalkSparing32 = Icons.concrete_32;
             ImageSource BalkSparing32Scr = appBase.GetImageSource(BalkSparing32);
 
-            Image Ontstop16 = Icons.manhole_16;
-            ImageSource Ontstop16Scr = appBase.GetImageSource(Ontstop16);
-
             Image Ontstop32 = Icons.manhole_32;
             ImageSource Ontstop32Scr = appBase.GetImageSource(Ontstop32);
-
-            Image UpdateArtikel16 = Icons.article_16;
-            ImageSource UpdateArtikel16Scr = appBase.GetImageSource(UpdateArtikel16);
 
             Image UpdateArtikel32 = Icons.article_32;
             ImageSource UpdateArtikel32Scr = appBase.GetImageSource(UpdateArtikel32);
 
-            Image Regen16 = Icons.rain16;
-            ImageSource Regen16Scr = appBase.GetImageSource(Regen16);
-
             Image Regen32 = Icons.rain32;
             ImageSource Regen32Scr = appBase.GetImageSource(Regen32);
-
-            Image Lengte16 = Icons.length16;
-            ImageSource Lengte16Scr = appBase.GetImageSource(Lengte16);
 
             Image Lengte32 = Icons.length32;
             ImageSource Lengte32Scr = appBase.GetImageSource(Lengte32);
@@ -382,14 +346,8 @@ namespace NijhofAddIn.Revit
             //Image Export32 = Properties.Resources.export_excel_32;
             //ImageSource Export32Scr = appBase.GetImageSource(Export32);
 
-            Image Materiaal16 = Icons.basket16;
-            ImageSource Materiaal16Scr = appBase.GetImageSource(Materiaal16);
-
             Image Materiaal32 = Icons.basket32;
             ImageSource Materiaal32Scr = appBase.GetImageSource(Materiaal32);
-
-            Image Zaag16 = Icons.saw16;
-            ImageSource Zaag16Scr = appBase.GetImageSource(Zaag16);
 
             Image Zaag32 = Icons.saw32;
             ImageSource Zaag32Scr = appBase.GetImageSource(Zaag32);
@@ -406,9 +364,6 @@ namespace NijhofAddIn.Revit
             //Image Parameter32 = Icons.properties_32;
             //ImageSource Parameter32Scr = appBase.GetImageSource(Parameter32);
 
-            Image SwitchCode16 = Icons.list_16;
-            ImageSource SwitchCode16Scr = appBase.GetImageSource(SwitchCode16);
-
             Image SwitchCode32 = Icons.list_32;
             ImageSource SwitchCode32Scr = appBase.GetImageSource(SwitchCode32);
 
@@ -424,25 +379,14 @@ namespace NijhofAddIn.Revit
             Image SwitchTag32 = Icons.switch_32;
             ImageSource SwitchTag32Scr = appBase.GetImageSource(SwitchTag32);
 
-            Image Gift16 = Icons.gift16;
-            ImageSource Gift16Scr = appBase.GetImageSource(Gift16);
-
             Image Gift32 = Icons.gift32;
             ImageSource Gift32Scr = appBase.GetImageSource(Gift32);
-
-            Image Vraag16 = Icons.question_16;
-            ImageSource Vraag16Scr = appBase.GetImageSource(Vraag16);
 
             Image Vraag32 = Icons.question_32;
             ImageSource Vraag32Scr = appBase.GetImageSource(Vraag32);
 
-            Image Info16 = Icons.info_16;
-            ImageSource Info16Scr = appBase.GetImageSource(Info16);
-
             Image Info32 = Icons.info_32;
             ImageSource Info32Scr = appBase.GetImageSource(Info32);
-
-
 
             /// Kopieer en pas aan om nieuwe afbeelding toe te voegen, voeg hierboven toe
             ///Image HWA_Article_Img = Properties.Resources.HWA_articlenr;
@@ -596,7 +540,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Opent de 'Nijhof Bibliotheek'",
                 LongDescription = "Een bibliotheek waar alle vaak gebruikte modellen, tags en groups in gezet kunnen worden zodat die makkelijk te vinden- en in te laden zijn",
-                Image = Library16Scr,
+                //Image = Library16Scr,
                 LargeImage = Library32Scr,
             };
 
@@ -626,7 +570,7 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Bij het maken van bijvoorbeeld Prefab hoef je alleen op de viewport te klikken en er wordt een 3D view" +
                 "gemaakt met de view template: \\\"05_Plot_Prefab_Riool+Lucht_3D\\\". De 3D wordt gelijk op de sheet geplaatst. De sub-diciplines van de template is de" +
                 "plek waar deze te vinden is in de project brouwser.",
-                Image = _3D16Scr,
+                //Image = _3D16Scr,
                 LargeImage = _3D32Scr,
             };
 
@@ -652,7 +596,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de tweede knop vwa
@@ -666,7 +610,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de derde knop vwa
@@ -680,7 +624,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vierde knop vwa
@@ -694,7 +638,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vijfde knop vwa
@@ -708,7 +652,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             #endregion
@@ -725,7 +669,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de tweede knop hwa
@@ -739,7 +683,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de derde knop hwa
@@ -753,7 +697,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vierde knop hwa
@@ -767,7 +711,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vijfde knop hwa
@@ -781,7 +725,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             #endregion
@@ -798,7 +742,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de tweede knop mv
@@ -812,7 +756,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de derde knop mv
@@ -826,7 +770,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vierde knop mv
@@ -840,7 +784,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             /// Knopgegevens instellen voor de vijfde knop mv
@@ -854,7 +798,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Tag elementen in de viewport",
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = Tag16Scr,
-                LargeImage = Tag32Scr,
+                //LargeImage = Tag32Scr,
             };
 
             #endregion
@@ -999,7 +943,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert Riool Rekenpunten",
                 LongDescription = "Zoekt naar de 'Stabicad' rekenpunten en verwijdert die.",
-                Image = Delete16Scr,
+                //Image = Delete16Scr,
                 LargeImage = Delete32Scr,
             };
 
@@ -1021,7 +965,7 @@ namespace NijhofAddIn.Revit
                 "GPS Inladen",
                 "Inladen")
             {
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSimport32Scr,
             };
 
@@ -1041,7 +985,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Laad alle GPS punten",
                 LongDescription = "Laad alle GPS punten in het project vanuit een opgegeven locatie",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSimport32Scr,
             };
 
@@ -1058,14 +1002,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de tweede knop onder de dropdown
             PushButtonData btndataRload = new PushButtonData(
                 "Plaats Riool",
-                "Plaats Riool",
+                "GPS: Riool",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Riool GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSRiool32Scr,
             };
 
@@ -1079,14 +1023,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de derde knop onder de dropdown
             PushButtonData btndataMVload = new PushButtonData(
                 "Plaats Lucht",
-                "Plaats Lucht",
+                "GPS: Lucht",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Lucht GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSRiool32Scr,
             };
 
@@ -1100,14 +1044,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vierde knop onder de dropdown
             PushButtonData btndataKWload = new PushButtonData(
                 "Plaats Koud Water",
-                "Plaats Koud Water",
+                "GPS: Koud Water",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenKW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Koud Water GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSKoudwater32Scr,
             };
 
@@ -1121,14 +1065,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vijfde knop onder de dropdown
             PushButtonData btndataWWload = new PushButtonData(
                 "Plaats Warm Water",
-                "Plaats Warm Water",
+                "GPS: Warm Water",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenWW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Warm Water GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSWarmwater32Scr,
             };
 
@@ -1142,14 +1086,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de zesde knop onder de dropdown
             PushButtonData btndataEleload = new PushButtonData(
                 "Plaats Elektra",
-                "Plaats Elektra",
+                "GPS: Elektra",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenElektra" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Elektra GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSElektra32Scr,
             };
 
@@ -1163,14 +1107,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de zevende knop onder de dropdown
             PushButtonData btndataMKload = new PushButtonData(
                 "Plaats Meterkast",
-                "Plaats Meterkast",
+                "GPS: Meterkast",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenMeterkast" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Meterkast GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSMeterkast32Scr,
             };
 
@@ -1184,14 +1128,14 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de achtste knop onder de dropdown
             PushButtonData btndataTIload = new PushButtonData(
                 "Plaats Tag/ Intercom",
-                "Plaats Tag/ Intercom",
+                "GPS: Tag/ Intercom",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.GPS.InladenTI" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Tag/ Intercom GPS Punt",
                 LongDescription = "Klik op de plek waar je het GPS punt wilt plaatsen. Als je niks ziet moet je de 'View Properties' aanpassen",
-                Image = GPSimport16Scr,
+                //Image = GPSimport16Scr,
                 LargeImage = GPSIntercom32Scr,
             };
 
@@ -1212,7 +1156,7 @@ namespace NijhofAddIn.Revit
                 "GPS Toevoegen",
                 "Toevoegen")
             {
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
 
@@ -1232,7 +1176,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Voegt GPS Punten toe",
                 LongDescription = "Voegt Riool, Lucht, Warmwater en Koudwater GPS punten toe op de door de code bepaalde locaties.",
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
 
@@ -1256,7 +1200,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Voegt Riool GPS Punten toe",
                 LongDescription = "Voegt alleen Riool GPS punten toe op alle speciedeksels in het model.",
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPSRiool32Scr,
             };
 
@@ -1277,7 +1221,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Voegt Lucht GPS Punten toe",
                 LongDescription = "Voegt alleen Lucht GPS punten toe op alle ventielen in het model",
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPSRiool32Scr,
             };
 
@@ -1298,7 +1242,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Voegt Koud Water GPS Punten toe",
                 LongDescription = "Voegt alleen Koud Water GPS punten toe op alle open einden van opgaande waterleidingen.",
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPSKoudwater32Scr,
             };
 
@@ -1319,7 +1263,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Voegt Warm Water GPS Punten toe",
                 LongDescription = "Voegt alleen Warm Water GPS punten toe op alle open einden van opgaande waterleidingen.",
-                Image = GPS16Scr,
+                //Image = GPS16Scr,
                 LargeImage = GPSWarmwater32Scr,
             };
 
@@ -1338,7 +1282,7 @@ namespace NijhofAddIn.Revit
                 "GPS Verwijderen",
                 "Verwijderen")
             {
-                Image = GPSdel16Scr,
+                //Image = GPSdel16Scr,
                 LargeImage = GPSdel32Scr,
             };
 
@@ -1358,7 +1302,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert alle GPS Punten",
                 LongDescription = "Verwijdert alle GPS punten in het model",
-                Image = GPSdel16Scr,
+                //Image = GPSdel16Scr,
                 LargeImage = GPSdel32Scr,
             };
 
@@ -1382,8 +1326,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert alle Riool GPS Punten",
                 LongDescription = "Verwijdert alleen de Riool GPS punten in het model.",
-                Image = GPSdel16Scr,
-                LargeImage = GPSdel32Scr,
+                //Image = GPSdel16Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de tweede knop toe aan de dropdown
@@ -1403,8 +1347,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert alle Lucht GPS Punten",
                 LongDescription = "Verwijdert alleen de Lucht GPS punten in het model.",
-                Image = GPSdel16Scr,
-                LargeImage = GPSdel32Scr,
+                //Image = GPSdel16Scr,
+                LargeImage = GPSRiool32Scr,
             };
 
             /// Voeg de derde knop toe aan de dropdown
@@ -1424,8 +1368,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert alle Koud Water GPS Punten",
                 LongDescription = "Verwijdert alleen de Koud Water GPS punten in het model.",
-                Image = GPSdel16Scr,
-                LargeImage = GPSdel32Scr,
+                //Image = GPSdel16Scr,
+                LargeImage = GPSKoudwater32Scr,
             };
 
             /// Voeg de vierde knop toe aan de dropdown
@@ -1445,8 +1389,8 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verwijdert alle Warm Water GPS Punten",
                 LongDescription = "Verwijdert alleen de Warm Water GPS punten in het model.",
-                Image = GPSdel16Scr,
-                LargeImage = GPSdel32Scr,
+                //Image = GPSdel16Scr,
+                LargeImage = GPSWarmwater32Scr,
             };
 
             /// Voeg de vijfde knop toe aan de dropdown
@@ -1465,14 +1409,14 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataMS = new PushButtonData
                 (
                 "Muursparingen Toevoegen",
-                "Muur-\nsparingen",
+                "Muur",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Sparingen.AddMuur" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt sparingen in de muren toe",
                 LongDescription = "Zoekt naar waar VWA of HWA clasht met een vloer en zet daar een sparing neer.",
-                Image = MuurSparing16Scr,
+                //Image = MuurSparing16Scr,
                 LargeImage = MuurSparing32Scr,
             };
 
@@ -1491,14 +1435,14 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataBS = new PushButtonData
                 (
                 "Balksparingen Toevoegen",
-                "Balk-\nsparingen",
+                "Balk",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Sparingen.AddBalk" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt sparingen in de balken toe",
                 LongDescription = "Zoekt naar waar een VWA of HWA pipe clasht met een funderingsbalk en zet daar een sparing neer.",
-                Image = BalkSparing16Scr,
+                //Image = BalkSparing16Scr,
                 LargeImage = BalkSparing32Scr,
             };
 
@@ -1510,32 +1454,6 @@ namespace NijhofAddIn.Revit
             buttonBS.SetContextualHelp(contextHelpBS);
 
             panel3.AddSeparator(); //Voegt een verticale lijn toe
-            #endregion
-
-            #region pushButton (TEST)
-            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
-            PushButtonData btndataTEST = new PushButtonData
-                (
-                "TEST",
-                "TEST",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Een knop waar ik functies mee kan testen",
-                LongDescription = "Hier voeg ik soms bepaalde functies aan toe die ik moet testen zodat ik geen andere knoppen sloop of nutteloze dingen toe voeg",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
-            };
-
-            /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonTEST = (PushButton)panel3.AddItem(btndataTEST);
-            buttonTEST.Enabled = true;
-            ContextualHelp contextHelpTEST = new ContextualHelp(ContextualHelpType.Url,
-                    "http://www.autodesk.com");
-            buttonTEST.SetContextualHelp(contextHelpTEST);
-
-            //panel2.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
             #endregion
 
@@ -1553,7 +1471,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Veranderd de 'Family Type' van alle Ontstoppingsstukken",
                 LongDescription = "Deze functie zoekt in het hele model naar Manchet Ontstoppingsstukken van category Pipe Accessories. Deze zet hij om naar Pipe fittings" +
                                   "en laad deze in het model. Ontstoppingsstukken zonder manchet worden niet omgezet.",
-                Image = Ontstop16Scr,
+                //Image = Ontstop16Scr,
                 LargeImage = Ontstop32Scr,
             };
 
@@ -1575,7 +1493,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Past de artikelnummers van HWA ø80 aan naar die we bij Nijhof gebruiken",
                 LongDescription = "Deze tool past van alle ø80 HWA met type name: HWA 6m, HWA 5,55m en PVC 5,55m het artikelnummer aan naar 20033890.",
-                Image = UpdateArtikel16Scr,
+                //Image = UpdateArtikel16Scr,
                 LargeImage = UpdateArtikel32Scr,
             };
 
@@ -1597,7 +1515,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Past de opgaande lengte van HWA aan",
                 LongDescription = "Deze tool zoekt naar alle pipes van het type: HWA 6m, HWA 5,55m en PVC 5,55m en of deze ø80 of ø100 heeft en veranderd de lengte naar 800mm.",
-                Image = Regen16Scr,
+                //Image = Regen16Scr,
                 LargeImage = Regen32Scr,
             };
 
@@ -1619,7 +1537,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Past schuine gedeelte van de standleiding aan naar 250mm",
                 LongDescription = "Selecteer de bochten van de standleiding, deze functie verplaatst het onderste hulpstuk richting de standleiding zodat de lengte van het schuine gedeelte 250 mm is.",
-                Image = Lengte16Scr,
+                //Image = Lengte16Scr,
                 LargeImage = Lengte32Scr,
             };
 
@@ -1644,7 +1562,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Exporteert materiaal gegevens",
                 LongDescription = "Exporteert de materiaalgegevens naar een gespecificeerde locatie.",
-                Image = Materiaal16Scr,
+                //Image = Materiaal16Scr,
                 LargeImage = Materiaal32Scr,
             };
 
@@ -1670,7 +1588,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Exporteert zaaglijst gegevens",
                 LongDescription = "Exporteert de zaaglijstgegevens naar een gespecificeerde locatie.",
-                Image = Zaag16Scr,
+                //Image = Zaag16Scr,
                 LargeImage = Zaag32Scr,
             };
 
@@ -1686,6 +1604,29 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region Buttons Panel (Overig)
+            #region pushButton (TEST)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataTEST = new PushButtonData
+                (
+                "TEST",
+                "TEST",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Een knop waar ik functies mee kan testen",
+                LongDescription = "Hier voeg ik soms bepaalde functies aan toe die ik moet testen zodat ik geen andere knoppen sloop of nutteloze dingen toe voeg",
+                Image = PlaceHolder16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonTEST = (PushButton)panel7.AddItem(btndataTEST);
+            buttonTEST.Enabled = true;
+
+            panel7.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
+
             #region pushButton (Klik op mij)
             PushButtonData btndataKlik = new PushButtonData
                 (
@@ -1697,7 +1638,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Verrassing!",
                 LongDescription = "Ja ik ga hier echt niet vertellen wat deze knop doet hoor :)",
-                Image = Gift16Scr,
+                //Image = Gift16Scr,
                 LargeImage = Gift32Scr,
             };
 
@@ -1716,7 +1657,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Een 'Help' knop",
                 LongDescription = "Wat meer wil je weten?",
-                Image = Vraag16Scr,
+                //Image = Vraag16Scr,
                 LargeImage = Vraag32Scr,
             };
 
@@ -1735,7 +1676,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Geeft info weer",
                 LongDescription = "Deze functie geeft de versie weer, dus wanneer deze tool voor het laatst is aangepast.",
-                Image = Info16Scr,
+                //Image = Info16Scr,
                 LargeImage = Info32Scr,
             };
 
@@ -2700,7 +2641,7 @@ namespace NijhofAddIn.Revit
             {
                 ToolTip = "Laat alle Switchcodes zien die in het project gebruikt zijn",
                 LongDescription = "Deze funtie kijkt naar de ingevulde parameters 'Switch code', 'Switch Code', 'Switch code 1' en 'Switch code 2' en verwijderd dubbelen. Deze worden in een lijst gezet en getoond in een pop-up.",
-                Image = SwitchCode16Scr,
+                //Image = SwitchCode16Scr,
                 LargeImage = SwitchCode32Scr,
             };
 

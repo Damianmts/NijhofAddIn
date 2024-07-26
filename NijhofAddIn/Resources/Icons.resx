@@ -118,14 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="article_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>article-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="article_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>article-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="basket16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>basket16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="basket32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>basket32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,17 +136,11 @@
   <data name="centraaldoos_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>centraaldoos_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="concrete_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>concrete-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="concrete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>concrete-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delete_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>delete-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="delete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>delete-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>delete_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="deurbel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>deurbel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,32 +184,17 @@
   <data name="error_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>error-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="export_excel_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>export-excel-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="export_excel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>export-excel-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gift16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gift16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gift32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gift32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gpsdel_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gpsdel-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="gpsdel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gpsdel-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>gpsdel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gpselektra_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpselektra_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gpsimport_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gpsimport-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="gpsimport_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gpsimport-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gpsinladen_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpsinladen_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,9 +214,6 @@
   <data name="gpswarmwater_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gpswarmwater_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gps_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>gps-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="gps_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>gps_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -252,9 +222,6 @@
   </data>
   <data name="inbouwspot_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>inbouwspot_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="info_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>info-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>info-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,26 +235,14 @@
   <data name="kruis_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>kruis_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="length16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>length16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="length32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>length32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="library_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>library-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="library_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>library-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="list_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="list_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>list-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="manhole_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>manhole-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="manhole_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>manhole-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,35 +259,20 @@
   <data name="plafondlicht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>plafondlicht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="properties_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>properties-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="properties_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>properties-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="question_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>question-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="question_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>question-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rain16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>rain16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rain32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rain32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reset_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>reset-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reset_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>reset-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rookmelder_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rookmelder_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="saw16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>saw16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="saw32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>saw32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -348,9 +288,6 @@
   </data>
   <data name="tag_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>tag-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wall_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>wall-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wall_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wall-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -390,9 +327,6 @@
   </data>
   <data name="wissel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wissel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_3d_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>3d-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_3d_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>3d-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

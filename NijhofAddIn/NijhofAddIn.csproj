@@ -105,29 +105,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\bbediening_32.png" />
-    <None Remove="Resources\centraaldoos_32.png" />
-    <None Remove="Resources\deurbel_32.png" />
-    <None Remove="Resources\dimmer_32.png" />
-    <None Remove="Resources\dingdong_32.png" />
-    <None Remove="Resources\dubbelpolig_32.png" />
-    <None Remove="Resources\dubbelwissel_32.png" />
-    <None Remove="Resources\enkelpolig_32.png" />
-    <None Remove="Resources\grondkabel_32.png" />
-    <None Remove="Resources\inbouwspot_32.png" />
-    <None Remove="Resources\intercom_32.png" />
-    <None Remove="Resources\jaloezie_32.png" />
-    <None Remove="Resources\kruis_32.png" />
-    <None Remove="Resources\plafondlicht_32.png" />
-    <None Remove="Resources\rookmelder_32.png" />
-    <None Remove="Resources\serie_32.png" />
-    <None Remove="Resources\wandlicht_32.png" />
-    <None Remove="Resources\wissel2x_32.png" />
-    <None Remove="Resources\wisseldimmer_32.png" />
-    <None Remove="Resources\wissel_32.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
     <PackageReference Include="ricaun.Revit.UI" Version="*" />
@@ -174,6 +151,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\3d-16.png" />
     <Resource Include="Resources\3d-32.png" />
     <Resource Include="Resources\article-16.png" />
     <Resource Include="Resources\article-32.png" />
@@ -187,6 +165,7 @@
     <Resource Include="Resources\concrete-32.png" />
     <Resource Include="Resources\delete-16.png" />
     <Resource Include="Resources\delete-32.png" />
+    <Resource Include="Resources\delete_32.png" />
     <Resource Include="Resources\deurbel_32.png" />
     <Resource Include="Resources\dimmer_32.png" />
     <Resource Include="Resources\dingdong_32.png" />
@@ -209,8 +188,17 @@
     <Resource Include="Resources\gps-32.png" />
     <Resource Include="Resources\gpsdel-16.png" />
     <Resource Include="Resources\gpsdel-32.png" />
+    <Resource Include="Resources\gpsdel_32.png" />
+    <Resource Include="Resources\gpselektra_32.png" />
     <Resource Include="Resources\gpsimport-16.png" />
     <Resource Include="Resources\gpsimport-32.png" />
+    <Resource Include="Resources\gpsinladen_32.png" />
+    <Resource Include="Resources\gpsintercom_32.png" />
+    <Resource Include="Resources\gpskoudwater_32.png" />
+    <Resource Include="Resources\gpsmeterkast_32.png" />
+    <Resource Include="Resources\gpsrioollucht_32.png" />
+    <Resource Include="Resources\gpswarmwater_32.png" />
+    <Resource Include="Resources\gps_32.png" />
     <Resource Include="Resources\grondkabel_32.png" />
     <Resource Include="Resources\inbouwspot_32.png" />
     <Resource Include="Resources\info-16.png" />
