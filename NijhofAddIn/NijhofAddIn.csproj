@@ -264,4 +264,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Revit\Commands\Content\" />
+  </ItemGroup>
+
 </Project>

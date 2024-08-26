@@ -212,6 +212,25 @@ namespace NijhofAddIn.Revit
             }
             #endregion
 
+            #region Panel (Content)
+            /// Maakt Panel (Content) aan /// Herhaalbaar voor elke nieuwe panel
+            RibbonPanel panel12 = null;
+            List<RibbonPanel> panels12 = app.GetRibbonPanels(RIBBON_TAB2);
+            foreach (RibbonPanel pnl in panels12)
+            {
+                if (pnl.Name == RIBBON_PANEL8)
+                {
+                    panel12 = pnl;
+                    break;
+                }
+            }
+            /// Bestaat panel niet? Maak panel aan
+            if (panel12 == null)
+            {
+                panel12 = app.CreateRibbonPanel(RIBBON_TAB2, RIBBON_PANEL8);
+            }
+            #endregion
+
             #region Panel (Toevoegen)
             /// Maakt Panel (Content) aan /// Herhaalbaar voor elke nieuwe panel
             RibbonPanel panel10 = null;
@@ -1175,7 +1194,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt GPS Punten toe",
-                LongDescription = "Voegt Riool, Lucht, Warmwater en Koudwater GPS punten toe op de door de code bepaalde locaties.",
+                LongDescription = "Voegt Riool, Lucht, Warmwater en Koudwater GPS punten toe op de door de code bepaalde locaties. Gebruiker moet nog controleren!",
                 //Image = GPS16Scr,
                 LargeImage = GPS32Scr,
             };
@@ -1199,7 +1218,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Riool GPS Punten toe",
-                LongDescription = "Voegt alleen Riool GPS punten toe op alle speciedeksels in het model.",
+                LongDescription = "Voegt alleen Riool GPS punten toe op alle speciedeksels in het model. Gebruiker moet nog controleren!",
                 //Image = GPS16Scr,
                 LargeImage = GPSRiool32Scr,
             };
@@ -1220,7 +1239,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Lucht GPS Punten toe",
-                LongDescription = "Voegt alleen Lucht GPS punten toe op alle ventielen in het model",
+                LongDescription = "Voegt alleen Lucht GPS punten toe op alle ventielen in het model. Gebruiker moet nog controleren!",
                 //Image = GPS16Scr,
                 LargeImage = GPSRiool32Scr,
             };
@@ -1241,7 +1260,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Koud Water GPS Punten toe",
-                LongDescription = "Voegt alleen Koud Water GPS punten toe op alle open einden van opgaande waterleidingen.",
+                LongDescription = "Voegt alleen Koud Water GPS punten toe op alle open einden van opgaande waterleidingen. Gebruiker moet nog controleren!",
                 //Image = GPS16Scr,
                 LargeImage = GPSKoudwater32Scr,
             };
@@ -1262,7 +1281,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt Warm Water GPS Punten toe",
-                LongDescription = "Voegt alleen Warm Water GPS punten toe op alle open einden van opgaande waterleidingen.",
+                LongDescription = "Voegt alleen Warm Water GPS punten toe op alle open einden van opgaande waterleidingen. Gebruiker moet nog controleren!",
                 //Image = GPS16Scr,
                 LargeImage = GPSWarmwater32Scr,
             };
@@ -1415,7 +1434,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt sparingen in de muren toe",
-                LongDescription = "Zoekt naar waar VWA of HWA clasht met een vloer en zet daar een sparing neer.",
+                LongDescription = "Zoekt naar waar VWA of HWA clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
                 //Image = MuurSparing16Scr,
                 LargeImage = MuurSparing32Scr,
             };
@@ -1430,6 +1449,30 @@ namespace NijhofAddIn.Revit
             //panel2.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
+            #region pushButton (Vloer Sparingen)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataVS = new PushButtonData
+                (
+                "Vloersparingen Toevoegen",
+                "Vloer",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Sparingen.AddVloer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Voegt sparingen in de vloeren toe",
+                LongDescription = "Zoekt naar waar een VWA of HWA pipe clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
+                //Image = BalkSparing16Scr,
+                LargeImage = BalkSparing32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonVS = (PushButton)panel3.AddItem(btndataVS);
+            buttonVS.Enabled = false;
+            ContextualHelp contextHelpVS = new ContextualHelp(ContextualHelpType.Url,
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#balk-sparingen");
+            buttonVS.SetContextualHelp(contextHelpVS);
+            #endregion
+
             #region pushButton (Balk Sparingen)
             /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
             PushButtonData btndataBS = new PushButtonData
@@ -1441,7 +1484,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Voegt sparingen in de balken toe",
-                LongDescription = "Zoekt naar waar een VWA of HWA pipe clasht met een funderingsbalk en zet daar een sparing neer.",
+                LongDescription = "Zoekt naar waar een VWA of HWA pipe clasht met een funderingsbalk en zet daar een sparing neer. Gebruiker moet nog controleren!",
                 //Image = BalkSparing16Scr,
                 LargeImage = BalkSparing32Scr,
             };
@@ -1453,7 +1496,7 @@ namespace NijhofAddIn.Revit
                     "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#balk-sparingen");
             buttonBS.SetContextualHelp(contextHelpBS);
 
-            panel3.AddSeparator(); //Voegt een verticale lijn toe
+            //panel3.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
             #endregion
 
@@ -1480,6 +1523,28 @@ namespace NijhofAddIn.Revit
             ContextualHelp contextHelpOntstop = new ContextualHelp(ContextualHelpType.Url,
                     "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#ontstoppingsstuk");
             buttonOntstop.SetContextualHelp(contextHelpOntstop);
+            #endregion
+
+            #region pushButtondata (Standleiding Lengte Aanpassen)
+            PushButtonData btndataStllengte = new PushButtonData
+                (
+                "Standleiding Lengte Aanpassen",
+                "Standleiding\nLengte",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Wijzigen.StandleidingLengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Past schuine gedeelte van de standleiding aan naar 250mm",
+                LongDescription = "Selecteer de bochten van de standleiding, deze functie verplaatst het onderste hulpstuk richting de standleiding zodat de lengte van het schuine gedeelte 250 mm is.",
+                //Image = Lengte16Scr,
+                LargeImage = Lengte32Scr,
+            };
+
+            PushButton buttonStllengte = (PushButton)panel4.AddItem(btndataStllengte);
+            buttonStllengte.Enabled = true;
+            ContextualHelp contextHelpStllengte = new ContextualHelp(ContextualHelpType.Url,
+                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#standleiding-lengte");
+            buttonStllengte.SetContextualHelp(contextHelpStllengte);
             #endregion
 
             #region pushButton (Update HWA Artikelnummer)
@@ -1524,28 +1589,6 @@ namespace NijhofAddIn.Revit
             ContextualHelp contextHelpUpdater = new ContextualHelp(ContextualHelpType.Url,
                     "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#hwa-lengte");
             buttonUpdater.SetContextualHelp(contextHelpUpdater);
-            #endregion
-
-            #region pushButtondata (Standleiding Lengte Aanpassen)
-            PushButtonData btndataStllengte = new PushButtonData
-                (
-                "Standleiding Lengte Aanpassen",
-                "Standleiding\nLengte",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Wijzigen.StandleidingLengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Past schuine gedeelte van de standleiding aan naar 250mm",
-                LongDescription = "Selecteer de bochten van de standleiding, deze functie verplaatst het onderste hulpstuk richting de standleiding zodat de lengte van het schuine gedeelte 250 mm is.",
-                //Image = Lengte16Scr,
-                LargeImage = Lengte32Scr,
-            };
-
-            PushButton buttonStllengte = (PushButton)panel4.AddItem(btndataStllengte);
-            buttonStllengte.Enabled = true;
-            ContextualHelp contextHelpStllengte = new ContextualHelp(ContextualHelpType.Url,
-                    "https://github.com/Damianmts/NijhofAddIn/wiki/Wijzigen#standleiding-lengte");
-            buttonStllengte.SetContextualHelp(contextHelpStllengte);
             #endregion
             #endregion
 
@@ -1686,6 +1729,34 @@ namespace NijhofAddIn.Revit
             #endregion
 
             //Nijhof Elektra
+
+            #region Buttons Panel (Content)
+            #region pushButton (Library)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataLibrary2 = new PushButtonData
+                (
+                "Library",
+                "Library",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Opent de 'Nijhof Bibliotheek'",
+                LongDescription = "Een bibliotheek waar alle vaak gebruikte modellen, tags en groups in gezet kunnen worden zodat die makkelijk te vinden- en in te laden zijn",
+                //Image = Library16Scr,
+                LargeImage = Library32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonLibrary2 = (PushButton)panel12.AddItem(btndataLibrary2);
+            buttonLibrary2.Enabled = false;
+            ContextualHelp contextHelpLibrary2 = new ContextualHelp(ContextualHelpType.Url,
+                    "http://www.autodesk.com");
+            buttonLibrary2.SetContextualHelp(contextHelpLibrary2);
+
+            //panel8.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
+            #endregion
 
             #region Buttons Panel (Toevoegen)
             #region splitButton (WCD)
