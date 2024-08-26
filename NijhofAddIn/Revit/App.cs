@@ -2705,7 +2705,7 @@ namespace NijhofAddIn.Revit
             PushButtonData btndataSwitchCode = new PushButtonData
                 (
                 "Switch Codes",
-                "Switch\nCodes",
+                "Code\nLijst",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Elektra.SwitchcodeList" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
