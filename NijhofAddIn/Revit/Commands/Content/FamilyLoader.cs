@@ -26,27 +26,11 @@ namespace NijhofAddIn.Revit.Commands.Content
                 return Result.Cancelled;
             }
 
+            // Open het venster niet-modaal zodat Revit gebruikt kan blijven worden
             FamilySelectionWindow selectionWindow = new FamilySelectionWindow(familyFiles, commandData.Application);
-            if (selectionWindow.ShowDialog() == true)
-            {
-                List<string> selectedFamilies = selectionWindow.SelectedFamilies;
+            selectionWindow.Show(); // Gebruik Show() in plaats van ShowDialog() om het venster niet-modaal te maken
 
-                using (Transaction tx = new Transaction(doc, "Load Families"))
-                {
-                    tx.Start();
-                    foreach (string familyPath in selectedFamilies)
-                    {
-                        if (!doc.LoadFamily(familyPath, out Family family))
-                        {
-                            TaskDialog.Show("Family Loader", $"Kan de family {Path.GetFileName(familyPath)} niet laden.");
-                        }
-                    }
-                    tx.Commit();
-                }
-
-                TaskDialog.Show("Family Loader", "Geselecteerde families zijn geladen.");
-            }
-
+            // Direct terugkeren om Revit beschikbaar te houden
             return Result.Succeeded;
         }
     }

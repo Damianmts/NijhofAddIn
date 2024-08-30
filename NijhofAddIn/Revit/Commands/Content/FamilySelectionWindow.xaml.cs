@@ -5,17 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using ricaun.Revit.UI;
-using ricaun.Revit.UI.StatusBar;
-using ricaun.Revit.UI.StatusBar.Utils;
 
 namespace NijhofAddIn.Revit.Commands.Content
 {
     public partial class FamilySelectionWindow : Window
     {
         private readonly UIApplication _uiApp;
-        private readonly List<string> _familyFiles;
+        private readonly string _rootFolder;
+        private List<FamilyItem> _allFamilyItems;
 
         public List<string> SelectedFamilies { get; private set; }
 
@@ -23,42 +22,106 @@ namespace NijhofAddIn.Revit.Commands.Content
         {
             InitializeComponent();
             _uiApp = uiApp;
-            _familyFiles = familyFiles;
-            this.Loaded += OnWindowLoaded;
+            _rootFolder = @"F:\Stabiplan\Custom\Families";
+            _allFamilyItems = new List<FamilyItem>();
+            PopulateTreeView();
+            this.Loaded += OnWindowLoaded; // Laad de bestanden nadat het venster is geopend
         }
 
         private async void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            await LoadFamilyDataAsync();
+            // Laad de bestanden asynchroon nadat het venster is getoond
+            await Task.Run(() => LoadAllFiles());
+            listViewFamilies.ItemsSource = _allFamilyItems;
         }
 
-        private async Task LoadFamilyDataAsync()
+        private void PopulateTreeView()
         {
-            List<FamilyItem> familyItems = new List<FamilyItem>();
-
-            foreach (var filePath in _familyFiles)
+            try
             {
-                var name = System.IO.Path.GetFileName(filePath);
-                BitmapImage image = null;
+                foreach (string directory in Directory.GetDirectories(_rootFolder))
+                {
+                    TreeViewItem item = new TreeViewItem
+                    {
+                        Header = Path.GetFileName(directory),
+                        Tag = directory
+                    };
+                    item.Items.Add(null); // Placeholder voor lazy loading
+                    item.Expanded += Folder_Expanded;
+                    folderTreeView.Items.Add(item);
+                }
+            }
+            catch { }
+        }
 
+        private void LoadAllFiles()
+        {
+            _allFamilyItems = new List<FamilyItem>();
+            LoadFilesRecursively(_rootFolder);
+        }
+
+        private void LoadFilesRecursively(string folderPath)
+        {
+            try
+            {
+                foreach (string filePath in Directory.GetFiles(folderPath, "*.rfa"))
+                {
+                    _allFamilyItems.Add(new FamilyItem
+                    {
+                        Name = Path.GetFileName(filePath),
+                        FilePath = filePath,
+                        Type = "Family File",
+                        Image = GetThumbnail(filePath)
+                    });
+                }
+
+                foreach (string subDir in Directory.GetDirectories(folderPath))
+                {
+                    LoadFilesRecursively(subDir);
+                }
+            }
+            catch { }
+        }
+
+        private void Folder_Expanded(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = (TreeViewItem)sender;
+            if (item.Items.Count == 1 && item.Items[0] == null)
+            {
+                item.Items.Clear();
+                string fullPath = (string)item.Tag;
                 try
                 {
-                    image = await Task.Run(() => GetThumbnail(filePath));
+                    foreach (string directory in Directory.GetDirectories(fullPath))
+                    {
+                        TreeViewItem subItem = new TreeViewItem
+                        {
+                            Header = Path.GetFileName(directory),
+                            Tag = directory
+                        };
+                        subItem.Items.Add(null); // Placeholder voor lazy loading
+                        subItem.Expanded += Folder_Expanded;
+                        item.Items.Add(subItem);
+                    }
                 }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show($"Error loading thumbnail: {ex.Message}");
-                }
-
-                familyItems.Add(new FamilyItem
-                {
-                    Name = name,
-                    FilePath = filePath,
-                    Image = image
-                });
+                catch { }
             }
+        }
 
-            listViewFamilies.ItemsSource = familyItems;
+        private void folderTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem selectedItem = folderTreeView.SelectedItem as TreeViewItem;
+            if (selectedItem != null)
+            {
+                string fullPath = (string)selectedItem.Tag;
+                FilterFilesByFolder(fullPath);
+            }
+        }
+
+        private void FilterFilesByFolder(string folderPath)
+        {
+            var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
+            listViewFamilies.ItemsSource = filteredItems;
         }
 
         private BitmapImage GetThumbnail(string filePath)
@@ -85,7 +148,11 @@ namespace NijhofAddIn.Revit.Commands.Content
 
         private void buttonLoad_Click(object sender, RoutedEventArgs e)
         {
-            SelectedFamilies = listViewFamilies.SelectedItems.Cast<FamilyItem>().Select(i => i.FilePath).ToList();
+            SelectedFamilies = new List<string>();
+            foreach (FamilyItem item in listViewFamilies.SelectedItems)
+            {
+                SelectedFamilies.Add(item.FilePath);
+            }
             this.DialogResult = true;
             this.Close();
         }
@@ -101,6 +168,7 @@ namespace NijhofAddIn.Revit.Commands.Content
     {
         public string Name { get; set; }
         public string FilePath { get; set; }
+        public string Type { get; set; }
         public BitmapImage Image { get; set; }
     }
 }
