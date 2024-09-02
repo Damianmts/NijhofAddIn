@@ -33,6 +33,7 @@ namespace NijhofAddIn.Revit.Commands.Content
             // Laad de bestanden asynchroon nadat het venster is getoond
             await Task.Run(() => LoadAllFiles());
             listViewFamilies.ItemsSource = _allFamilyItems;
+            listViewImages.ItemsSource = _allFamilyItems;
         }
 
         private void PopulateTreeView()
@@ -122,13 +123,14 @@ namespace NijhofAddIn.Revit.Commands.Content
         {
             var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
             listViewFamilies.ItemsSource = filteredItems;
+            listViewImages.ItemsSource = filteredItems;
         }
 
         private BitmapImage GetThumbnail(string filePath)
         {
             using (ShellObject shellObject = ShellObject.FromParsingName(filePath))
             {
-                var bitmapSource = shellObject.Thumbnail.SmallBitmapSource;
+                var bitmapSource = shellObject.Thumbnail.LargeBitmapSource; // Gebruik de grotere thumbnail
                 BitmapImage bitmapImage = new BitmapImage();
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
                 using (MemoryStream stream = new MemoryStream())
@@ -139,6 +141,8 @@ namespace NijhofAddIn.Revit.Commands.Content
                     bitmapImage.BeginInit();
                     bitmapImage.StreamSource = stream;
                     bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.DecodePixelWidth = 256; // Pas deze waarde aan voor een hogere resolutie
+                    bitmapImage.DecodePixelHeight = 256; // Pas deze waarde aan voor een hogere resolutie
                     bitmapImage.EndInit();
                     bitmapImage.Freeze();
                 }
@@ -161,6 +165,42 @@ namespace NijhofAddIn.Revit.Commands.Content
         {
             this.DialogResult = false;
             this.Close();
+        }
+
+        // Nieuw toegevoegd: Event handler voor het wisselen van weergave
+        private void comboBoxViewMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Controleer of de ListView objecten niet null zijn voordat je ze gebruikt
+            if (listViewFamilies == null || listViewImages == null)
+            {
+                return; // Verlaat de methode als een van de objecten null is
+            }
+
+            if (comboBoxViewMode.SelectedIndex == 0) // "Lijst" optie geselecteerd
+            {
+                listViewFamilies.Visibility = Visibility.Visible;
+                listViewImages.Visibility = Visibility.Collapsed;
+            }
+            else if (comboBoxViewMode.SelectedIndex == 1) // "Afbeeldingen" optie geselecteerd
+            {
+                listViewFamilies.Visibility = Visibility.Collapsed;
+                listViewImages.Visibility = Visibility.Visible;
+            }
+        }
+
+        // Nieuw toegevoegd: Event handler voor de zoekfunctie
+        private void SearchBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            string searchText = searchBox.Text.ToLower();
+            var filteredItems = _allFamilyItems.Where(item => item.Name.ToLower().Contains(searchText)).ToList();
+            listViewFamilies.ItemsSource = filteredItems;
+            listViewImages.ItemsSource = filteredItems;
+        }
+
+        // Nieuw toegevoegd: Placeholder logica voor de zoekbalk
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            placeholderText.Visibility = string.IsNullOrWhiteSpace(searchBox.Text) ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 
