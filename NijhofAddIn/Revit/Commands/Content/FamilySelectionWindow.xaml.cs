@@ -33,7 +33,7 @@ namespace NijhofAddIn.Revit.Commands.Content
             // Laad de bestanden asynchroon nadat het venster is getoond
             await Task.Run(() => LoadAllFiles());
             listViewFamilies.ItemsSource = _allFamilyItems;
-            listViewImages.ItemsSource = _allFamilyItems;
+            itemsControlImages.ItemsSource = _allFamilyItems;
         }
 
         private void PopulateTreeView()
@@ -67,13 +67,17 @@ namespace NijhofAddIn.Revit.Commands.Content
             {
                 foreach (string filePath in Directory.GetFiles(folderPath, "*.rfa"))
                 {
-                    _allFamilyItems.Add(new FamilyItem
+                    var thumbnail = GetThumbnail(filePath, false);
+                    if (thumbnail != null)
                     {
-                        Name = Path.GetFileName(filePath),
-                        FilePath = filePath,
-                        Type = "Family File",
-                        Image = GetThumbnail(filePath)
-                    });
+                        _allFamilyItems.Add(new FamilyItem
+                        {
+                            Name = Path.GetFileName(filePath),
+                            FilePath = filePath,
+                            Type = "Family File",
+                            Image = thumbnail // Kleine afbeelding voor de lijstweergave
+                        });
+                    }
                 }
 
                 foreach (string subDir in Directory.GetDirectories(folderPath))
@@ -123,14 +127,16 @@ namespace NijhofAddIn.Revit.Commands.Content
         {
             var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
             listViewFamilies.ItemsSource = filteredItems;
-            listViewImages.ItemsSource = filteredItems;
+            itemsControlImages.ItemsSource = filteredItems;
         }
 
-        private BitmapImage GetThumbnail(string filePath)
+        private BitmapImage GetThumbnail(string filePath, bool large)
         {
             using (ShellObject shellObject = ShellObject.FromParsingName(filePath))
             {
-                var bitmapSource = shellObject.Thumbnail.LargeBitmapSource; // Gebruik de grotere thumbnail
+                var bitmapSource = large ? shellObject.Thumbnail.LargeBitmapSource : shellObject.Thumbnail.SmallBitmapSource;
+                if (bitmapSource == null) return null; // Vermijd het toevoegen van lege items
+
                 BitmapImage bitmapImage = new BitmapImage();
                 PngBitmapEncoder encoder = new PngBitmapEncoder();
                 using (MemoryStream stream = new MemoryStream())
@@ -141,8 +147,11 @@ namespace NijhofAddIn.Revit.Commands.Content
                     bitmapImage.BeginInit();
                     bitmapImage.StreamSource = stream;
                     bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.DecodePixelWidth = 256; // Pas deze waarde aan voor een hogere resolutie
-                    bitmapImage.DecodePixelHeight = 256; // Pas deze waarde aan voor een hogere resolutie
+                    if (large)
+                    {
+                        bitmapImage.DecodePixelWidth = 256; // Grotere resolutie voor de afbeeldingenweergave
+                        bitmapImage.DecodePixelHeight = 256;
+                    }
                     bitmapImage.EndInit();
                     bitmapImage.Freeze();
                 }
@@ -171,7 +180,7 @@ namespace NijhofAddIn.Revit.Commands.Content
         private void comboBoxViewMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Controleer of de ListView objecten niet null zijn voordat je ze gebruikt
-            if (listViewFamilies == null || listViewImages == null)
+            if (listViewFamilies == null || itemsControlImages == null)
             {
                 return; // Verlaat de methode als een van de objecten null is
             }
@@ -179,12 +188,19 @@ namespace NijhofAddIn.Revit.Commands.Content
             if (comboBoxViewMode.SelectedIndex == 0) // "Lijst" optie geselecteerd
             {
                 listViewFamilies.Visibility = Visibility.Visible;
-                listViewImages.Visibility = Visibility.Collapsed;
+                itemsControlImages.Visibility = Visibility.Collapsed;
             }
             else if (comboBoxViewMode.SelectedIndex == 1) // "Afbeeldingen" optie geselecteerd
             {
+                // Update de thumbnails naar grote versies
+                foreach (var item in _allFamilyItems)
+                {
+                    item.Image = GetThumbnail(item.FilePath, true); // Grote afbeelding voor de afbeeldingenweergave
+                }
                 listViewFamilies.Visibility = Visibility.Collapsed;
-                listViewImages.Visibility = Visibility.Visible;
+                itemsControlImages.Visibility = Visibility.Visible;
+                itemsControlImages.ItemsSource = null;
+                itemsControlImages.ItemsSource = _allFamilyItems; // Herlaad de items om de grote afbeeldingen weer te geven
             }
         }
 
@@ -194,7 +210,7 @@ namespace NijhofAddIn.Revit.Commands.Content
             string searchText = searchBox.Text.ToLower();
             var filteredItems = _allFamilyItems.Where(item => item.Name.ToLower().Contains(searchText)).ToList();
             listViewFamilies.ItemsSource = filteredItems;
-            listViewImages.ItemsSource = filteredItems;
+            itemsControlImages.ItemsSource = filteredItems;
         }
 
         // Nieuw toegevoegd: Placeholder logica voor de zoekbalk
