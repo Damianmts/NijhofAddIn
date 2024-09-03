@@ -25,6 +25,7 @@ namespace NijhofAddIn.Revit.Commands.GPS
 
         public void LoadFamilies(Document doc)
         {
+#if RELEASE2023
             string[] familyPaths = {
                 @"F:\Stabiplan\Custom\Families\GPS\GPS Riool.rfa",
                 @"F:\Stabiplan\Custom\Families\GPS\GPS Lucht.rfa",
@@ -35,6 +36,29 @@ namespace NijhofAddIn.Revit.Commands.GPS
                 @"F:\Stabiplan\Custom\Families\GPS\GPS Tag_Intercom.rfa",
                 @"F:\Stabiplan\Custom\Families\GPS\GPS Middellijn.rfa",
             };
+#elif RELEASE2024
+            string[] familyPaths = {
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Riool.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Lucht.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Koudwater.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Warmwater.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Elektra.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Meterkast.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Tag_Intercom.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Middellijn.rfa",
+            };
+#elif RELEASE2025
+            string[] familyPaths = {
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Riool.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Lucht.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Koudwater.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Warmwater.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Elektra.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Meterkast.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Tag_Intercom.rfa",
+                @"F:\Stabiplan\Custom\Families\GPS\R24\GPS Middellijn.rfa",
+            };
+#endif
 
             foreach (string familyPath in familyPaths)
             {
@@ -82,7 +106,7 @@ namespace NijhofAddIn.Revit.Commands.GPS
             }
         }
     }
-    #endregion
+#endregion
 
     #region Plaats Riool
     [Transaction(TransactionMode.Manual)]

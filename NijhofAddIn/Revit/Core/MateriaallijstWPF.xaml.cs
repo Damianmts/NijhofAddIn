@@ -46,6 +46,7 @@ namespace NijhofAddIn.Revit.Core
     {
         public List<ScheduleItem> ScheduleItems { get; private set; }
         public List<ViewSchedule> SelectedSchedules { get; private set; }
+        private bool isCancelled = true; // Flag to track if the operation was cancelled
 
         public MateriaallijstWPF(ICollection<Element> schedules)
         {
@@ -61,6 +62,16 @@ namespace NijhofAddIn.Revit.Core
             }
 
             ScheduleListBox.ItemsSource = ScheduleItems;
+
+            this.Closing += MateriaallijstWPF_Closing;
+        }
+
+        private void MateriaallijstWPF_Closing(object sender, CancelEventArgs e)
+        {
+            if (isCancelled)
+            {
+                this.DialogResult = false; // Prevent the "cancelled by user" message
+            }
         }
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
@@ -88,8 +99,14 @@ namespace NijhofAddIn.Revit.Core
                 return;
             }
 
+            isCancelled = false; // Export was successful, not cancelled
             DialogResult = true;
             Close();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // This will trigger the Closing event
         }
     }
 }
