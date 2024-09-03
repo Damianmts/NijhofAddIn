@@ -5,6 +5,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.Revit.DB.Plumbing;
 
 namespace NijhofAddIn.Revit.Commands.Wijzigen
 {
@@ -12,132 +13,90 @@ namespace NijhofAddIn.Revit.Commands.Wijzigen
     [Regeneration(RegenerationOption.Manual)]
     internal class UpdateHWALengte : IExternalCommand
     {
-        public Result Execute(ExternalCommandData extCmdData, ref string msg, ElementSet elements)
+        public Result Execute(
+            ExternalCommandData commandData,
+            ref string message,
+            ElementSet elements)
         {
-            UIApplication uiapp = extCmdData.Application;
-            UIDocument uidoc = uiapp.ActiveUIDocument;
+            UIDocument uidoc = commandData.Application.ActiveUIDocument;
             Document doc = uidoc.Document;
+            View activeView = uidoc.ActiveView;
 
-            try
+            // Definieer de pijp types die je wilt zoeken
+            List<string> pipeTypeNames = new List<string>
+        {
+            "DYKA PVC Hemelwaterafvoer_HWA 5.55m",
+            "DYKA PVC Hemelwaterafvoer_HWA 6m",
+            "DYKA PVC Hemelwaterafvoer_PVC 5.55m"
+        };
+
+            int modifiedPipesCount = 0;
+
+            // Begin een transactie
+            using (Transaction tx = new Transaction(doc, "Update Pipe Top Elevation"))
             {
-                // Select pipes
-                var selectedPipes = uidoc.Selection.PickObjects(ObjectType.Element, new ESFPipe(), "Trek een hatch over het hele hwa systeem.");
-                if (selectedPipes.Count == 0)
-                {
-                    TaskDialog.Show("Error", "Niks geselecteerd.");
-                    return Result.Cancelled;
-                }
+                tx.Start();
 
-                List<Element> pipeListToModify = new List<Element>();
-                foreach (var item in selectedPipes)
+                // Filter voor alle pijpen die zichtbaar zijn in de actieve view
+                FilteredElementCollector collector = new FilteredElementCollector(doc, activeView.Id)
+                    .OfClass(typeof(Pipe));
+
+                // Loop door elke pijp en controleer of het type overeenkomt
+                foreach (Element elem in collector)
                 {
-                    var pipeElement = doc.GetElement(item) as Element;
-                    if (pipeElement != null)
+                    Pipe pipe = elem as Pipe;
+                    if (pipe != null)
                     {
-                        Parameter parameterType = pipeElement.LookupParameter("Article Type");
-                        Parameter parameterDiameter = pipeElement.LookupParameter("D1 Description");
-                        if (parameterType != null && parameterType.HasValue &&
-                            (parameterType.AsString() == "HWA 6m" || parameterType.AsString() == "PVC 5,55m" || parameterType.AsString() == "HWA 5,55m") &&
-                            (parameterDiameter.AsString() == "80" || parameterDiameter.AsString() == "100"))
+                        // Verkrijg het pijptype
+                        PipeType pipeType = doc.GetElement(pipe.GetTypeId()) as PipeType;
+                        if (pipeType != null && pipeTypeNames.Contains(pipeType.Name))
                         {
-                            pipeListToModify.Add(pipeElement);
+                            // Controleer of de pijp verticaal is
+                            Line pipeLine = (pipe.Location as LocationCurve)?.Curve as Line;
+
+                            if (pipeLine != null && IsVertical(pipeLine))
+                            {
+                                // Bereken de huidige lengte van de pijp
+                                double currentLength = pipeLine.Length;
+
+                                // Bepaal het verschil om de pijp naar 800 mm te brengen
+                                double desiredLength = 800 / 304.8; // Revit gebruikt voet
+                                double lengthDifference = currentLength - desiredLength;
+
+                                // Pas de Top Elevation aan
+                                Parameter topElevationParam = pipe.get_Parameter(BuiltInParameter.RBS_PIPE_TOP_ELEVATION);
+                                if (topElevationParam != null && !topElevationParam.IsReadOnly)
+                                {
+                                    double currentTopElevation = topElevationParam.AsDouble();
+                                    topElevationParam.Set(currentTopElevation - lengthDifference);
+                                    modifiedPipesCount++;
+                                }
+                            }
                         }
                     }
                 }
 
-                List<LocationCurve> pipesLocationCurve = new List<LocationCurve>();
-                foreach (var pipe in pipeListToModify)
-                {
-                    if (pipe.Location is LocationCurve locationCurve)
-                    {
-                        pipesLocationCurve.Add(locationCurve);
-                    }
-                }
-
-                List<Autodesk.Revit.DB.Line> pipeLines = new List<Autodesk.Revit.DB.Line>();
-                foreach (var pipeCurve in pipesLocationCurve)
-                {
-                    if (pipeCurve.Curve is Autodesk.Revit.DB.Line line)
-                    {
-                        pipeLines.Add(line);
-                    }
-                }
-
-                List<XYZ> newStartList = new List<XYZ>();
-                List<XYZ> newEndList = new List<XYZ>();
-
-                for (int i = 0; i < pipeListToModify.Count; i++)
-                {
-                    XYZ newStart;
-                    XYZ newEnd;
-                    var pipeDirection = pipeLines[i].Direction;
-
-                    if (pipeDirection.Z < -0.9)
-                    {
-                        newStart = new XYZ(
-                            pipesLocationCurve[i].Curve.GetEndPoint(0).X,
-                            pipesLocationCurve[i].Curve.GetEndPoint(0).Y,
-                            pipesLocationCurve[i].Curve.GetEndPoint(1).Z + 2.624671916);
-                        newEnd = pipesLocationCurve[i].Curve.GetEndPoint(1);
-                    }
-                    else
-                    {
-                        newStart = pipesLocationCurve[i].Curve.GetEndPoint(0);
-                        newEnd = new XYZ(
-                            pipesLocationCurve[i].Curve.GetEndPoint(1).X,
-                            pipesLocationCurve[i].Curve.GetEndPoint(1).Y,
-                            pipesLocationCurve[i].Curve.GetEndPoint(0).Z + 2.624671916);
-                    }
-
-                    newStartList.Add(newStart);
-                    newEndList.Add(newEnd);
-                }
-
-                XYZ translation = new XYZ(0.00001, 0.00001, 0);
-                XYZ translationBack = new XYZ(-0.00001, -0.00001, 0);
-
-                using (var transaction = new Transaction(doc, "NT - HWA Length 800"))
-                {
-                    transaction.Start();
-
-                    for (int i = 0; i < pipeListToModify.Count; i++)
-                    {
-                        Autodesk.Revit.DB.Line line = Autodesk.Revit.DB.Line.CreateBound(newStartList[i], newEndList[i]);
-                        pipesLocationCurve[i].Curve = line;
-
-                        ElementTransformUtils.MoveElement(doc, pipeListToModify[i].Id, translation);
-                        ElementTransformUtils.MoveElement(doc, pipeListToModify[i].Id, translationBack);
-                    }
-
-                    transaction.Commit();
-                }
+                tx.Commit();
             }
-            catch (Exception e)
+
+            // Meldingen aan de gebruiker
+            if (modifiedPipesCount > 0)
             {
-                msg = e.Message;
-                return Result.Failed;
+                TaskDialog.Show("Resultaat", $"{modifiedPipesCount} pijpen zijn aangepast naar een lengte van 800 mm.");
+            }
+            else
+            {
+                TaskDialog.Show("Resultaat", "Er zijn geen pijpen gevonden die aangepast moesten worden.");
             }
 
             return Result.Succeeded;
         }
-    }
 
-    // Example implementation of ESFPipe class as a selection filter (needs to be adjusted based on actual requirements)
-    public class ESFPipe : ISelectionFilter
-    {
-        public bool AllowElement(Element elem)
+        private bool IsVertical(Line line)
         {
-#if REVIT2023
-            // Add logic to filter elements (e.g., check if elem is a pipe)
-            return elem.Category?.Id.IntegerValue == (int)BuiltInCategory.OST_PipeCurves;
-#elif REVIT2024 || REVIT2025
-            return elem.Category?.Id.Value == (int)BuiltInCategory.OST_PipeCurves;
-#endif
-        }
-
-        public bool AllowReference(Reference reference, XYZ position)
-        {
-            return false;
+            XYZ direction = line.Direction;
+            // Check of de lijn verticaal is (richting van de lijn is (0,0,1) of (0,0,-1))
+            return (Math.Abs(direction.X) < 1e-9 && Math.Abs(direction.Y) < 1e-9 && Math.Abs(Math.Abs(direction.Z) - 1) < 1e-9);
         }
     }
 }

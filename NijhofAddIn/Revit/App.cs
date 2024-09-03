@@ -565,7 +565,7 @@ namespace NijhofAddIn.Revit
 
             /// Voeg de knop toe aan het Ribbon Panel
             PushButton buttonLibrary = (PushButton)panel8.AddItem(btndataLibrary);
-            buttonLibrary.Enabled = false;
+            buttonLibrary.Enabled = true;
             ContextualHelp contextHelpLibrary = new ContextualHelp(ContextualHelpType.Url,
                     "http://www.autodesk.com");
             buttonLibrary.SetContextualHelp(contextHelpLibrary);
@@ -1738,7 +1738,7 @@ namespace NijhofAddIn.Revit
                 "Library",
                 "Library",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Opent de 'Nijhof Bibliotheek'",

@@ -24,7 +24,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
 
             /// Stel de naam van de familie en het symbool in
             string familyName = "Ovg_Bediening los"; // Specifieke familienaam
-            string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
+            string symbolName = "Bb"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
 #if RELEASE2023

@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="2">
             <Button Content="Browse" Width="75" Click="BrowseButton_Click"/>
-            <TextBox x:Name="PathTextBox" Width="310" IsReadOnly="True" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBox x:Name="PathTextBox" Width="225" IsReadOnly="True" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </StackPanel>
         <ListBox x:Name="ScheduleListBox" Margin="10" Grid.Row="1">
             <ListBox.ItemTemplate>
@@ -25,6 +25,9 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Export" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Width="75" Click="ExportButton_Click" Grid.Row="2"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+            <Button Content="Export" Width="75" Click="ExportButton_Click" Margin="0,0,10,0"/>
+            <Button Content="Sluiten" Width="75" Click="CloseButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

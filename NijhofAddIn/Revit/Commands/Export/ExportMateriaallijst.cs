@@ -21,16 +21,16 @@ namespace NijhofAddIn.Revit.Commands.Export
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
-            // Get all schedules in the document and filter by name
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             ICollection<Element> schedules = collector.OfClass(typeof(ViewSchedule))
                                                       .Cast<ViewSchedule>()
                                                       .Where(schedule => schedule.Name.Contains("Mat"))
                                                       .ToList<Element>();
 
-            // Show WPF popup for schedule selection
             MateriaallijstWPF selectionWindow = new MateriaallijstWPF(schedules);
-            if (selectionWindow.ShowDialog() == true)
+            bool? dialogResult = selectionWindow.ShowDialog();
+
+            if (dialogResult == true)
             {
                 List<ViewSchedule> selectedSchedules = selectionWindow.SelectedSchedules;
                 if (selectedSchedules == null || !selectedSchedules.Any())
@@ -39,7 +39,6 @@ namespace NijhofAddIn.Revit.Commands.Export
                     return Result.Cancelled;
                 }
 
-                // Get the export path from the user
                 string path = selectionWindow.PathTextBox.Text;
                 if (string.IsNullOrEmpty(path))
                 {
@@ -64,7 +63,7 @@ namespace NijhofAddIn.Revit.Commands.Export
             }
             else
             {
-                message = "Export cancelled by user.";
+                message = "Export cancelled by user."; // Show only if user cancels explicitly
                 return Result.Cancelled;
             }
         }

@@ -9,13 +9,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- StackPanel to contain the Filters header, SearchBox, and TreeView -->
-        <StackPanel Grid.Column="0" Margin="10">
+        <!-- Split the left column into three rows -->
+        <Grid Grid.Column="0" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <!-- Header for the Filters section -->
-            <TextBlock Text="Filters" FontWeight="Bold" FontSize="14" Margin="0,0,0,5" />
+            <TextBlock Text="Filters" FontWeight="Bold" FontSize="14" Margin="0,0,0,5" Grid.Row="0"/>
 
             <!-- Grid to contain the SearchBox and Placeholder -->
-            <Grid Margin="0,0,0,10">
+            <Grid Margin="0,0,0,10" Grid.Row="1">
                 <!-- Search box to filter results -->
                 <TextBox x:Name="searchBox" Width="180" 
                          KeyUp="SearchBox_KeyUp" 
@@ -30,7 +36,7 @@
             </Grid>
 
             <!-- TreeView to display the folder structure with text wrapping -->
-            <TreeView x:Name="folderTreeView" SelectedItemChanged="folderTreeView_SelectedItemChanged" Height="470">
+            <TreeView x:Name="folderTreeView" SelectedItemChanged="folderTreeView_SelectedItemChanged" Grid.Row="2">
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="TreeViewItem">
                         <Setter Property="HeaderTemplate">
@@ -39,7 +45,6 @@
                                     <TextBlock Text="{Binding}" 
                                                TextWrapping="Wrap" 
                                                MaxWidth="180"/>
-                                    <!-- Pas de breedte aan naar behoefte -->
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
@@ -47,22 +52,28 @@
                     </Style>
                 </TreeView.ItemContainerStyle>
             </TreeView>
-        </StackPanel>
+        </Grid>
 
-        <!-- StackPanel to contain the Resultaten header and ListView -->
-        <StackPanel Grid.Column="1" Margin="10,10,10,35">
+        <!-- Split the right column into three rows -->
+        <Grid Grid.Column="1" Margin="10,10,10,35">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <!-- Header for the ListView -->
-            <TextBlock Text="Resultaten" FontWeight="Bold" FontSize="14" Margin="0,0,0,5" />
+            <TextBlock Text="Resultaten" FontWeight="Bold" FontSize="14" Grid.Row="0" Margin="0,0,0,5" />
 
             <!-- Dropdown menu to select the view mode -->
             <ComboBox x:Name="comboBoxViewMode" SelectionChanged="comboBoxViewMode_SelectionChanged"
-                      Width="150" HorizontalAlignment="Left" Margin="0,0,0,5">
-                <ComboBoxItem Content="Lijst" IsSelected="True"/>
-                <ComboBoxItem Content="Afbeeldingen"/>
+                      Width="150" HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,5">
+                <ComboBoxItem Content="Lijst" />
+                <ComboBoxItem Content="Afbeeldingen" IsSelected="True"/>
             </ComboBox>
 
             <!-- ListView to display the files in the selected folder (List view) -->
-            <ListView x:Name="listViewFamilies" SelectionMode="Extended" Height="482" Visibility="Visible">
+            <ListView x:Name="listViewFamilies" SelectionMode="Extended" Grid.Row="2" Visibility="Collapsed">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="400">
@@ -70,7 +81,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding Image}" Width="32" Height="32" Margin="5"/>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -79,31 +90,29 @@
                 </ListView.View>
             </ListView>
 
-            <!-- ScrollViewer to enable vertical scrolling in the Image view -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <ItemsControl x:Name="itemsControlImages" Visibility="Collapsed">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="5">
-                                <!-- Maak de afbeeldingen iets kleiner -->
-                                <Image Source="{Binding Image}" Width="120" Height="120" Margin="5"/>
-                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </StackPanel>
+            <!-- ListView to display images in a grid-like pattern (Image view) -->
+            <ListView x:Name="listViewImages" SelectionMode="Single" Grid.Row="2" Visibility="Visible"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5" Width="130">
+                            <Image Source="{Binding Image}" Width="120" Height="120" Margin="5"/>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
 
         <!-- Buttons for load and cancel actions -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,5,5">
             <Button x:Name="buttonLoad" Content="Laden" Width="75" Margin="5" Click="buttonLoad_Click" Height="20"/>
-            <Button x:Name="buttonPlace" Content="Plaatsen" Width="75" Margin="5" Click="buttonLoad_Click" Height="20"/>
+            <Button x:Name="buttonPlace" Content="Plaatsen" Width="75" Margin="5" Click="buttonPlace_Click" Height="20"/>
             <Button x:Name="buttonCancel" Content="Sluiten" Width="75" Margin="5" Click="buttonCancel_Click"/>
         </StackPanel>
     </Grid>
