@@ -229,7 +229,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             /// Stel de naam van de familie en het symbool in
-            string familyName = "4 Polige schakelaar (Werkschakelaar)"; // Specifieke familienaam
+            string familyName = "Schak_4polig"; // Specifieke familienaam
             string symbolName = "Standaard"; // Specifieke naam van het FamilySymbol
 
             string familyPathBase;
