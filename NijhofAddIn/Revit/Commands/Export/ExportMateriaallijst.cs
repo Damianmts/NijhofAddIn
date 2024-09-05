@@ -21,17 +21,21 @@ namespace NijhofAddIn.Revit.Commands.Export
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
+            // Verzamel de schedules met "Mat" in de naam
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             ICollection<Element> schedules = collector.OfClass(typeof(ViewSchedule))
                                                       .Cast<ViewSchedule>()
                                                       .Where(schedule => schedule.Name.Contains("Mat"))
                                                       .ToList<Element>();
 
+            // Open het selectie venster
             MateriaallijstWPF selectionWindow = new MateriaallijstWPF(schedules);
             bool? dialogResult = selectionWindow.ShowDialog();
 
+            // Controleer of de gebruiker op "OK" heeft geklikt in plaats van alleen het venster te sluiten
             if (dialogResult == true)
             {
+                // Verkrijg de geselecteerde schedules
                 List<ViewSchedule> selectedSchedules = selectionWindow.SelectedSchedules;
                 if (selectedSchedules == null || !selectedSchedules.Any())
                 {
@@ -39,6 +43,7 @@ namespace NijhofAddIn.Revit.Commands.Export
                     return Result.Cancelled;
                 }
 
+                // Controleer of het pad is ingevuld
                 string path = selectionWindow.PathTextBox.Text;
                 if (string.IsNullOrEmpty(path))
                 {
@@ -48,6 +53,7 @@ namespace NijhofAddIn.Revit.Commands.Export
 
                 try
                 {
+                    // Voer de export uit
                     foreach (var schedule in selectedSchedules)
                     {
                         ExportScheduleToExcel(schedule, path);
@@ -61,11 +67,9 @@ namespace NijhofAddIn.Revit.Commands.Export
                     return Result.Failed;
                 }
             }
-            else
-            {
-                message = "Export cancelled by user."; // Show only if user cancels explicitly
-                return Result.Cancelled;
-            }
+
+            // Geen actie als het venster gesloten wordt zonder export
+            return Result.Cancelled;
         }
 
         private void ExportScheduleToExcel(ViewSchedule schedule, string path)
@@ -76,18 +80,18 @@ namespace NijhofAddIn.Revit.Commands.Export
                 throw new InvalidOperationException("Excel is not installed.");
             }
 
-            // Create Excel workbook and worksheet
+            // Maak een Excel werkboek en werkblad aan
             Excel.Workbook xlWorkBook = xlApp.Workbooks.Add();
             Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets[1];
             xlWorkSheet.Name = schedule.Name;
 
-            // Get schedule data
+            // Haal de gegevens van de schedule op
             var tableData = schedule.GetTableData();
             var sectionData = tableData.GetSectionData(SectionType.Body);
             int rows = sectionData.NumberOfRows;
             int cols = sectionData.NumberOfColumns;
 
-            // Add schedule data
+            // Voeg de gegevens toe aan het werkblad
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
@@ -96,10 +100,10 @@ namespace NijhofAddIn.Revit.Commands.Export
                     Excel.Range cell = (Excel.Range)xlWorkSheet.Cells[row + 1, col + 1];
                     cell.Value = cellValue;
 
-                    // Set alignment to left
+                    // Stel de uitlijning in op links
                     cell.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
 
-                    // Make the first row bold
+                    // Maak de eerste rij vet
                     if (row == 0)
                     {
                         cell.Font.Bold = true;
@@ -107,16 +111,16 @@ namespace NijhofAddIn.Revit.Commands.Export
                 }
             }
 
-            // Auto-fit the columns
+            // Pas de kolombreedte automatisch aan
             xlWorkSheet.Columns.AutoFit();
 
-            // Save the Excel file
+            // Sla het Excel-bestand op
             string filePath = Path.Combine(path, schedule.Name + ".xlsx");
             xlWorkBook.SaveAs(filePath);
             xlWorkBook.Close(false);
             xlApp.Quit();
 
-            // Release COM objects
+            // Release de COM-objecten
             ReleaseObject(xlWorkSheet);
             ReleaseObject(xlWorkBook);
             ReleaseObject(xlApp);
@@ -130,7 +134,7 @@ namespace NijhofAddIn.Revit.Commands.Export
             }
             catch
             {
-                // Ignore exceptions
+                // Negeer uitzonderingen
             }
             finally
             {
