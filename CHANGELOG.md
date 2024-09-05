@@ -5,7 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [UNRELEASED]
-- Schakelaar: Vierpolig
 - Schakelaar: Beweging Wand
 - Schakelaar: Beweging Plafond
 - Schakelaar: Schemer
@@ -13,6 +12,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Berekenfunctie en toebehoren voor water (wachttijd,etc)
 - Berekenfunctie en toebehoren voor riool 
 - Berekenfunctie en toebehoren voor lucht
+
+- UI verbeteren
+- Optimaliseren
+
+----------------------------------------------------------------------------------------------------
+
+## [1.2.1] / 2024-09-5
+### Added
+- Schakelaar vierpolig
+
+### Fixed
+- 'HWA Lengte' werkt weer naar behoren
+- 'HWA Artikelnummer' werkt weer naar behoren
+- 'Materiaal Lijst' heeft een 'Sluiten' knop en geeft geen melding meer als je via het kruisje afsluit
 
 ----------------------------------------------------------------------------------------------------
 

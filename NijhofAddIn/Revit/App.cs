@@ -2208,7 +2208,7 @@ namespace NijhofAddIn.Revit
 
             /// Voeg de derde knop toe aan de dropdown
             PushButton buttonSchakelaarVierpolig = splitButtonSchakelaar.AddPushButton(btndataSchakelaarVierpolig);
-            buttonSchakelaarVierpolig.Enabled = false;
+            buttonSchakelaarVierpolig.Enabled = true;
 
             /// Voegt een horizontale lijn toe onder de knop
             splitButtonSchakelaar.AddSeparator();

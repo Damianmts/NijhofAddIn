@@ -1,91 +1,119 @@
-﻿using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Plumbing;
-using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NijhofAddIn.Revit.Commands.Wijzigen
+public class UpdateHWAArtikelnummer : IExternalCommand
 {
-    [Transaction(TransactionMode.Manual)]
-    [Regeneration(RegenerationOption.Manual)]
-    internal class UpdateHWAArtikelnummer : IExternalCommand
+    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
     {
-        public Result Execute(ExternalCommandData extCmdData, ref string msg, ElementSet element)
+        // Verkrijg het huidige document
+        Document doc = commandData.Application.ActiveUIDocument.Document;
+
+        // Maak een filter voor het zoeken naar Pipe types
+        ElementCategoryFilter pipeCategoryFilter = new ElementCategoryFilter(BuiltInCategory.OST_PipeCurves);
+
+        // Verzameling van alle pipe types
+        FilteredElementCollector pipeTypeCollector = new FilteredElementCollector(doc)
+            .OfClass(typeof(PipeType))
+            .WherePasses(pipeCategoryFilter);
+
+        // Vind de doel pipe types
+        PipeType targetPipeType80 = pipeTypeCollector
+            .Cast<PipeType>()
+            .FirstOrDefault(pt => pt.Name == "DYKA PVC Hemelwaterafvoer_HWA 6m");
+
+        PipeType targetPipeType100 = pipeTypeCollector
+            .Cast<PipeType>()
+            .FirstOrDefault(pt => pt.Name == "DYKA PVC Hemelwaterafvoer_HWA 5,55m");
+
+        if (targetPipeType80 == null || targetPipeType100 == null)
         {
-            UIApplication uiapp = extCmdData.Application;
-            UIDocument uidoc = uiapp.ActiveUIDocument;
-            Autodesk.Revit.ApplicationServices.Application app = uiapp.Application;
-            Document doc = uidoc.Document;
+            message = "Een van de doel pipe types is niet gevonden.";
+            return Result.Failed;
+        }
 
+        int changedPipesCount = 0;
+        int totalPipesToChange = 0;
 
-            var hwaPipes = new FilteredElementCollector(doc)
+        // Transactie voor het wijzigen van de pipe types en het aanpassen van parameters
+        using (Transaction trans = new Transaction(doc, "Vervang Pipe Types en Update Parameters"))
+        {
+            trans.Start();
+
+            // Zoek naar alle pijpen in het project
+            FilteredElementCollector pipeCollector = new FilteredElementCollector(doc)
                 .OfClass(typeof(Pipe))
-                .Where(a =>
-                {
-                    Parameter parameterType = a.LookupParameter("Article Type");
-                    Parameter parameterDiameter = a.LookupParameter("D1 Description");
-                    Parameter parameterArtikelNr = a.LookupParameter("Manufacturer Art. No.");
-                    if (parameterType != null && parameterType.HasValue)
-                    {
-                        if (parameterType.AsString() == "HWA 6m"
-                        && !(parameterArtikelNr.AsString() == "20033890"))
-                        {
-                            return parameterType.AsString() == "HWA 6m";
-                        }
-                        else if (parameterType.AsString() == "PVC 5,55m"
-                            && parameterDiameter.AsString() == "80"
-                            && !(parameterArtikelNr.AsString() == "20033890"))
-                        {
-                            return parameterType.AsString() == "PVC 5,55m";
-                        }
-                        else if (parameterType.AsString() == "HWA 5,55m"
-                        && parameterDiameter.AsString() == "80"
-                        && !(parameterArtikelNr.AsString() == "20033890"))
-                        {
-                            return parameterType.AsString() == "HWA 5,55m";
-                        }
+                .WherePasses(pipeCategoryFilter);
 
-
-                    }
-                    return false;
-                })
-                .Cast<Element>()
-                .ToList();
-
-
-            if (hwaPipes.Count == 0)
+            // Loop door alle pijpen en bepaal of er wijzigingen nodig zijn
+            foreach (Pipe pipe in pipeCollector)
             {
-                TaskDialog.Show("NT - HWA artikelnummer updater", "Alle ø80 HWA artikelen zijn geupdate naar het juiste artikelnummer. (20033890)");
-                return Result.Cancelled;
-            }
-
-            try
-            {
-
-                using (var transaction = new Transaction(doc, "NT - Artikel nr HWA update"))
+                // Controleer de "Size" parameter
+                Parameter sizeParam = pipe.LookupParameter("Size");
+                if (sizeParam != null)
                 {
-                    transaction.Start();
+                    string sizeValue = sizeParam.AsString();
 
-                    foreach (Element pipe in hwaPipes)
+                    // Zoek het "Manufacturer Art. No." parameter
+                    Parameter manufacturerParam = pipe.LookupParameter("Manufacturer Art. No.");
+
+                    if (sizeValue == "ø80")
                     {
-                        Parameter para = pipe.LookupParameter("Manufacturer Art. No.");
-                        para.Set("20033890");
+                        totalPipesToChange++;
+
+                        // Controleer of de pipe al het juiste type en artikelnummer heeft
+                        if (pipe.GetTypeId() != targetPipeType80.Id || (manufacturerParam != null && manufacturerParam.AsString() != "20033890"))
+                        {
+                            // Vervang het pipe type door "DYKA PVC Hemelwaterafvoer_HWA 6m"
+                            pipe.ChangeTypeId(targetPipeType80.Id);
+                            changedPipesCount++;
+
+                            // Stel het artikelnummer in op 20033890
+                            if (manufacturerParam != null && !manufacturerParam.IsReadOnly)
+                            {
+                                manufacturerParam.Set("20033890");
+                            }
+                        }
                     }
+                    else if (sizeValue == "ø100")
+                    {
+                        totalPipesToChange++;
 
-                    TaskDialog.Show("NT - HWA artikelnummer updater", "Bij " + hwaPipes.Count + " pipe(s) is/zijn het artikelnummer geupdate.");
+                        // Controleer of de pipe al het juiste type en artikelnummer heeft
+                        if (pipe.GetTypeId() != targetPipeType100.Id || (manufacturerParam != null && manufacturerParam.AsString() != "20033900"))
+                        {
+                            // Vervang het pipe type door "DYKA PVC Hemelwaterafvoer_HWA 5,55m"
+                            pipe.ChangeTypeId(targetPipeType100.Id);
+                            changedPipesCount++;
 
-                    transaction.Commit();
+                            // Stel het artikelnummer in op 20033900
+                            if (manufacturerParam != null && !manufacturerParam.IsReadOnly)
+                            {
+                                manufacturerParam.Set("20033900");
+                            }
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                TaskDialog.Show("Error", ex.Message);
-            }
-            return Result.Succeeded;
+
+            trans.Commit();
         }
+
+        // Toon een popup met het aantal wijzigingen
+        if (totalPipesToChange == 0)
+        {
+            TaskDialog.Show("Resultaat", "Geen pijpen gevonden om te controleren.");
+        }
+        else if (changedPipesCount > 0)
+        {
+            TaskDialog.Show("Resultaat", $"{changedPipesCount} pijpen zijn bijgewerkt.");
+        }
+        else
+        {
+            TaskDialog.Show("Resultaat", "Alles is al geüpdatet.");
+        }
+
+        return Result.Succeeded;
     }
 }

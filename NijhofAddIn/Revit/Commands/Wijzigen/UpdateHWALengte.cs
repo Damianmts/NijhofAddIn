@@ -1,11 +1,9 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI.Selection;
+using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Autodesk.Revit.DB.Plumbing;
 
 namespace NijhofAddIn.Revit.Commands.Wijzigen
 {
@@ -24,16 +22,16 @@ namespace NijhofAddIn.Revit.Commands.Wijzigen
 
             // Definieer de pijp types die je wilt zoeken
             List<string> pipeTypeNames = new List<string>
-        {
-            "DYKA PVC Hemelwaterafvoer_HWA 5.55m",
-            "DYKA PVC Hemelwaterafvoer_HWA 6m",
-            "DYKA PVC Hemelwaterafvoer_PVC 5.55m"
-        };
+            {
+                "DYKA PVC Hemelwaterafvoer_HWA 5,55m",
+                "DYKA PVC Hemelwaterafvoer_HWA 6m",
+                "DYKA PVC Hemelwaterafvoer_PVC 5,55m"
+            };
 
             int modifiedPipesCount = 0;
 
             // Begin een transactie
-            using (Transaction tx = new Transaction(doc, "Update Pipe Top Elevation"))
+            using (Transaction tx = new Transaction(doc, "Update Pipe Length"))
             {
                 tx.Start();
 
@@ -59,16 +57,32 @@ namespace NijhofAddIn.Revit.Commands.Wijzigen
                                 // Bereken de huidige lengte van de pijp
                                 double currentLength = pipeLine.Length;
 
-                                // Bepaal het verschil om de pijp naar 800 mm te brengen
+                                // Bepaal de gewenste lengte (800 mm)
                                 double desiredLength = 800 / 304.8; // Revit gebruikt voet
+
+                                // Bereken het verschil tussen de huidige lengte en de gewenste lengte
                                 double lengthDifference = currentLength - desiredLength;
 
-                                // Pas de Top Elevation aan
-                                Parameter topElevationParam = pipe.get_Parameter(BuiltInParameter.RBS_PIPE_TOP_ELEVATION);
-                                if (topElevationParam != null && !topElevationParam.IsReadOnly)
+                                if (Math.Abs(lengthDifference) > 1e-9)
                                 {
-                                    double currentTopElevation = topElevationParam.AsDouble();
-                                    topElevationParam.Set(currentTopElevation - lengthDifference);
+                                    // Verkrijg de huidige start- en eindpunten van de pijp
+                                    XYZ startPoint = pipeLine.GetEndPoint(0);
+                                    XYZ endPoint = pipeLine.GetEndPoint(1);
+
+                                    // Verplaats de bovenkant van de pijp naar de gewenste hoogte
+                                    XYZ newEndPoint;
+                                    if (endPoint.Z > startPoint.Z) // Pijp gaat omhoog
+                                    {
+                                        newEndPoint = new XYZ(endPoint.X, endPoint.Y, startPoint.Z + desiredLength);
+                                    }
+                                    else // Pijp gaat omlaag
+                                    {
+                                        newEndPoint = new XYZ(startPoint.X, startPoint.Y, startPoint.Z + desiredLength);
+                                    }
+
+                                    // Stel de nieuwe curve in (startpunt blijft hetzelfde)
+                                    (pipe.Location as LocationCurve).Curve = Line.CreateBound(startPoint, newEndPoint);
+
                                     modifiedPipesCount++;
                                 }
                             }
