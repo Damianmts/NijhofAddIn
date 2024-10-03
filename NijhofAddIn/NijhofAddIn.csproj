@@ -152,8 +152,24 @@
   <ItemGroup>
     <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*" IncludeAssets="build; compile" PrivateAssets="All" />
     <PackageReference Include="ricaun.Revit.UI.StatusBar" Version="1.0.0" />
+    <PackageReference Include="Syncfusion.Licensing" Version="27.1.51" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Syncfusion.SfBusyIndicator.WPF">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\WPF\27.1.48\Assemblies\4.6.2\Syncfusion.SfBusyIndicator.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfGridCommon.WPF">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\WPF\27.1.48\Assemblies\4.6.2\Syncfusion.SfGridCommon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfTreeView.WPF">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\WPF\27.1.48\Assemblies\4.6.2\Syncfusion.SfTreeView.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Wpf">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\WPF\27.1.48\Assemblies\4.6.2\Syncfusion.Shared.Wpf.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

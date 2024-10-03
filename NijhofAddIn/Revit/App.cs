@@ -1654,7 +1654,7 @@ namespace NijhofAddIn.Revit
                 "TEST",
                 "TEST",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Content.Contentlibrary" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Een knop waar ik functies mee kan testen",
