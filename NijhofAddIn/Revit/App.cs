@@ -35,7 +35,8 @@ namespace NijhofAddIn.Revit
         const string RIBBON_TAB3 = "Nijhof Prefab";
         ///Content Panel
         const string RIBBON_PANEL1 = "Maken";
-        const string RIBBON_PANEL12 = "Tag";
+        const string RIBBON_PANEL12 = "View";
+        const string RIBBON_PANEL13 = "Export";
 
         public Result OnStartup(UIControlledApplication app)
         {
@@ -328,7 +329,7 @@ namespace NijhofAddIn.Revit
             }
             #endregion
 
-            #region Panel 14 (Tag)
+            #region Panel 14 (View)
             /// Maakt Panel (taggen) aan /// Herhaalbaar voor elke nieuwe panel
             RibbonPanel panel14 = null;
             List<RibbonPanel> panels14 = app.GetRibbonPanels(RIBBON_TAB3);
@@ -345,6 +346,29 @@ namespace NijhofAddIn.Revit
             {
                 panel14 = app.CreateRibbonPanel(RIBBON_TAB3, RIBBON_PANEL12);
             }
+            #endregion
+
+            #region Panel 15 (Export)
+            /// Maakt Panel (export) aan /// Herhaalbaar voor elke nieuwe panel
+            RibbonPanel panel15 = null;
+            List<RibbonPanel> panels15 = app.GetRibbonPanels(RIBBON_TAB3);
+            foreach (RibbonPanel pnl in panels15)
+            {
+                if (pnl.Name == RIBBON_PANEL13)
+                {
+                    panel15 = pnl;
+                    break;
+                }
+            }
+            /// Bestaat panel1 niet? Maak panel1 aan
+            if (panel15 == null)
+            {
+                panel15 = app.CreateRibbonPanel(RIBBON_TAB3, RIBBON_PANEL13);
+            }
+            #endregion
+
+            #region Panel 16 (Schedules)
+
             #endregion
 
             // Nijhof Tools
@@ -2439,24 +2463,50 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region Buttons Panel 1 (Maken)
-            #region pushButton (Nieuwe set)
+            #region pushButton (Beheer sets)
             /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
-            PushButtonData btndataNewPrefab = new PushButtonData
+            PushButtonData btndataManagePrefab = new PushButtonData
                 (
-                "Set Maken",
-                "Set Maken",
+                "Beheer Sets",
+                "Beheer\nSets",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Opent de 'Nijhof Bibliotheek'",
-                LongDescription = "Een bibliotheek waar alle vaak gebruikte modellen, tags en groups in gezet kunnen worden zodat die makkelijk te vinden- en in te laden zijn",
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
                 //Image = Library16Scr,
                 LargeImage = PlaceHolder32Scr,
             };
 
             /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonNewPrefab = (PushButton)panel13.AddItem(btndataNewPrefab);
+            PushButton buttonManagePrefab = (PushButton)panel1.AddItem(btndataManagePrefab);
+            buttonManagePrefab.Enabled = true;
+            ContextualHelp contextHelpManagePrefab = new ContextualHelp(ContextualHelpType.Url,
+                    "http://www.autodesk.com");
+            buttonManagePrefab.SetContextualHelp(contextHelpManagePrefab);
+
+            panel1.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
+
+            #region pushButton (Nieuwe set)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataNewPrefab = new PushButtonData
+                (
+                "Nieuwe Set",
+                "Nieuwe\nSet",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Command.Prefab.PrefabCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
+                //Image = Library16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonNewPrefab = (PushButton)panel1.AddItem(btndataNewPrefab);
             buttonNewPrefab.Enabled = true;
             ContextualHelp contextHelpNewPrefab = new ContextualHelp(ContextualHelpType.Url,
                     "http://www.autodesk.com");
@@ -2465,24 +2515,24 @@ namespace NijhofAddIn.Revit
             //panel1.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
-            #region pushButton (Toevoegen set)
+            #region pushButton (Toevoegen aan set)
             /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
             PushButtonData btndataAddPrefab = new PushButtonData
                 (
                 "Toevoegen",
-                "Toevoegen",
+                "Toevoegen\naan Set",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.PrefabAdd" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Opent de 'Nijhof Bibliotheek'",
-                LongDescription = "Een bibliotheek waar alle vaak gebruikte modellen, tags en groups in gezet kunnen worden zodat die makkelijk te vinden- en in te laden zijn",
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
                 //Image = Library16Scr,
                 LargeImage = PlaceHolder32Scr,
             };
 
             /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonAddPrefab = (PushButton)panel13.AddItem(btndataAddPrefab);
+            PushButton buttonAddPrefab = (PushButton)panel1.AddItem(btndataAddPrefab);
             buttonAddPrefab.Enabled = true;
             ContextualHelp contextHelpAddPrefab = new ContextualHelp(ContextualHelpType.Url,
                     "http://www.autodesk.com");
@@ -2493,28 +2543,82 @@ namespace NijhofAddIn.Revit
 
             #region pushButton (Verwijderen uit set)
             /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
-            PushButtonData btndataDelPrefab = new PushButtonData
+            PushButtonData btndataRemovePrefab = new PushButtonData
                 (
-                "Verwijder",
-                "Verwijder",
+                "Verwijderen",
+                "Verwijderen\nuit Set",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.PrefabRemove" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
-                ToolTip = "Opent de 'Nijhof Bibliotheek'",
-                LongDescription = "Een bibliotheek waar alle vaak gebruikte modellen, tags en groups in gezet kunnen worden zodat die makkelijk te vinden- en in te laden zijn",
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
                 //Image = Library16Scr,
                 LargeImage = PlaceHolder32Scr,
             };
 
             /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonDelPrefab = (PushButton)panel13.AddItem(btndataDelPrefab);
+            PushButton buttonRemovePrefab = (PushButton)panel1.AddItem(btndataRemovePrefab);
+            buttonRemovePrefab.Enabled = true;
+            ContextualHelp contextHelpRemovePrefab = new ContextualHelp(ContextualHelpType.Url,
+                    "http://www.autodesk.com");
+            buttonRemovePrefab.SetContextualHelp(contextHelpRemovePrefab);
+
+            panel1.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
+
+            #region pushButton (Verwijder Prefabset)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataDelPrefab = new PushButtonData
+                (
+                "Verwijder Prefabset",
+                "Verwijder\nPrefabset",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
+                //Image = Library16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonDelPrefab = (PushButton)panel1.AddItem(btndataDelPrefab);
             buttonDelPrefab.Enabled = true;
             ContextualHelp contextHelpDelPrefab = new ContextualHelp(ContextualHelpType.Url,
                     "http://www.autodesk.com");
             buttonDelPrefab.SetContextualHelp(contextHelpDelPrefab);
 
-            panel1.AddSeparator(); //Voegt een verticale lijn toe
+            //panel1.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
+            #endregion
+
+            #region Buttons Panel 14 (View)
+            #region pushButton (Refresh)
+            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            PushButtonData btndataRefreshView = new PushButtonData
+                (
+                "Refresh",
+                "Refresh\nView",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Prefab.RefreshView" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Lorem Ipsum",
+                LongDescription = "Lorem Ipsum",
+                //Image = Library16Scr,
+                LargeImage = PlaceHolder32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonRefreshView = (PushButton)panel14.AddItem(btndataRefreshView);
+            buttonRefreshView.Enabled = true;
+            ContextualHelp contextHelpRefreshView = new ContextualHelp(ContextualHelpType.Url,
+                    "http://www.autodesk.com");
+            buttonRefreshView.SetContextualHelp(contextHelpRefreshView);
+
+            panel14.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
             #region pushButton (Instant 3D Creator)
@@ -2536,17 +2640,15 @@ namespace NijhofAddIn.Revit
             };
 
             /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonC3D = (PushButton)panel1.AddItem(Creator3D);
+            PushButton buttonC3D = (PushButton)panel14.AddItem(Creator3D);
             buttonC3D.Enabled = true;
             ContextualHelp contextHelpC3D = new ContextualHelp(ContextualHelpType.Url,
                     "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#prefab-3d-creator");
             buttonC3D.SetContextualHelp(contextHelpC3D);
 
-            //panel1.AddSeparator(); //Voegt een verticale lijn toe
-            #endregion
+            panel14.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
-            #region Buttons Panel 14 (Tag)
             #region pushButtondata (VWA Prefab Taggen)
             /// Knopgegevens instellen voor de eerste knop vwa
             PushButtonData btndataVWAtag25 = new PushButtonData(
@@ -2893,7 +2995,63 @@ namespace NijhofAddIn.Revit
             #endregion
             #endregion
 
+            #region Buttons Panel 15 (Export)
+            #region pushButton (Materiaal Export)
+            /// Knopgegevens instellen voor "Materiaal Export"
+            PushButtonData btndataMateriaalExport2 = new PushButtonData
+                (
+                "Materiaallijst Exporteren",
+                "Materiaal-\nlijst",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Export.ExportMateriaallijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Exporteert materiaal gegevens",
+                LongDescription = "Exporteert de materiaalgegevens naar een gespecificeerde locatie.",
+                //Image = Materiaal16Scr,
+                LargeImage = Materiaal32Scr,
+            };
 
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonMateriaalExport2 = (PushButton)panel15.AddItem(btndataMateriaalExport2);
+            buttonMateriaalExport2.Enabled = true;
+            ContextualHelp contextHelpMateriaalExport2 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#materiaal-export");
+            buttonMateriaalExport2.SetContextualHelp(contextHelpMateriaalExport2);
+
+            // panel15.AddSeparator(); // Voegt een verticale lijn toe indien nodig
+            #endregion
+
+            #region pushButton (Zaaglijst Export)
+            /// Knopgegevens instellen voor "Zaaglijst Export"
+            PushButtonData btndataZaaglijstExport2 = new PushButtonData
+                (
+                "Zaaglijst Export",
+                "Zaaglijst",
+                Assembly.GetExecutingAssembly().Location,
+                "NijhofAddIn.Revit.Commands.Export.ExportZaaglijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                )
+            {
+                ToolTip = "Exporteert zaaglijst gegevens",
+                LongDescription = "Exporteert de zaaglijstgegevens naar een gespecificeerde locatie.",
+                //Image = Zaag16Scr,
+                LargeImage = Zaag32Scr,
+            };
+
+            /// Voeg de knop toe aan het Ribbon Panel
+            PushButton buttonZaaglijstExport2 = (PushButton)panel15.AddItem(btndataZaaglijstExport2);
+            buttonZaaglijstExport2.Enabled = true;
+            ContextualHelp contextHelpZaaglijstExport2 = new ContextualHelp(ContextualHelpType.Url,
+                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#zaaglijst-export");
+            buttonZaaglijstExport2.SetContextualHelp(contextHelpZaaglijstExport2);
+
+            //panel15.AddSeparator(); // Voegt een verticale lijn toe indien nodig
+            #endregion
+            #endregion
+
+            #region Buttons Panel 16 (Schedules)
+
+            #endregion
 
             return Result.Succeeded;
         }
