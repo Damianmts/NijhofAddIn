@@ -173,10 +173,10 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                                 MCtagGT.Activate();
                                 doc.Regenerate();
                             }
-                        
+
 #endif
 
-                        if (ElementHasRelevantTag(doc, elem))
+                            if (ElementHasRelevantTag(doc, elem))
                             {
                                 continue;
                             }
