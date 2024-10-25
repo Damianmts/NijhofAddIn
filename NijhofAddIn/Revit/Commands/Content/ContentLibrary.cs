@@ -2,15 +2,18 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using NijhofAddIn.Revit.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NijhofAddIn.Revit.Commands.Content
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class FamilyLoader : IExternalCommand
+    public class ContentLibrary : IExternalCommand
     {
         public Result Execute(
             ExternalCommandData commandData,
@@ -28,7 +31,7 @@ namespace NijhofAddIn.Revit.Commands.Content
             }
 
             // Open het venster niet-modaal zodat Revit gebruikt kan blijven worden
-            FamilySelectionWindow selectionWindow = new FamilySelectionWindow(familyFiles, commandData.Application);
+            ContentLibraryWPF selectionWindow = new ContentLibraryWPF();
             selectionWindow.Show(); // Gebruik Show() in plaats van ShowDialog() om het venster niet-modaal te maken
 
             // Direct terugkeren om Revit beschikbaar te houden

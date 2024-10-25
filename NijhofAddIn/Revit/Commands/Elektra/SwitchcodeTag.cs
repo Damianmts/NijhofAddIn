@@ -99,44 +99,34 @@ namespace NijhofAddIn.Revit.Commands.Elektra
 
                 FamilySymbol MCtagST = LoadTag(doc, "Switchcode Tag", BuiltInCategory.OST_MultiCategoryTags, multiCategoryTagPath);
 
-                /// Method to check if a specific tag is already on the element
-                bool ElementHasSpecificTag(Document document, Element elem, View view, ElementId tagSymbolId)
+                /// Method to check if the element already has a tag (either specific or relevant)
+                bool ElementHasTag(Document document, Element elem, View view, ElementId tagSymbolId)
                 {
-                    var tags = new FilteredElementCollector(document, view.Id)
+                    // Check for the specific MultiCategory tag (MCtagST) in the current view
+                    var multiCategoryTags = new FilteredElementCollector(document, view.Id)
                         .OfClass(typeof(IndependentTag))
                         .OfCategory(BuiltInCategory.OST_MultiCategoryTags)
                         .WhereElementIsNotElementType()
                         .Cast<IndependentTag>()
                         .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id) && t.GetTypeId() == tagSymbolId);
 
-                    return tags.Any();
-                }
-
-                /// Method to check if an element has either the "Switch Code - Electrical Fixture" tag or the "Switch Code - Lighting Device" tag
-                bool ElementHasRelevantTag(Document document, Element elem)
-                {
-
-                    /// Define the family names of the relevant tags
+                    // Define the family names of the other relevant tags
                     string electricalFixtureTagFamilyName = "Switch Code - Electrical Fixture";
                     string lightingDeviceTagFamilyName = "Switch Code - Lighting Device";
 
-                    var electricalFixtureTags = new FilteredElementCollector(document)
+                    // Check for "Switch Code - Electrical Fixture" or "Switch Code - Lighting Device" tags in the current view
+                    var otherRelevantTags = new FilteredElementCollector(document, view.Id)
                         .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_ElectricalFixtureTags)
                         .WhereElementIsNotElementType()
                         .Cast<IndependentTag>()
                         .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                        .Where(t => document.GetElement(t.GetTypeId()).Name == electricalFixtureTagFamilyName);
+                        .Where(t =>
+                            document.GetElement(t.GetTypeId()).Name == electricalFixtureTagFamilyName ||
+                            document.GetElement(t.GetTypeId()).Name == lightingDeviceTagFamilyName
+                        );
 
-                    var lightingDeviceTags = new FilteredElementCollector(document)
-                        .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_LightingDeviceTags)
-                        .WhereElementIsNotElementType()
-                        .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                        .Where(t => document.GetElement(t.GetTypeId()).Name == lightingDeviceTagFamilyName);
-
-                    return electricalFixtureTags.Any() || lightingDeviceTags.Any();
+                    // Return true if the specific MultiCategoryTag (MCtagST) or either of the other relevant tags are found
+                    return multiCategoryTags.Any() || otherRelevantTags.Any();
                 }
 
                 /// Get the hand orientation vector of the element
@@ -215,12 +205,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                             }
 
                             /// Check if the element already has the relevant tag
-                            if (ElementHasRelevantTag(doc, elem))
-                            {
-                                continue;
-                            }
-
-                            if (!ElementHasSpecificTag(doc, elem, activeView, MCtagST.Id))
+                            if (!ElementHasTag(doc, elem, activeView, MCtagST.Id))
                             {
                                 IndependentTag.Create(
                                     doc, MCtagST.Id, activeView.Id, new Reference(elem), false, TagOrientation.Horizontal, tagPoint);
