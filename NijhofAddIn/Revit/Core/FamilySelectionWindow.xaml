@@ -1,7 +1,6 @@
-﻿<Window x:Class="NijhofAddIn.Revit.Core.FamilySelectionWindow"
+﻿<Window x:Class="NijhofAddIn.Revit.Commands.Content.FamilySelectionWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         Title="Nijhof Content Browser" Height="600" Width="1000"
         ShowInTaskbar="True" Topmost="False">
     <Grid>
@@ -36,17 +35,23 @@
                            IsHitTestVisible="False"/>
             </Grid>
 
-            <!-- SfTreeView to display the folder structure with text wrapping -->
-            <syncfusion:SfTreeView x:Name="folderTreeView" SelectionChanged="folderTreeView_SelectionChanged" Grid.Row="2">
-                <syncfusion:SfTreeView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" 
-                                   TextWrapping="Wrap" 
-                                   MaxWidth="180"/>
-                    </DataTemplate>
-                </syncfusion:SfTreeView.ItemTemplate>
-            </syncfusion:SfTreeView>
-            <TreeView Grid.Row="2"/>
+            <!-- TreeView to display the folder structure with text wrapping -->
+            <TreeView x:Name="folderTreeView" SelectedItemChanged="folderTreeView_SelectedItemChanged" Grid.Row="2">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" 
+                                               TextWrapping="Wrap" 
+                                               MaxWidth="180"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
         </Grid>
 
         <!-- Split the right column into three rows -->

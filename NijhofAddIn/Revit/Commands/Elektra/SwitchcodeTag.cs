@@ -108,7 +108,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                         .OfCategory(BuiltInCategory.OST_MultiCategoryTags)
                         .WhereElementIsNotElementType()
                         .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id) && t.GetTypeId() == MCtagSymbolId);
+                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id) && t.GetTypeId() == tagSymbolId);
 
                     // Define the family names of the other relevant tags
                     string electricalFixtureTagFamilyName = "Switch Code - Electrical Fixture";
@@ -128,33 +128,6 @@ namespace NijhofAddIn.Revit.Commands.Elektra
                     // Return true if the specific MultiCategoryTag (MCtagST) or either of the other relevant tags are found
                     return multiCategoryTags.Any() || otherRelevantTags.Any();
                 }
-
-                ///// Method to check if an element has either the "Switch Code - Electrical Fixture" tag or the "Switch Code - Lighting Device" tag
-                //bool ElementHasRelevantTag(Document document, Element elem)
-                //{
-
-                //    /// Define the family names of the relevant tags
-                //    string electricalFixtureTagFamilyName = "Switch Code - Electrical Fixture";
-                //    string lightingDeviceTagFamilyName = "Switch Code - Lighting Device";
-
-                //    var electricalFixtureTags = new FilteredElementCollector(document)
-                //        .OfClass(typeof(IndependentTag))
-                //        .OfCategory(BuiltInCategory.OST_ElectricalFixtureTags)
-                //        .WhereElementIsNotElementType()
-                //        .Cast<IndependentTag>()
-                //        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                //        .Where(t => document.GetElement(t.GetTypeId()).Name == electricalFixtureTagFamilyName);
-
-                //    var lightingDeviceTags = new FilteredElementCollector(document)
-                //        .OfClass(typeof(IndependentTag))
-                //        .OfCategory(BuiltInCategory.OST_LightingDeviceTags)
-                //        .WhereElementIsNotElementType()
-                //        .Cast<IndependentTag>()
-                //        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                //        .Where(t => document.GetElement(t.GetTypeId()).Name == lightingDeviceTagFamilyName);
-
-                //    return electricalFixtureTags.Any() || lightingDeviceTags.Any();
-                //}
 
                 /// Get the hand orientation vector of the element
                 XYZ GetHandOrientationVector(Element elem)

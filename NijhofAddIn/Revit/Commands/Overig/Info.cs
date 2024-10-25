@@ -1,9 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System.IO;
-using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace NijhofAddIn.Revit.Commands.Overig
 {
@@ -13,38 +10,27 @@ namespace NijhofAddIn.Revit.Commands.Overig
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            // Haal het pad op van de huidige assembly
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            string directoryPath = Path.GetDirectoryName(assemblyPath);
+            // Directe tekstweergave in de popup
+            string changelogText = @"## [1.3.0] / 2024-10-25
+### Added
+- Nieuw tabblad 'Nijhof Prefab'
+- Paneel 'Maken'
+- Paneel 'View'
+- Knop 'Beheer Sets'
+- Knop 'Nieuwe Set'
+- Knop 'Toevoegen aan Set'
+- Knop 'Verwijderen uit Set'
+- Knop 'Verwijder Prefabset'
+- Knop 'Refresh View'
 
-            // Voeg de bestandsnaam van het CHANGELOG-bestand toe
-            string changelogPath = Path.Combine(directoryPath, "CHANGELOG.md");
+### Changed
+- Meerdere knoppen verplaatst naar 'Nijhof Prefab' tabblad
 
-            // Lees het bestand
-            if (File.Exists(changelogPath))
-            {
-                string changelogContent = File.ReadAllText(changelogPath);
+### Fixed
+- Tag 'Groepnummer'
+- Tag 'Switchcode'";
 
-                // Regex om de laatste versie te vinden
-                Regex versionRegex = new Regex(@"## \[(\d+\.\d+\.\d+)\]");
-                Match match = versionRegex.Match(changelogContent);
-
-                if (match.Success)
-                {
-                    string latestVersion = match.Groups[1].Value;
-
-                    // Toon de versie-informatie
-                    TaskDialog.Show("Melding", $"Versie: {latestVersion}");
-                }
-                else
-                {
-                    TaskDialog.Show("Melding", "Versie informatie niet gevonden in CHANGELOG.md");
-                }
-            }
-            else
-            {
-                TaskDialog.Show("Melding", "CHANGELOG.md bestand niet gevonden.");
-            }
+            TaskDialog.Show("Changelog", changelogText);
 
             return Result.Succeeded;
         }

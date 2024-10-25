@@ -18,6 +18,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ----------------------------------------------------------------------------------------------------
 
+## [1.3.0] / 2024-10-25
+### Added
+- Nieuw tabblad 'Nijhof Prefab'
+- Paneel 'Maken'
+- Paneel 'View'
+- Knop 'Beheer Sets'
+- Knop 'Nieuwe Set'
+- Knop 'Toevoegen aan Set'
+- Knop 'Verwijderen uit Set'
+- Knop 'Verwijder Prefabset'
+- Knop 'Refresh View'
+
+### Changed
+- Meerdere knoppen verplaatst naar 'Nijhof Prefab' tabblad
+
+### Fixed
+- Tag 'Groepnummer'
+- Tag 'Switchcode'
+
+----------------------------------------------------------------------------------------------------
+
 ## [1.2.3] / 2024-09-5
 ### Added
 - Schakelaar vierpolig

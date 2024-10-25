@@ -1,20 +1,16 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Microsoft.WindowsAPICodePack.Shell;
-using NijhofAddIn.Revit.Commands.Content;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Syncfusion.UI.Xaml.TreeView; // Zorg dat je de juiste Syncfusion namespace hebt
-using Syncfusion.UI.Xaml.TreeView.Engine;
 
-namespace NijhofAddIn.Revit.Core
+namespace NijhofAddIn.Revit.Commands.Content
 {
     public partial class FamilySelectionWindow : Window
     {
@@ -25,7 +21,6 @@ namespace NijhofAddIn.Revit.Core
         private PlaceFamilyEventHandler _placeFamilyEventHandler;
         private ExternalEvent _loadFamilyEvent;
         private LoadFamilyEventHandler _loadFamilyEventHandler;
-        public ObservableCollection<FolderItem> Folders { get; set; }
 
         public FamilySelectionWindow(List<string> familyFiles, UIApplication uiApp)
         {
@@ -33,7 +28,6 @@ namespace NijhofAddIn.Revit.Core
             _uiApp = uiApp;
             _rootFolder = @"F:\Stabiplan\Custom\Families";
             _allFamilyItems = new List<FamilyItem>();
-            Folders = new ObservableCollection<FolderItem>();
             PopulateTreeView();
             this.Loaded += OnWindowLoaded; // Laad de bestanden nadat het venster is geopend
 
@@ -42,8 +36,6 @@ namespace NijhofAddIn.Revit.Core
 
             _loadFamilyEventHandler = new LoadFamilyEventHandler();
             _loadFamilyEvent = ExternalEvent.Create(_loadFamilyEventHandler);
-
-            DataContext = this; // Stel de DataContext in voor databinding
         }
 
         private async void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -76,19 +68,14 @@ namespace NijhofAddIn.Revit.Core
             {
                 foreach (string directory in Directory.GetDirectories(_rootFolder))
                 {
-                    var folderItem = new FolderItem
+                    TreeViewItem item = new TreeViewItem
                     {
-                        Name = Path.GetFileName(directory),
-                        Path = directory
+                        Header = Path.GetFileName(directory),
+                        Tag = directory
                     };
-
-                    // Voeg een dummy-item toe om lazy loading te ondersteunen
-                    if (Directory.GetDirectories(directory).Any())
-                    {
-                        folderItem.SubFolders.Add(new FolderItem { Name = "Loading..." });
-                    }
-
-                    Folders.Add(folderItem);
+                    item.Items.Add(null); // Placeholder voor lazy loading
+                    item.Expanded += Folder_Expanded;
+                    folderTreeView.Items.Add(item);
                 }
             }
             catch { }
@@ -127,6 +114,48 @@ namespace NijhofAddIn.Revit.Core
             catch { }
         }
 
+        private void Folder_Expanded(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = (TreeViewItem)sender;
+            if (item.Items.Count == 1 && item.Items[0] == null)
+            {
+                item.Items.Clear();
+                string fullPath = (string)item.Tag;
+                try
+                {
+                    foreach (string directory in Directory.GetDirectories(fullPath))
+                    {
+                        TreeViewItem subItem = new TreeViewItem
+                        {
+                            Header = Path.GetFileName(directory),
+                            Tag = directory
+                        };
+                        subItem.Items.Add(null); // Placeholder voor lazy loading
+                        subItem.Expanded += Folder_Expanded;
+                        item.Items.Add(subItem);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void folderTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem selectedItem = folderTreeView.SelectedItem as TreeViewItem;
+            if (selectedItem != null)
+            {
+                string fullPath = (string)selectedItem.Tag;
+                FilterFilesByFolder(fullPath);
+            }
+        }
+
+        private void FilterFilesByFolder(string folderPath)
+        {
+            var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
+            listViewFamilies.ItemsSource = filteredItems;
+            listViewImages.ItemsSource = filteredItems;
+        }
+
         private BitmapImage GetThumbnail(string filePath, bool large)
         {
             using (ShellObject shellObject = ShellObject.FromParsingName(filePath))
@@ -144,8 +173,16 @@ namespace NijhofAddIn.Revit.Core
                     bitmapImage.BeginInit();
                     bitmapImage.StreamSource = stream;
                     bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.DecodePixelWidth = large ? 256 : 128; // Gebruik hogere resolutie voor grote afbeeldingen
-                    bitmapImage.DecodePixelHeight = large ? 256 : 128;
+                    if (large)
+                    {
+                        bitmapImage.DecodePixelWidth = 256; // Verhoog de resolutie voor de afbeeldingenweergave
+                        bitmapImage.DecodePixelHeight = 256;
+                    }
+                    else
+                    {
+                        bitmapImage.DecodePixelWidth = 128; // Gebruik een iets grotere resolutie voor de lijstweergave
+                        bitmapImage.DecodePixelHeight = 128;
+                    }
                     bitmapImage.EndInit();
                     bitmapImage.Freeze();
                 }
@@ -279,35 +316,6 @@ namespace NijhofAddIn.Revit.Core
         {
             placeholderText.Visibility = string.IsNullOrWhiteSpace(searchBox.Text) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
-
-        // Toevoeging van de folderTreeView_SelectionChanged event handler
-        private void folderTreeView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
-        {
-            // Haal het geselecteerde item op
-            var selectedItem = e.AddedItems.FirstOrDefault();
-
-            if (selectedItem != null)
-            {
-                var folderItem = selectedItem as FolderItem;
-                if (folderItem != null)
-                {
-                    MessageBox.Show($"Geselecteerd: {folderItem.Name}");
-
-                    // Filter de bestanden op basis van het geselecteerde pad
-                    FilterFilesByFolder(folderItem.Path);
-                }
-            }
-        }
-
-        private void FilterFilesByFolder(string folderPath)
-        {
-            // Dit is een voorbeeld van hoe je de bestanden kunt filteren op basis van het geselecteerde pad
-            var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
-
-            // Toon de gefilterde items in je ListView of andere interface
-            listViewFamilies.ItemsSource = filteredItems;
-            listViewImages.ItemsSource = filteredItems;
-        }
     }
 
     public class FamilyItem
@@ -316,17 +324,5 @@ namespace NijhofAddIn.Revit.Core
         public string FilePath { get; set; }
         public string Type { get; set; }
         public BitmapImage Image { get; set; }
-    }
-
-    public class FolderItem
-    {
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public ObservableCollection<FolderItem> SubFolders { get; set; }
-
-        public FolderItem()
-        {
-            SubFolders = new ObservableCollection<FolderItem>();
-        }
     }
 }
