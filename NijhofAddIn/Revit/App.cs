@@ -19,10 +19,10 @@ namespace NijhofAddIn.Revit
         const string RIBBON_PANEL2 = "GPS Punten";
         const string RIBBON_PANEL3 = "Sparingen";
         const string RIBBON_PANEL4 = "Wijzigen";
-        const string RIBBON_PANEL5 = "Export";
+        //const string RIBBON_PANEL5 = "Leeg";
         const string RIBBON_PANEL7 = "Overig";
         const string RIBBON_PANEL8 = "Content";
-        const string RIBBON_PANEL9 = "Berekenen";
+        //const string RIBBON_PANEL9 = "Leeg";
 
         // Nijhof Elektra
         const string RIBBON_TAB2 = "Nijhof Elektra";
@@ -37,6 +37,8 @@ namespace NijhofAddIn.Revit
         const string RIBBON_PANEL1 = "Maken";
         const string RIBBON_PANEL12 = "View";
         const string RIBBON_PANEL13 = "Export";
+        const string RIBBON_PANEL14 = "Schedules";
+        const string RIBBON_PANEL15 = "Tag";
 
         public Result OnStartup(UIControlledApplication app)
         {
@@ -70,25 +72,6 @@ namespace NijhofAddIn.Revit
             if (panel8 == null)
             {
                 panel8 = app.CreateRibbonPanel(RIBBON_TAB1, RIBBON_PANEL8);
-            }
-            #endregion
-
-            #region Panel 9 (Berekenen)
-            /// Maakt Panel (Berekenen) aan /// Herhaalbaar voor elke nieuwe panel
-            RibbonPanel panel9 = null;
-            List<RibbonPanel> panels9 = app.GetRibbonPanels(RIBBON_TAB1);
-            foreach (RibbonPanel pnl in panels9)
-            {
-                if (pnl.Name == RIBBON_PANEL9)
-                {
-                    panel9 = pnl;
-                    break;
-                }
-            }
-            /// Bestaat panel9 niet? Maak panel9 aan
-            if (panel9 == null)
-            {
-                panel9 = app.CreateRibbonPanel(RIBBON_TAB1, RIBBON_PANEL9);
             }
             #endregion
 
@@ -146,25 +129,6 @@ namespace NijhofAddIn.Revit
             if (panel4 == null)
             {
                 panel4 = app.CreateRibbonPanel(RIBBON_TAB1, RIBBON_PANEL4);
-            }
-            #endregion
-
-            #region Panel 5 (Export)
-            /// Maakt Panel (Export) aan /// Herhaalbaar voor elke nieuwe panel
-            RibbonPanel panel5 = null;
-            List<RibbonPanel> panels5 = app.GetRibbonPanels(RIBBON_TAB1);
-            foreach (RibbonPanel pnl in panels5)
-            {
-                if (pnl.Name == RIBBON_PANEL5)
-                {
-                    panel5 = pnl;
-                    break;
-                }
-            }
-            /// Bestaat panel5 niet? Maak panel4 aan
-            if (panel5 == null)
-            {
-                panel5 = app.CreateRibbonPanel(RIBBON_TAB1, RIBBON_PANEL5);
             }
             #endregion
 
@@ -330,7 +294,7 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region Panel 14 (View)
-            /// Maakt Panel (taggen) aan /// Herhaalbaar voor elke nieuwe panel
+            /// Maakt Panel (View) aan /// Herhaalbaar voor elke nieuwe panel
             RibbonPanel panel14 = null;
             List<RibbonPanel> panels14 = app.GetRibbonPanels(RIBBON_TAB3);
             foreach (RibbonPanel pnl in panels14)
@@ -346,6 +310,29 @@ namespace NijhofAddIn.Revit
             {
                 panel14 = app.CreateRibbonPanel(RIBBON_TAB3, RIBBON_PANEL12);
             }
+            #endregion
+
+            #region Panel 17 (Tag)
+            /// Maakt Panel (View) aan /// Herhaalbaar voor elke nieuwe panel
+            RibbonPanel panel17 = null;
+            List<RibbonPanel> panels17 = app.GetRibbonPanels(RIBBON_TAB3);
+            foreach (RibbonPanel pnl in panels17)
+            {
+                if (pnl.Name == RIBBON_PANEL15)
+                {
+                    panel17 = pnl;
+                    break;
+                }
+            }
+            /// Bestaat panel1 niet? Maak panel1 aan
+            if (panel17 == null)
+            {
+                panel17 = app.CreateRibbonPanel(RIBBON_TAB3, RIBBON_PANEL15);
+            }
+            #endregion
+
+            #region Panel 16 (Schedules)
+
             #endregion
 
             #region Panel 15 (Export)
@@ -365,10 +352,6 @@ namespace NijhofAddIn.Revit
             {
                 panel15 = app.CreateRibbonPanel(RIBBON_TAB3, RIBBON_PANEL13);
             }
-            #endregion
-
-            #region Panel 16 (Schedules)
-
             #endregion
 
             // Nijhof Tools
@@ -637,7 +620,7 @@ namespace NijhofAddIn.Revit
                 "Library",
                 "Library",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Opent de 'Nijhof Bibliotheek'",
@@ -654,34 +637,6 @@ namespace NijhofAddIn.Revit
             buttonLibrary.SetContextualHelp(contextHelpLibrary);
 
             //panel8.AddSeparator(); //Voegt een verticale lijn toe
-            #endregion
-            #endregion
-
-            #region Buttons Panel 9 (Berekenen)
-            #region pushButton (Rekenpunten Verwijderen)
-            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
-            PushButtonData btndataRV = new PushButtonData
-                (
-                "Rekenpunten verwijderen",
-                "Rekenpunten\nverwijderen",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Verwijdert Riool Rekenpunten",
-                LongDescription = "Zoekt naar de 'Stabicad' rekenpunten en verwijdert die.",
-                //Image = Delete16Scr,
-                LargeImage = Delete32Scr,
-            };
-
-            /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonRV = (PushButton)panel9.AddItem(btndataRV);
-            buttonRV.Enabled = true;
-            ContextualHelp contextHelpRV = new ContextualHelp(ContextualHelpType.Url,
-                    "https://github.com/Damianmts/NijhofAddIn/wiki/Berekenen#rekenpunten-verwijderen");
-            buttonRV.SetContextualHelp(contextHelpRV);
-
-            //panel9.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
             #endregion
 
@@ -707,7 +662,7 @@ namespace NijhofAddIn.Revit
             "GPS Inladen", /// De naam van de standaardactie
             "Inladen", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
-            "NijhofAddIn.Revit.Commands.GPS.Inladen" /// Vervang door de relevante namespace en klasse
+            "NijhofAddIn.Revit.Commands.Tools.GPS.Inladen" /// Vervang door de relevante namespace en klasse
             )
             {
                 ToolTip = "Laad alle GPS punten",
@@ -731,7 +686,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Riool",
                 "GPS: Riool",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Riool GPS Punt",
@@ -752,7 +707,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Lucht",
                 "GPS: Lucht",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Lucht GPS Punt",
@@ -773,7 +728,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Koud Water",
                 "GPS: Koud Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenKW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenKW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Koud Water GPS Punt",
@@ -794,7 +749,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Warm Water",
                 "GPS: Warm Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenWW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenWW" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Warm Water GPS Punt",
@@ -815,7 +770,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Elektra",
                 "GPS: Elektra",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenElektra" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenElektra" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Elektra GPS Punt",
@@ -836,7 +791,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Meterkast",
                 "GPS: Meterkast",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenMeterkast" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenMeterkast" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Meterkast GPS Punt",
@@ -857,7 +812,7 @@ namespace NijhofAddIn.Revit
                 "Plaats Tag/ Intercom",
                 "GPS: Tag/ Intercom",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.InladenTI" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.InladenTI" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats Tag/ Intercom GPS Punt",
@@ -898,7 +853,7 @@ namespace NijhofAddIn.Revit
                 "GPS Toevoegen", /// De naam van de standaardactie
                 "Toevoegen", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.AddAlles" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Tools.GPS.AddAlles" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Voegt GPS Punten toe",
@@ -922,7 +877,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Riool",
                 "GPS: Riool",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.AddRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.AddRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt Riool GPS Punten toe",
@@ -943,7 +898,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Lucht",
                 "GPS: Lucht",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.AddLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.AddLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt Lucht GPS Punten toe",
@@ -964,7 +919,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Koud Water",
                 "GPS: Koud Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.AddKoudWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.AddKoudWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt Koud Water GPS Punten toe",
@@ -985,7 +940,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Warm Water",
                 "GPS: Warm Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.AddWarmWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.AddWarmWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt Warm Water GPS Punten toe",
@@ -1024,7 +979,7 @@ namespace NijhofAddIn.Revit
                 "GPS Verwijderen", /// De naam van de standaardactie
                 "Verwijderen", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.DelAlles" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Tools.GPS.DelAlles" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Verwijdert alle GPS Punten",
@@ -1048,7 +1003,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Riool",
                 "GPS: Riool",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.DelRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.DelRiool" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Verwijdert alle Riool GPS Punten",
@@ -1069,7 +1024,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Lucht",
                 "GPS: Lucht",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.DelLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.DelLucht" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Verwijdert alle Lucht GPS Punten",
@@ -1090,7 +1045,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Koud Water",
                 "GPS: Koud Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.DelKoudWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.DelKoudWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Verwijdert alle Koud Water GPS Punten",
@@ -1111,7 +1066,7 @@ namespace NijhofAddIn.Revit
                 "GPS: Warm Water",
                 "GPS: Warm Water",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.GPS.DelWarmWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.GPS.DelWarmWater" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Verwijdert alle Warm Water GPS Punten",
@@ -1138,7 +1093,7 @@ namespace NijhofAddIn.Revit
                 "Muursparingen Toevoegen",
                 "Muur",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Sparingen.AddMuur" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddMuur" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt sparingen in de muren toe",
@@ -1164,7 +1119,7 @@ namespace NijhofAddIn.Revit
                 "Vloersparingen Toevoegen",
                 "Vloer",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Sparingen.AddVloer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddVloer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt sparingen in de vloeren toe",
@@ -1188,7 +1143,7 @@ namespace NijhofAddIn.Revit
                 "Balksparingen Toevoegen",
                 "Balk",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Sparingen.AddBalk" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddBalk" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Voegt sparingen in de balken toe",
@@ -1216,7 +1171,7 @@ namespace NijhofAddIn.Revit
                 "Onstoppingsstuk aanpassen",
                 "Ontstoppings-\nstuk",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Wijzigen.OntstoppingsstukOmzetten" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Wijzigen.OntstoppingsstukOmzetten" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Veranderd de 'Family Type' van alle Ontstoppingsstukken",
@@ -1239,7 +1194,7 @@ namespace NijhofAddIn.Revit
                 "Standleiding Lengte Aanpassen",
                 "Standleiding\nLengte",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Wijzigen.StandleidingLengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Wijzigen.StandleidingLengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Past schuine gedeelte van de standleiding aan naar 250mm",
@@ -1261,7 +1216,7 @@ namespace NijhofAddIn.Revit
                 "HWA Artikelnummer Updaten",
                 "HWA\n Artikelnr.",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Wijzigen.UpdateHWAArtikelnummer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Wijzigen.UpdateHWAArtikelnummer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Past de artikelnummers van HWA ø80 aan naar die we bij Nijhof gebruiken",
@@ -1283,7 +1238,7 @@ namespace NijhofAddIn.Revit
                 "HWA Lengte Updaten",
                 "HWA\nLengte",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Wijzigen.UpdateHWALengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Wijzigen.UpdateHWALengte" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Past de opgaande lengte van HWA aan",
@@ -1300,82 +1255,28 @@ namespace NijhofAddIn.Revit
             #endregion
             #endregion
 
-            #region Buttons Panel 5 (Export)
-            #region pushButton (Materiaal Export)
-            /// Knopgegevens instellen voor "Materiaal Export"
-            PushButtonData btndataMateriaalExport = new PushButtonData
-                (
-                "Materiaallijst Exporteren",
-                "Materiaal-\nlijst",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Export.ExportMateriaallijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Exporteert materiaal gegevens",
-                LongDescription = "Exporteert de materiaalgegevens naar een gespecificeerde locatie.",
-                //Image = Materiaal16Scr,
-                LargeImage = Materiaal32Scr,
-            };
-
-            /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonMateriaalExport = (PushButton)panel5.AddItem(btndataMateriaalExport);
-            buttonMateriaalExport.Enabled = true;
-            ContextualHelp contextHelpMateriaalExport = new ContextualHelp(ContextualHelpType.Url,
-                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#materiaal-export");
-            buttonMateriaalExport.SetContextualHelp(contextHelpMateriaalExport);
-
-            // panel5.AddSeparator(); // Voegt een verticale lijn toe indien nodig
-            #endregion
-
-            #region pushButton (Zaaglijst Export)
-            /// Knopgegevens instellen voor "Zaaglijst Export"
-            PushButtonData btndataZaaglijstExport = new PushButtonData
-                (
-                "Zaaglijst Export",
-                "Zaaglijst",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Export.ExportZaaglijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Exporteert zaaglijst gegevens",
-                LongDescription = "Exporteert de zaaglijstgegevens naar een gespecificeerde locatie.",
-                //Image = Zaag16Scr,
-                LargeImage = Zaag32Scr,
-            };
-
-            /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonZaaglijstExport = (PushButton)panel5.AddItem(btndataZaaglijstExport);
-            buttonZaaglijstExport.Enabled = true;
-            ContextualHelp contextHelpZaaglijstExport = new ContextualHelp(ContextualHelpType.Url,
-                "https://github.com/Damianmts/NijhofAddIn/wiki/Export#zaaglijst-export");
-            buttonZaaglijstExport.SetContextualHelp(contextHelpZaaglijstExport);
-
-            // panel5.AddSeparator(); // Voegt een verticale lijn toe indien nodig
-            #endregion
-            #endregion
-
             #region Buttons Panel 7 (Overig)
             #region pushButton (TEST)
-            /// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
-            PushButtonData btndataTEST = new PushButtonData
-                (
-                "TEST",
-                "TEST",
-                Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Content.Contentlibrary" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
-                )
-            {
-                ToolTip = "Een knop waar ik functies mee kan testen",
-                LongDescription = "Hier voeg ik soms bepaalde functies aan toe die ik moet testen zodat ik geen andere knoppen sloop of nutteloze dingen toe voeg",
-                Image = PlaceHolder16Scr,
-                LargeImage = PlaceHolder32Scr,
-            };
+            ///// Knopgegevens instellen /// Herhaalbaar voor elke extra knop die je wilt
+            //PushButtonData btndataTEST = new PushButtonData
+            //    (
+            //    "TEST",
+            //    "TEST",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Een knop waar ik functies mee kan testen",
+            //    LongDescription = "Hier voeg ik soms bepaalde functies aan toe die ik moet testen zodat ik geen andere knoppen sloop of nutteloze dingen toe voeg",
+            //    Image = PlaceHolder16Scr,
+            //    LargeImage = PlaceHolder32Scr,
+            //};
 
-            /// Voeg de knop toe aan het Ribbon Panel
-            PushButton buttonTEST = (PushButton)panel7.AddItem(btndataTEST);
-            buttonTEST.Enabled = true;
+            ///// Voeg de knop toe aan het Ribbon Panel
+            //PushButton buttonTEST = (PushButton)panel7.AddItem(btndataTEST);
+            //buttonTEST.Enabled = true;
 
-            panel7.AddSeparator(); //Voegt een verticale lijn toe
+            //panel7.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
             #region pushButton (Klik op mij)
@@ -1384,7 +1285,7 @@ namespace NijhofAddIn.Revit
                 "Klik op mij",
                 "Klik op\nmij",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Overig.Klik" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Overig.Klik" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Verrassing!",
@@ -1403,7 +1304,7 @@ namespace NijhofAddIn.Revit
                 "Help",
                 "Help",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Overig.Help" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Overig.Help" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Een 'Help' knop",
@@ -1422,7 +1323,7 @@ namespace NijhofAddIn.Revit
                 "Info",
                 "Info",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Overig.Info" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Overig.Info" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Geeft info weer",
@@ -1446,7 +1347,7 @@ namespace NijhofAddIn.Revit
                 "Library",
                 "Library",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Opent de 'Nijhof Bibliotheek'",
@@ -1488,7 +1389,7 @@ namespace NijhofAddIn.Revit
             "1v Plaatsen", /// De naam van de standaardactie
             "WCD:\n1 Voudig", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
-            "NijhofAddIn.Revit.Commands.Elektra.Stopcontact1v" /// Vervang door de relevante namespace en klasse
+            "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Stopcontact1v" /// Vervang door de relevante namespace en klasse
             )
             {
                 ToolTip = "Plaats 1-voudig stopcontact",
@@ -1506,7 +1407,7 @@ namespace NijhofAddIn.Revit
                 "2v Plaatsen",
                 "WCD:\n2 Voudig",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Stopcontact2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Stopcontact2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats 2-voudig stopcontact",
@@ -1524,7 +1425,7 @@ namespace NijhofAddIn.Revit
                 "2v Opbouw Plaatsen",
                 "WCD:\n2v Opbouw",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Opbouw" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Opbouw" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats 2-voudig opbouw stopcontact",
@@ -1545,7 +1446,7 @@ namespace NijhofAddIn.Revit
                 "1v Spatwaterdicht Plaatsen",
                 "WCD:\n1v Waterd.",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht1v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Spatwaterdicht1v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats 1v spatwaterdicht stopcontact",
@@ -1563,7 +1464,7 @@ namespace NijhofAddIn.Revit
                 "2v Spatwaterdicht Plaatsen",
                 "WCD:\n2v Waterd.",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Spatwaterdicht2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Spatwaterdicht2v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats 2v spatwaterdicht stopcontact",
@@ -1581,7 +1482,7 @@ namespace NijhofAddIn.Revit
                 "Perilex Plaatsen",
                 "WCD:\nPerilex",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Perilex" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Perilex" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats perilex stopcontact",
@@ -1602,7 +1503,7 @@ namespace NijhofAddIn.Revit
                 "Krachtstroom Plaatsen",
                 "WCD:\nKracht",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Krachtstroom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Krachtstroom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats krachtstroom stopcontact",
@@ -1623,7 +1524,7 @@ namespace NijhofAddIn.Revit
                 "Vloerstopcontact Plaatsen",
                 "WCD:\nVloer",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Vloerstopcontact" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Vloerstopcontact" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats vloerstopcontact",
@@ -1660,7 +1561,7 @@ namespace NijhofAddIn.Revit
             "Aansluitpunt Bedraad Plaatsen", /// De naam van de standaardactie
             "Aansluitpunt:\nBedraad", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
-            "NijhofAddIn.Revit.Commands.Elektra.AansluitpuntBedraad" /// Vervang door de relevante namespace en klasse
+            "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.AansluitpuntBedraad" /// Vervang door de relevante namespace en klasse
             )
             {
                 ToolTip = "Plaats een bedraad aansluitpunt",
@@ -1678,7 +1579,7 @@ namespace NijhofAddIn.Revit
                 "Aansluitpunt Onbedraad Plaatsen",
                 "Aansluitpunt:\nOnbedraad",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.AansluitpuntOnbedraad" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.AansluitpuntOnbedraad" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een onbedraad aansluitpunt",
@@ -1699,7 +1600,7 @@ namespace NijhofAddIn.Revit
                 "Aansluitpunt 230v plaatsen",
                 "Aansluitpunt:\n230v",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Enkel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Enkel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een 230v aansluitpunt",
@@ -1717,7 +1618,7 @@ namespace NijhofAddIn.Revit
                 "Aansluitpunt 2x 230v Plaatsen",
                 "Aansluitpunt:\n2x 230v",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Dubbel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Dubbel230v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een 2x 230v aansluitpunt",
@@ -1735,7 +1636,7 @@ namespace NijhofAddIn.Revit
                 "400v Plaatsen",
                 "Aansluitpunt:\n400v",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Enkel400v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Enkel400v" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een 400v aansluitpunt",
@@ -1756,7 +1657,7 @@ namespace NijhofAddIn.Revit
                 "Centraal Aardepunt Plaatsen",
                 "Aansluitpunt:\nCAP",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.CAP" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.CAP" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een Centraal Aardepunt",
@@ -1793,7 +1694,7 @@ namespace NijhofAddIn.Revit
                 "Enkel Data Plaatsen",
                 "Data:\nEnkel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.EnkelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.EnkelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een eenvoudig data punt",
@@ -1811,7 +1712,7 @@ namespace NijhofAddIn.Revit
                 "Dubbele Data Plaatsen",
                 "Data:\nDubbel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.DubbelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.DubbelData" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een dubbel data punt",
@@ -1832,7 +1733,7 @@ namespace NijhofAddIn.Revit
                 "Data Bekabeld Plaatsen", /// De naam van de standaardactie
                 "Data:\nBekabeld", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.DataBekabeld" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.DataBekabeld" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Plaats een bekabeld data punt",
@@ -1869,7 +1770,7 @@ namespace NijhofAddIn.Revit
                 "Enkelpolige Schakelaar", /// De naam van de standaardactie
                 "Schakelaar:\nEnkelpolig", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarEnkelpolig" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarEnkelpolig" /// Vervang door de relevante namespace en klasse
             )
             {
                 ToolTip = "Plaats een enkelpolige schakelaar",
@@ -1887,7 +1788,7 @@ namespace NijhofAddIn.Revit
                 "Dubbelpolige Schakelaar",
                 "Schakelaar:\nDubbelpolig",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarDubbelpolig" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarDubbelpolig" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een dubbelpolige schakelaar",
@@ -1905,7 +1806,7 @@ namespace NijhofAddIn.Revit
                 "Vierpolige Schakelaar",
                 "Schakelaar:\nVierpolig",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarVierpolig" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarVierpolig" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een vierpolige schakelaar",
@@ -1926,7 +1827,7 @@ namespace NijhofAddIn.Revit
                 "Wissel Schakelaar",
                 "Schakelaar:\nWissel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een wissel schakelaar",
@@ -1944,7 +1845,7 @@ namespace NijhofAddIn.Revit
                 "Dubbelpolige Wisselschakelaar",
                 "Schakelaar:\nWissel\nDubbelp.",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarDubbelWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarDubbelWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een dubbelpolige wisselschakelaar",
@@ -1962,7 +1863,7 @@ namespace NijhofAddIn.Revit
                 "2x Wisselschakelaar",
                 "Schakelaar:\n2x Wissel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Schakelaar2xWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Schakelaar2xWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een 2x wisselschakelaar",
@@ -1983,7 +1884,7 @@ namespace NijhofAddIn.Revit
                 "Seriechakelaar",
                 "Schakelaar:\nSerie",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarSerie" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarSerie" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een serieschakelaar",
@@ -2001,7 +1902,7 @@ namespace NijhofAddIn.Revit
                 "Kruisschakelaar",
                 "Schakelaar:\nKruis",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarKruis" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarKruis" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een kruisschakelaar",
@@ -2022,7 +1923,7 @@ namespace NijhofAddIn.Revit
                 "Leddimmer Schakelaar",
                 "Schakelaar:\nDimmer",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarDimmer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarDimmer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een leddimmer schakelaar",
@@ -2040,7 +1941,7 @@ namespace NijhofAddIn.Revit
                 "Dimmer Wisselschakelaar",
                 "Schakelaar:\nDimmer\nWissel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarDimmerWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarDimmerWissel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een dimmer wisselschakelaar",
@@ -2061,7 +1962,7 @@ namespace NijhofAddIn.Revit
                 "Jaloezie Schakelaar",
                 "Schakelaar:\nJaloezie",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarJaloezie" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarJaloezie" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een jaloezie schakelaar",
@@ -2082,7 +1983,7 @@ namespace NijhofAddIn.Revit
                 "Wand Bewegingsmelder Schakelaar",
                 "Schakelaar:\nBeweging\nWand",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarBewegingWand" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarBewegingWand" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een wand bewegingsmelder",
@@ -2100,7 +2001,7 @@ namespace NijhofAddIn.Revit
                 "Plafond Beweging Schakelaar",
                 "Schakelaar:\nBeweging\nPlafond",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarBewegingPlafond" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarBewegingPlafond" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een plafond bewegingsmelder",
@@ -2118,7 +2019,7 @@ namespace NijhofAddIn.Revit
                 "Schemerschakelaar",
                 "Schakelaar:\nSchemer",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SchakelaarSchemer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.SchakelaarSchemer" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een schemerschakelaar",
@@ -2155,7 +2056,7 @@ namespace NijhofAddIn.Revit
             "Centraaldoos Plaatsen", /// De naam van de standaardactie
             "Verlichting:\nCentraaldoos", /// Tooltip voor de standaardactie
             Assembly.GetExecutingAssembly().Location,
-            "NijhofAddIn.Revit.Commands.Elektra.Centraaldoos" /// Vervang door de relevante namespace en klasse
+            "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Centraaldoos" /// Vervang door de relevante namespace en klasse
             )
             {
                 ToolTip = "Plaats een centraaldoos",
@@ -2176,7 +2077,7 @@ namespace NijhofAddIn.Revit
                 "Plafond Lichtpunt Plaatsen",
                 "Verlichting:\nPlafond",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.LichtPlafond" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.LichtPlafond" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een plafond lichtpunt",
@@ -2194,7 +2095,7 @@ namespace NijhofAddIn.Revit
                 "Inbouwspot Plaatsen",
                 "Verlichting:\nSpot",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Inbouwspot" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Inbouwspot" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een inbouwspot",
@@ -2212,7 +2113,7 @@ namespace NijhofAddIn.Revit
                 "Wand Lichtpunt Plaatsen",
                 "Verlichting:\nWand",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.LichtWand" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.LichtWand" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een wandlichtpunt",
@@ -2249,7 +2150,7 @@ namespace NijhofAddIn.Revit
                 "Rookmelder Plaatsen",
                 "Overig:\nRookmelder",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Rookmelder" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Rookmelder" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een rookmelder",
@@ -2267,7 +2168,7 @@ namespace NijhofAddIn.Revit
                 "Bediening Los Plaatsen", /// De naam van de standaardactie
                 "Overig:\nBediening", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.BedieningLos" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.BedieningLos" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Plaats bediening los",
@@ -2288,7 +2189,7 @@ namespace NijhofAddIn.Revit
                 "Drukknop Bel Plaatsen",
                 "Overig:\nBel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Drukknopbel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Drukknopbel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een drukknop voor de bel",
@@ -2306,7 +2207,7 @@ namespace NijhofAddIn.Revit
                 "Schel Plaatsen",
                 "Overig:\nSchel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Schel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Schel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een schel",
@@ -2324,7 +2225,7 @@ namespace NijhofAddIn.Revit
                 "Intercom Plaatsen",
                 "Overig:\nIntercom",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Intercom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Intercom" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een intercom",
@@ -2345,7 +2246,7 @@ namespace NijhofAddIn.Revit
                 "Grondkabel Plaatsen",
                 "Overig:\nGrondkabel",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.Grondkabel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Toevoegen.Grondkabel" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Plaats een grondkabel",
@@ -2369,7 +2270,7 @@ namespace NijhofAddIn.Revit
                 "Tag Groepnummer",
                 "Groep-\nnummer",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.GroepTag" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Tag.GroepTag" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tagged alle Elektra elementen met een ingevulde Groepnummer",
@@ -2391,7 +2292,7 @@ namespace NijhofAddIn.Revit
                 "Tag Switchcodes",
                 "Switch-\ncodes",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SwitchcodeTag" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Tag.SwitchcodeTag" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tagged alle Elektra elementen met een ingevulde Switchcode",
@@ -2415,7 +2316,7 @@ namespace NijhofAddIn.Revit
                 "Switch Codes",
                 "Code\nLijst",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Elektra.SwitchcodeList" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Elektra.Overig.SwitchcodeList" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Laat alle Switchcodes zien die in het project gebruikt zijn",
@@ -2442,7 +2343,7 @@ namespace NijhofAddIn.Revit
                 "Library",
                 "Library",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Content.FamilyLoader" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Opent de 'Nijhof Bibliotheek'",
@@ -2470,7 +2371,7 @@ namespace NijhofAddIn.Revit
                 "Beheer Sets",
                 "Beheer\nSets",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Maken.PrefabManager" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2496,7 +2397,7 @@ namespace NijhofAddIn.Revit
                 "Nieuwe Set",
                 "Nieuwe\nSet",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Command.Prefab.PrefabCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Command.Prefab.Maken.PrefabCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2522,7 +2423,7 @@ namespace NijhofAddIn.Revit
                 "Toevoegen",
                 "Toevoegen\naan Set",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.PrefabAdd" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Maken.PrefabAdd" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2548,7 +2449,7 @@ namespace NijhofAddIn.Revit
                 "Verwijderen",
                 "Verwijderen\nuit Set",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.PrefabRemove" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Maken.PrefabRemove" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2574,7 +2475,7 @@ namespace NijhofAddIn.Revit
                 "Verwijder Prefabset",
                 "Verwijder\nPrefabset",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Maken.PrefabDelete" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2602,7 +2503,7 @@ namespace NijhofAddIn.Revit
                 "Refresh",
                 "Refresh\nView",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.RefreshView" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Views.RefreshView" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -2628,7 +2529,7 @@ namespace NijhofAddIn.Revit
                 "Prefab 3D Creator",
                 "Prefab\n3D creator",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.Prefab3DCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Views.Prefab3DCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Maakt van een viewport in een sheet een 3D view van het rioleringstelsel en zet deze op sheet",
@@ -2646,16 +2547,19 @@ namespace NijhofAddIn.Revit
                     "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#prefab-3d-creator");
             buttonC3D.SetContextualHelp(contextHelpC3D);
 
-            panel14.AddSeparator(); //Voegt een verticale lijn toe
+            //panel14.AddSeparator(); //Voegt een verticale lijn toe
+            #endregion
             #endregion
 
-            #region pushButtondata (VWA Prefab Taggen)
+            #region Buttons Panel 17 (Tag)
+            #region Lengte Tag
+            #region pushButtondata (VWA Lengte)
             /// Knopgegevens instellen voor de eerste knop vwa
             PushButtonData btndataVWAtag25 = new PushButtonData(
                 "VWA 2.5mm", /// De naam van de standaardactie
-                "VWA Tag 2.5mm", /// Tooltip voor de standaardactie
+                "VWA Lengte 2.5mm", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag25" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag25" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2667,9 +2571,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de tweede knop vwa
             PushButtonData btndataVWAtag35 = new PushButtonData(
                 "VWA 3.5mm",
-                "VWA Tag 3.5mm",
+                "VWA Lengte 3.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2681,9 +2585,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de derde knop vwa
             PushButtonData btndataVWAtag50 = new PushButtonData(
                 "VWA 5.0mm",
-                "VWA Tag 5.0mm",
+                "VWA Lengte 5.0mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2695,9 +2599,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vierde knop vwa
             PushButtonData btndataVWAtag75 = new PushButtonData(
                 "VWA 7.5mm",
-                "VWA Tag 7.5mm",
+                "VWA Lengte 7.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2709,9 +2613,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vijfde knop vwa
             PushButtonData btndataVWAtag100 = new PushButtonData(
                 "VWA 10mm",
-                "VWA Tag 10mm",
+                "VWA Lengte 10mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2722,13 +2626,13 @@ namespace NijhofAddIn.Revit
 
             #endregion
 
-            #region pushButtondata (HWA Prefab Taggen)
+            #region pushButtondata (HWA Lengte)
             /// Knopgegevens instellen voor de eerste knop hwa
             PushButtonData btndataHWAtag25 = new PushButtonData(
                 "HWA 2.5mm", /// De naam van de standaardactie
-                "HWA Tag 2.5mm", /// Tooltip voor de standaardactie
+                "HWA Lengte 2.5mm", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag25" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag25" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2740,9 +2644,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de tweede knop hwa
             PushButtonData btndataHWAtag35 = new PushButtonData(
                 "HWA 3.5mm",
-                "HWA Tag 3.5mm",
+                "HWA Lengte 3.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2754,9 +2658,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de derde knop hwa
             PushButtonData btndataHWAtag50 = new PushButtonData(
                 "HWA 5.0mm",
-                "HWA Tag 5.0mm",
+                "HWA Lengte 5.0mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2768,9 +2672,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vierde knop hwa
             PushButtonData btndataHWAtag75 = new PushButtonData(
                 "HWA 7.5mm",
-                "HWA Tag 7.5mm",
+                "HWA Lengte 7.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2782,9 +2686,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vijfde knop hwa
             PushButtonData btndataHWAtag100 = new PushButtonData(
                 "HWA 10mm",
-                "HWA Tag 10mm",
+                "HWA Lengte 10mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.VWAtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2795,13 +2699,13 @@ namespace NijhofAddIn.Revit
 
             #endregion
 
-            #region pushButtondata (Lucht Prefab Taggen)
+            #region pushButtondata (Lucht Lengte)
             /// Knopgegevens instellen voor de eerste knop mv
             PushButtonData btndataMVtag25 = new PushButtonData(
                 "MV 2.5mm", /// De naam van de standaardactie
-                "MV Tag 2.5mm", /// Tooltip voor de standaardactie
+                "MV Lengte 2.5mm", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.MVtag25" /// Vervang door de relevante namespace en klasse
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag25" /// Vervang door de relevante namespace en klasse
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2813,9 +2717,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de tweede knop mv
             PushButtonData btndataMVtag35 = new PushButtonData(
                 "MV 3.5mm",
-                "MV Tag 3.5mm",
+                "MV Lengte 3.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.MVtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2827,9 +2731,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de derde knop mv
             PushButtonData btndataMVtag50 = new PushButtonData(
                 "MV 5.0mm",
-                "MV Tag 5.0mm",
+                "MV Lengte 5.0mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.MVtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2841,9 +2745,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vierde knop mv
             PushButtonData btndataMVtag75 = new PushButtonData(
                 "MV 7.5mm",
-                "MV Tag 7.5mm",
+                "MV Lengte 7.5mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.MVtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2855,9 +2759,9 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vijfde knop mv
             PushButtonData btndataMVtag100 = new PushButtonData(
                 "MV 10mm",
-                "MV Tag 10mm",
+                "MV Lengte 10mm",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Prefab.MVtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Tag elementen in de viewport",
@@ -2868,14 +2772,14 @@ namespace NijhofAddIn.Revit
 
             #endregion
 
-            #region Stacked splitButton
+            #region Stacked splitButton Lengte
             /// 2. Maak SplitButtonData
             SplitButtonData SB_A = new SplitButtonData("SplitGroupVWA", "Split Group VWA");
             SplitButtonData SB_B = new SplitButtonData("SplitGroupHWA", "Split Group HWA");
             SplitButtonData SB_C = new SplitButtonData("SplitgroupMV", "Split Group MV");
 
             /// 3. Maak een "Stacked" indeling
-            IList<RibbonItem> stackedItems = panel14.AddStackedItems(SB_A, SB_B, SB_C);
+            IList<RibbonItem> stackedItems = panel17.AddStackedItems(SB_A, SB_B, SB_C);
 
             /// 4. Maakt de knoppen "SplitButtons"
             SplitButton SBvwa_Button = stackedItems[0] as SplitButton;
@@ -2883,7 +2787,7 @@ namespace NijhofAddIn.Revit
             SplitButton SBmv_Button = stackedItems[2] as SplitButton;
             #endregion
 
-            #region pushButton VWA stack
+            #region pushButton VWA stack Lengte
             /// voeg de eerste knop toe aan de vwa stack
             PushButton buttonVWAtag25 = SBvwa_Button.AddPushButton(btndataVWAtag25);
             buttonVWAtag25.Enabled = true;
@@ -2920,7 +2824,7 @@ namespace NijhofAddIn.Revit
             buttonVWAtag100.SetContextualHelp(contextHelpVWAtag100);
             #endregion
 
-            #region pushButton HWA stack
+            #region pushButton HWA stack Lengte
             /// Voeg de eerste knop toe aan hwa stack
             PushButton buttonHWAtag25 = SBhwa_Button.AddPushButton(btndataHWAtag25);
             buttonHWAtag25.Enabled = true;
@@ -2957,7 +2861,7 @@ namespace NijhofAddIn.Revit
             buttonHWAtag100.SetContextualHelp(contextHelpHWAtag100);
             #endregion
 
-            #region pushButton MV stack
+            #region pushButton MV stack Lengte
             /// Voeg de eerst knop toe aan mv stack
             PushButton buttonMVtag25 = SBmv_Button.AddPushButton(btndataMVtag25);
             buttonMVtag25.Enabled = true;
@@ -2992,7 +2896,363 @@ namespace NijhofAddIn.Revit
             ContextualHelp contextHelpMVtag100 = new ContextualHelp(ContextualHelpType.Url,
                 "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
             buttonMVtag100.SetContextualHelp(contextHelpMVtag100);
+
+            //panel17.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
+            #endregion
+
+            #region Size Tag
+            //#region pushButtondata (VWA Size)
+            ///// Knopgegevens instellen voor de eerste knop vwa
+            //PushButtonData btndataVWAsizetag25 = new PushButtonData(
+            //    "VWA 2.5mm", /// De naam van de standaardactie
+            //    "VWA Lengte 2.5mm", /// Tooltip voor de standaardactie
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag25" /// Vervang door de relevante namespace en klasse
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de tweede knop vwa
+            //PushButtonData btndataVWAsizetag35 = new PushButtonData(
+            //    "VWA 3.5mm",
+            //    "VWA Lengte 3.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de derde knop vwa
+            //PushButtonData btndataVWAsizetag50 = new PushButtonData(
+            //    "VWA 5.0mm",
+            //    "VWA Lengte 5.0mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vierde knop vwa
+            //PushButtonData btndataVWAsizetag75 = new PushButtonData(
+            //    "VWA 7.5mm",
+            //    "VWA Lengte 7.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vijfde knop vwa
+            //PushButtonData btndataVWAsizetag100 = new PushButtonData(
+            //    "VWA 10mm",
+            //    "VWA Lengte 10mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            //#endregion
+
+            //#region pushButtondata (HWA Size)
+            ///// Knopgegevens instellen voor de eerste knop hwa
+            //PushButtonData btndataHWAsizetag25 = new PushButtonData(
+            //    "HWA 2.5mm", /// De naam van de standaardactie
+            //    "HWA Lengte 2.5mm", /// Tooltip voor de standaardactie
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag25" /// Vervang door de relevante namespace en klasse
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de tweede knop hwa
+            //PushButtonData btndataHWAsizetag35 = new PushButtonData(
+            //    "HWA 3.5mm",
+            //    "HWA Lengte 3.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de derde knop hwa
+            //PushButtonData btndataHWAsizetag50 = new PushButtonData(
+            //    "HWA 5.0mm",
+            //    "HWA Lengte 5.0mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vierde knop hwa
+            //PushButtonData btndataHWAsizetag75 = new PushButtonData(
+            //    "HWA 7.5mm",
+            //    "HWA Lengte 7.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vijfde knop hwa
+            //PushButtonData btndataHWAsizetag100 = new PushButtonData(
+            //    "HWA 10mm",
+            //    "HWA Lengte 10mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.VWAsizetag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            //#endregion
+
+            //#region pushButtondata (Lucht Size)
+            ///// Knopgegevens instellen voor de eerste knop mv
+            //PushButtonData btndataMVsizetag25 = new PushButtonData(
+            //    "MV 2.5mm", /// De naam van de standaardactie
+            //    "MV Lengte 2.5mm", /// Tooltip voor de standaardactie
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.MVsizetag25" /// Vervang door de relevante namespace en klasse
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de tweede knop mv
+            //PushButtonData btndataMVsizetag35 = new PushButtonData(
+            //    "MV 3.5mm",
+            //    "MV Lengte 3.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.MVsizetag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de derde knop mv
+            //PushButtonData btndataMVsizetag50 = new PushButtonData(
+            //    "MV 5.0mm",
+            //    "MV Lengte 5.0mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.MVsizetag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vierde knop mv
+            //PushButtonData btndataMVsizetag75 = new PushButtonData(
+            //    "MV 7.5mm",
+            //    "MV Lengte 7.5mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.MVsizetag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            ///// Knopgegevens instellen voor de vijfde knop mv
+            //PushButtonData btndataMVsizetag100 = new PushButtonData(
+            //    "MV 10mm",
+            //    "MV Lengte 10mm",
+            //    Assembly.GetExecutingAssembly().Location,
+            //    "NijhofAddIn.Revit.Commands.Prefab.Tag.MVsizetag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+            //    )
+            //{
+            //    ToolTip = "Tag elementen in de viewport",
+            //    LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
+            //    Image = Tag16Scr,
+            //    //LargeImage = Tag32Scr,
+            //};
+
+            //#endregion
+
+            //#region Stacked splitButton Size
+            ///// 2. Maak SplitButtonData
+            //SplitButtonData SB_D = new SplitButtonData("SplitGroupVWA", "Split Group VWA");
+            //SplitButtonData SB_E = new SplitButtonData("SplitGroupHWA", "Split Group HWA");
+            //SplitButtonData SB_F = new SplitButtonData("SplitgroupMV", "Split Group MV");
+
+            ///// 3. Maak een "Stacked" indeling
+            //IList<RibbonItem> stackedItemssize = panel17.AddStackedItems(SB_D, SB_E, SB_F);
+
+            ///// 4. Maakt de knoppen "SplitButtons"
+            //SplitButton SBvwasize_Button = stackedItems[0] as SplitButton;
+            //SplitButton SBhwasize_Button = stackedItems[1] as SplitButton;
+            //SplitButton SBmvsize_Button = stackedItems[2] as SplitButton;
+            //#endregion
+
+            //#region pushButton VWA stack Size
+            ///// voeg de eerste knop toe aan de vwa stack
+            //PushButton buttonVWAsizetag25 = SBvwasize_Button.AddPushButton(btndataVWAsizetag25);
+            //buttonVWAsizetag25.Enabled = true;
+            //ContextualHelp contexthelpvwasizetag25 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
+            //buttonVWAsizetag25.SetContextualHelp(contexthelpvwasizetag25);
+
+            ///// Voeg de tweede knop toe aan de vwa stack
+            //PushButton buttonVWAsizetag35 = SBvwasize_Button.AddPushButton(btndataVWAsizetag35);
+            //buttonVWAsizetag35.Enabled = true;
+            //ContextualHelp contextHelpVWAsizetag35 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
+            //buttonVWAsizetag35.SetContextualHelp(contextHelpVWAsizetag35);
+
+            ///// Voeg de derde knop toe aan de vwa stack
+            //PushButton buttonVWAsizetag50 = SBvwasize_Button.AddPushButton(btndataVWAsizetag50);
+            //buttonVWAsizetag50.Enabled = true;
+            //ContextualHelp contextHelpVWAsizetag50 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
+            //buttonVWAsizetag50.SetContextualHelp(contextHelpVWAsizetag50);
+
+            ///// Voeg de vierde knop toe aan de vwa stack
+            //PushButton buttonVWAsizetag75 = SBvwasize_Button.AddPushButton(btndataVWAsizetag75);
+            //buttonVWAsizetag75.Enabled = true;
+            //ContextualHelp contextHelpVWAsizetag75 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
+            //buttonVWAsizetag75.SetContextualHelp(contextHelpVWAsizetag75);
+
+            ///// Voeg de vijfde knop toe aan de vwa stack
+            //PushButton buttonVWAsizetag100 = SBvwasize_Button.AddPushButton(btndataVWAsizetag100);
+            //buttonVWAsizetag100.Enabled = true;
+            //ContextualHelp contextHelpVWAsizetag100 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#vwa-tag");
+            //buttonVWAsizetag100.SetContextualHelp(contextHelpVWAsizetag100);
+            //#endregion
+
+            //#region pushButton HWA stack Size
+            ///// Voeg de eerste knop toe aan hwa stack
+            //PushButton buttonHWAsizetag25 = SBhwasize_Button.AddPushButton(btndataHWAsizetag25);
+            //buttonHWAsizetag25.Enabled = true;
+            //ContextualHelp contextHelpHWAsizetag25 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
+            //buttonHWAsizetag25.SetContextualHelp(contextHelpHWAsizetag25);
+
+            ///// Voeg de tweede knop toe aan hwa stack
+            //PushButton buttonHWAsizetag35 = SBhwasize_Button.AddPushButton(btndataHWAsizetag35);
+            //buttonHWAsizetag35.Enabled = true;
+            //ContextualHelp contextHelpHWAsizetag35 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
+            //buttonHWAsizetag35.SetContextualHelp(contextHelpHWAsizetag35);
+
+            ///// Voeg de derde knop toe aan hwa stack
+            //PushButton buttonHWAsizetag50 = SBhwasize_Button.AddPushButton(btndataHWAsizetag50);
+            //buttonHWAsizetag50.Enabled = true;
+            //ContextualHelp contextHelpHWAsizetag50 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
+            //buttonHWAsizetag50.SetContextualHelp(contextHelpHWAsizetag50);
+
+            ///// Voeg de vierde knop toe aan hwa stack
+            //PushButton buttonHWAsizetag75 = SBhwasize_Button.AddPushButton(btndataHWAsizetag75);
+            //buttonHWAsizetag75.Enabled = true;
+            //ContextualHelp contextHelpHWAsizetag75 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
+            //buttonHWAsizetag75.SetContextualHelp(contextHelpHWAsizetag75);
+
+            ///// Voeg de vijfde knop toe aan hwa stack
+            //PushButton buttonHWAsizetag100 = SBhwasize_Button.AddPushButton(btndataHWAsizetag100);
+            //buttonHWAsizetag100.Enabled = true;
+            //ContextualHelp contextHelpHWAsizetag100 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#hwa-tag");
+            //buttonHWAsizetag100.SetContextualHelp(contextHelpHWAsizetag100);
+            //#endregion
+
+            //#region pushButton MV stack Size
+            ///// Voeg de eerst knop toe aan mv stack
+            //PushButton buttonMVsizetag25 = SBmvsize_Button.AddPushButton(btndataMVsizetag25);
+            //buttonMVsizetag25.Enabled = true;
+            //ContextualHelp contextHelpMVsizetag25 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
+            //buttonMVsizetag25.SetContextualHelp(contextHelpMVsizetag25);
+
+            ///// Voeg de tweede knop toe aan mv stack
+            //PushButton buttonMVsizetag35 = SBmvsize_Button.AddPushButton(btndataMVsizetag35);
+            //buttonMVsizetag35.Enabled = true;
+            //ContextualHelp contextHelpMVsizetag35 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
+            //buttonMVsizetag35.SetContextualHelp(contextHelpMVsizetag35);
+
+            ///// Voeg de derde knop toe aan mv stack
+            //PushButton buttonMVsizetag50 = SBmvsize_Button.AddPushButton(btndataMVsizetag50);
+            //buttonMVsizetag50.Enabled = true;
+            //ContextualHelp contextHelpMVsizetag50 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
+            //buttonMVsizetag50.SetContextualHelp(contextHelpMVsizetag50);
+
+            ///// Voeg de vierde knop toe aan mv stack
+            //PushButton buttonMVsizetag75 = SBmvsize_Button.AddPushButton(btndataMVsizetag75);
+            //buttonMVsizetag75.Enabled = true;
+            //ContextualHelp contextHelpMVsizetag75 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
+            //buttonMVsizetag75.SetContextualHelp(contextHelpMVsizetag75);
+
+            ///// Voeg de vijfde knop toe aan mv stack
+            //PushButton buttonMVsizetag100 = SBmvsize_Button.AddPushButton(btndataMVsizetag100);
+            //buttonMVsizetag100.Enabled = true;
+            //ContextualHelp contextHelpMVsizetag100 = new ContextualHelp(ContextualHelpType.Url,
+            //    "https://github.com/Damianmts/NijhofAddIn/wiki/Prefab#mv-tag");
+            //buttonMVsizetag100.SetContextualHelp(contextHelpMVsizetag100);
+
+            ////panel17.AddSeparator(); //Voegt een verticale lijn toe
+            //#endregion
+            #endregion
+            #endregion
+
+            #region Buttons Panel 16 (Schedules)
+
             #endregion
 
             #region Buttons Panel 15 (Export)
@@ -3003,7 +3263,7 @@ namespace NijhofAddIn.Revit
                 "Materiaallijst Exporteren",
                 "Materiaal-\nlijst",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Export.ExportMateriaallijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Export.ExportMateriaallijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Exporteert materiaal gegevens",
@@ -3029,7 +3289,7 @@ namespace NijhofAddIn.Revit
                 "Zaaglijst Export",
                 "Zaaglijst",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Export.ExportZaaglijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Export.ExportZaaglijst" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Exporteert zaaglijst gegevens",
@@ -3047,10 +3307,6 @@ namespace NijhofAddIn.Revit
 
             //panel15.AddSeparator(); // Voegt een verticale lijn toe indien nodig
             #endregion
-            #endregion
-
-            #region Buttons Panel 16 (Schedules)
-
             #endregion
 
             return Result.Succeeded;

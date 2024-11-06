@@ -15,6 +15,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - UI verbeteren
 - Optimaliseren
+----------------------------------------------------------------------------------------------------
+
+## [1.3.1] / 2024-00-00
+### Added
+- 'HWA Lengte' verbind de speciedeksel weer met de buis.
+
+### Changed
+- 
+
+### Fixed
+- 'HWA Artikelnummer' geeft nu de juiste buis het goeie artikelnummer.
+
+### Removed
+- Paneel 'Berekenen' bij tabblad 'Nijhof Tools'.
+- Paneel 'Exporteren' bij tabblad 'Nijhof Tools'.
+- 
 
 ----------------------------------------------------------------------------------------------------
 
