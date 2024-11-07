@@ -48,50 +48,18 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Maken
                     // Begin nummering voor elk element binnen de prefab set
                     int prefabElementNumber = 1;
 
-                    // Verwerk de selectie en wijs dezelfde 'Prefab Set' en 'Prefab Color ID' toe
+                    // Verwerk de selectie en nummer alleen diep geneste elementen en normale elementen zonder geneste componenten
                     foreach (Element element in sortedElements)
                     {
-                        // Wijs 'Prefab Set' toe
-                        Parameter prefabSetParam = element.LookupParameter("Prefab Set");
-                        if (prefabSetParam?.StorageType == StorageType.String)
+                        if (element is FamilyInstance familyInstance && familyInstance.GetSubComponentIds().Count > 0)
                         {
-                            prefabSetParam.Set(nextAvailableNumber.ToString());
+                            // Nummer alleen de diep geneste elementen
+                            NummerGenesteElementen(doc, familyInstance, nextAvailableNumber, prefabColorID, ref prefabElementNumber);
                         }
-
-                        // Wijs 'Prefab Color ID' toe
-                        Parameter prefabColorIDParam = element.LookupParameter("Prefab Color ID");
-                        if (prefabColorIDParam?.StorageType == StorageType.String)
+                        else
                         {
-                            prefabColorIDParam.Set(prefabColorID);
-                        }
-
-                        // Wijs een uniek 'Prefab Number' toe binnen de set
-                        Parameter prefabNumberParam = element.LookupParameter("Prefab Number");
-                        if (prefabNumberParam?.StorageType == StorageType.String)
-                        {
-                            prefabNumberParam.Set(prefabElementNumber.ToString());
-                            prefabElementNumber++; // Verhoog voor elk nieuw element
-                        }
-
-                        // Controleer of het element een pijp is en de juiste 'Size' heeft
-                        if (element.Category.Name == "Pipes")
-                        {
-                            Parameter sizeParam = element.LookupParameter("Size");
-                            if (sizeParam != null)
-                            {
-                                string sizeValue = sizeParam.AsString();
-                                string manufacturerArtNo = GetManufacturerArtNoBySize(sizeValue);
-
-                                // Wijs het artikelnummer toe aan 'Manufacturer Art. No.' alleen voor de juiste 'Size'
-                                if (!string.IsNullOrEmpty(manufacturerArtNo))
-                                {
-                                    Parameter artNoParam = element.LookupParameter("Manufacturer Art. No.");
-                                    if (artNoParam != null && artNoParam.StorageType == StorageType.String)
-                                    {
-                                        artNoParam.Set(manufacturerArtNo);
-                                    }
-                                }
-                            }
+                            // Nummer het element zelf als het geen geneste elementen bevat
+                            AssignPrefabParameters(element, nextAvailableNumber, prefabColorID, ref prefabElementNumber);
                         }
                     }
 
@@ -115,30 +83,49 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Maken
             }
         }
 
-        // Methode om het juiste artikelnummer te verkrijgen op basis van de 'Size' parameter
-        private string GetManufacturerArtNoBySize(string size)
+        // Methode om prefab parameters toe te wijzen aan een element
+        private void AssignPrefabParameters(Element element, int prefabSetNumber, string prefabColorID, ref int prefabElementNumber)
         {
-            Dictionary<string, string> sizeToArtNoMap = new Dictionary<string, string>
+            // Wijs 'Prefab Set' toe
+            Parameter prefabSetParam = element.LookupParameter("Prefab Set");
+            if (prefabSetParam?.StorageType == StorageType.String)
             {
-                { "32", "20034683" },
-                { "40", "20034686" },
-                { "50", "20034688" },
-                { "75", "20034690" },
-                { "90", "20034692" },
-                { "110", "20034694" },
-                { "125", "20034697" },
-                { "160", "20034700" }
-            };
-
-            foreach (var sizeKey in sizeToArtNoMap.Keys)
-            {
-                if (size.Contains(sizeKey))
-                {
-                    return sizeToArtNoMap[sizeKey];
-                }
+                prefabSetParam.Set(prefabSetNumber.ToString());
             }
 
-            return null; // Geen artikelnummer gevonden voor de gegeven 'Size'
+            // Wijs 'Prefab Color ID' toe
+            Parameter prefabColorIDParam = element.LookupParameter("Prefab Color ID");
+            if (prefabColorIDParam?.StorageType == StorageType.String)
+            {
+                prefabColorIDParam.Set(prefabColorID);
+            }
+
+            // Wijs een uniek 'Prefab Number' toe binnen de set
+            Parameter prefabNumberParam = element.LookupParameter("Prefab Number");
+            if (prefabNumberParam?.StorageType == StorageType.String)
+            {
+                prefabNumberParam.Set(prefabElementNumber.ToString());
+                prefabElementNumber++; // Verhoog voor elk nieuw element
+            }
+        }
+
+        // Methode om geneste elementen te nummeren, inclusief diep geneste elementen
+        private void NummerGenesteElementen(Document doc, FamilyInstance familyInstance, int prefabSetNumber, string prefabColorID, ref int prefabElementNumber)
+        {
+            foreach (ElementId nestedElementId in familyInstance.GetSubComponentIds())
+            {
+                Element nestedElement = doc.GetElement(nestedElementId);
+                if (nestedElement != null)
+                {
+                    AssignPrefabParameters(nestedElement, prefabSetNumber, prefabColorID, ref prefabElementNumber);
+
+                    // Controleer of het geneste element zelf ook geneste elementen bevat
+                    if (nestedElement is FamilyInstance nestedFamilyInstance)
+                    {
+                        NummerGenesteElementen(doc, nestedFamilyInstance, prefabSetNumber, prefabColorID, ref prefabElementNumber);
+                    }
+                }
+            }
         }
 
         private HashSet<int> GetUsedPrefabSetNumbers(Document doc)

@@ -169,8 +169,8 @@
   <data name="centraaldoos_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>centraaldoos_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="concrete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>concrete-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="concrete32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>concrete32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="connect32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>connect32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,6 +241,9 @@
   <data name="error_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>error-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="floor32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>floor32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="geelgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>geelgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -256,8 +259,8 @@
   <data name="inbouwspot_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>inbouwspot_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="info_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>info-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="info32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>info32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="intercom_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>intercom_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -267,24 +270,6 @@
   </data>
   <data name="kruis_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>kruis_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadblauwgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadblauwgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadgeelgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadgeelgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadgroengps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadgroengps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadmagentagps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadmagentagps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadoranjegps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadoranjegps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="laadroodgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>laadroodgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="laadzwartgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>laadzwartgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -300,6 +285,9 @@
   </data>
   <data name="magentagps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>magentagps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainzwartgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>mainzwartgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="manhole16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>manhole16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -322,8 +310,8 @@
   <data name="prototype32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>prototype32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="question_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>question-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="question32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>question32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rain16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>rain16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -346,8 +334,8 @@
   <data name="switch_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>switch-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wall_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>wall-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="wall32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>wall32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wandlicht_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wandlicht_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -384,9 +372,6 @@
   </data>
   <data name="wissel_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>wissel_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="zwartgps32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>zwartgps32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_3d32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>_3d32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

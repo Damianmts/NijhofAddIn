@@ -347,10 +347,13 @@ namespace NijhofAddIn.Revit
             Image _3D32 = Icons._3d32;
             ImageSource _3D32Scr = appBase.GetImageSource(_3D32);
 
-            Image MuurSparing32 = Icons.wall_32;
+            Image MuurSparing32 = Icons.wall32;
             ImageSource MuurSparing32Scr = appBase.GetImageSource(MuurSparing32);
 
-            Image BalkSparing32 = Icons.concrete_32;
+            Image VloerSparing32 = Icons.floor32;
+            ImageSource VloerSparing32Scr = appBase.GetImageSource(VloerSparing32);
+
+            Image BalkSparing32 = Icons.concrete32;
             ImageSource BalkSparing32Scr = appBase.GetImageSource(BalkSparing32);
 
             Image Ontstop16 = Icons.manhole16;
@@ -380,10 +383,10 @@ namespace NijhofAddIn.Revit
             Image SwitchTag32 = Icons.switch_32;
             ImageSource SwitchTag32Scr = appBase.GetImageSource(SwitchTag32);
 
-            Image Vraag32 = Icons.question_32;
+            Image Vraag32 = Icons.question32;
             ImageSource Vraag32Scr = appBase.GetImageSource(Vraag32);
 
-            Image Info32 = Icons.info_32;
+            Image Info32 = Icons.info32;
             ImageSource Info32Scr = appBase.GetImageSource(Info32);
 
             Image Manage32 = Icons.prototype32;
@@ -413,9 +416,6 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region GPS Icons
-            Image ZwartGPS32 = Icons.zwartgps32;
-            ImageSource ZwartGPS32Scr = appBase.GetImageSource(ZwartGPS32);
-
             Image OranjeGPS32 = Icons.oranjegps32;
             ImageSource OranjeGPS32Scr = appBase.GetImageSource(OranjeGPS32);
 
@@ -436,24 +436,6 @@ namespace NijhofAddIn.Revit
 
             Image laadZwartGPS32 = Icons.laadzwartgps32;
             ImageSource laadZwartGPS32Scr = appBase.GetImageSource(laadZwartGPS32);
-
-            Image laadOranjeGPS32 = Icons.laadoranjegps32;
-            ImageSource laadOranjeGPS32Scr = appBase.GetImageSource(laadOranjeGPS32);
-
-            Image laadBlauwGPS32 = Icons.laadblauwgps32;
-            ImageSource laadBlauwGPS32Scr = appBase.GetImageSource(laadBlauwGPS32);
-
-            Image laadRoodGPS32 = Icons.laadroodgps32;
-            ImageSource laadRoodGPS32Scr = appBase.GetImageSource(laadRoodGPS32);
-
-            Image laadGroenGPS32 = Icons.laadgroengps32;
-            ImageSource laadGroenGPS32Scr = appBase.GetImageSource(laadGroenGPS32);
-
-            Image laadGeelGPS32 = Icons.laadgeelgps32;
-            ImageSource laadGeelGPS32Scr = appBase.GetImageSource(laadGeelGPS32);
-
-            Image laadMagentaGPS32 = Icons.laadzwartgps32;
-            ImageSource laadMagendaGPS32Scr = appBase.GetImageSource(laadMagentaGPS32);
 
             Image addZwartGPS32 = Icons.addzwartgps32;
             ImageSource addZwartGPS32Scr = appBase.GetImageSource(addZwartGPS32);
@@ -669,7 +651,7 @@ namespace NijhofAddIn.Revit
                 "Aansluiten Element",
                 "Aansluiten\nElement",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Core.Foutmelding" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Tools.Wijzigen.AansluitenElement" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -819,7 +801,7 @@ namespace NijhofAddIn.Revit
                 ToolTip = "Voegt sparingen in de vloeren toe",
                 LongDescription = "Zoekt naar waar een VWA of HWA pipe clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
                 //Image = BalkSparing16Scr,
-                LargeImage = BalkSparing32Scr,
+                LargeImage = VloerSparing32Scr,
             };
 
             /// Voeg de knop toe aan het Ribbon Panel
@@ -1336,7 +1318,7 @@ namespace NijhofAddIn.Revit
                 "Nieuwe Set",
                 "Nieuwe\nSet",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Command.Prefab.Maken.PrefabCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
+                "NijhofAddIn.Revit.Commands.Prefab.Maken.PrefabCreator" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
             {
                 ToolTip = "Lorem Ipsum",
@@ -1465,7 +1447,6 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region Buttons Panel 7 (Tag)
-            #region Lengte Tag
             #region pushButtondata (VWA Lengte)
             /// Knopgegevens instellen voor de eerste knop vwa
             PushButtonData btndataVWAtag25 = new PushButtonData(
@@ -1616,7 +1597,7 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de eerste knop mv
             PushButtonData btndataMVtag25 = new PushButtonData(
                 "MV 2.5mm", /// De naam van de standaardactie
-                "MV  Lengte 2.5mm", /// Tooltip voor de standaardactie
+                "MV   Lengte 2.5mm", /// Tooltip voor de standaardactie
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag25" /// Vervang door de relevante namespace en klasse
                 )
@@ -1630,7 +1611,7 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de tweede knop mv
             PushButtonData btndataMVtag35 = new PushButtonData(
                 "MV 3.5mm",
-                "MV  Lengte 3.5mm",
+                "MV   Lengte 3.5mm",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag35" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
@@ -1644,7 +1625,7 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de derde knop mv
             PushButtonData btndataMVtag50 = new PushButtonData(
                 "MV 5.0mm",
-                "MV  Lengte 5.0mm",
+                "MV   Lengte 5.0mm",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag50" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
@@ -1658,7 +1639,7 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vierde knop mv
             PushButtonData btndataMVtag75 = new PushButtonData(
                 "MV 7.5mm",
-                "MV  Lengte 7.5mm",
+                "MV   Lengte 7.5mm",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag75" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
@@ -1672,7 +1653,7 @@ namespace NijhofAddIn.Revit
             /// Knopgegevens instellen voor de vijfde knop mv
             PushButtonData btndataMVtag100 = new PushButtonData(
                 "MV 10mm",
-                "MV  Lengte 10mm",
+                "MV   Lengte 10mm",
                 Assembly.GetExecutingAssembly().Location,
                 "NijhofAddIn.Revit.Commands.Prefab.Tag.MVtag100" /// Dit is de file namespace van de command die uitgevoerd moet worden bij deze knop
                 )
@@ -1811,7 +1792,6 @@ namespace NijhofAddIn.Revit
             buttonMVtag100.SetContextualHelp(contextHelpMVtag100);
 
             //panel17.AddSeparator(); //Voegt een verticale lijn toe
-            #endregion
             #endregion
             #endregion
 

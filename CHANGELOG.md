@@ -19,18 +19,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.3.1] / 2024-00-00
 ### Added
-- 'HWA Lengte' verbind de speciedeksel weer met de buis.
+- 'HWA Lengte' verbind de speciedeksel met de buis.
+- Knop 'Aansluiten Elementen' bij tabblad 'Nijhof Tools'.
 
 ### Changed
-- 
+- Meerdere knoppen verplaatst naar 'Nijhof Tools' tabblad
+- Icons van knoppen geüpdate
 
 ### Fixed
 - 'HWA Artikelnummer' geeft nu de juiste buis het goeie artikelnummer.
 
 ### Removed
+- Tabblad 'Nijhof Prefab'.
 - Paneel 'Berekenen' bij tabblad 'Nijhof Tools'.
-- Paneel 'Exporteren' bij tabblad 'Nijhof Tools'.
-- 
+- Knop 'Rekenpunten Verwijderen' bij tabblad 'Nijhof Tools'.
+- Knop 'Klik op mij' bij tabblad 'Nijhof Tools'.
 
 ----------------------------------------------------------------------------------------------------
 
