@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Export
+namespace NijhofAddIn.Revit.Commands.Tools.Export
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
@@ -228,14 +228,14 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Export
         private static string GetProjectParameter(Document doc, string parameterName)
         {
             ProjectInfo projectInfo = doc.ProjectInformation;
-            Autodesk.Revit.DB.Parameter param = projectInfo.LookupParameter(parameterName);
+            Parameter param = projectInfo.LookupParameter(parameterName);
             return param != null ? param.AsString() : string.Empty;
         }
 
         // Method to get schedule parameter
         private static string GetScheduleParameter(ViewSchedule schedule, string parameterName)
         {
-            Autodesk.Revit.DB.Parameter param = schedule.LookupParameter(parameterName);
+            Parameter param = schedule.LookupParameter(parameterName);
             return param != null ? param.AsString() : string.Empty;
         }
 

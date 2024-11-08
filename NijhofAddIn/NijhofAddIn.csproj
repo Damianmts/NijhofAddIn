@@ -335,7 +335,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Revit\Commands\Prefab\Schedules\" />
+    <Folder Include="Revit\Commands\Tools\Schedules\" />
   </ItemGroup>
 
 </Project>

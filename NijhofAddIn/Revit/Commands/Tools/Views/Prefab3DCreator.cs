@@ -4,13 +4,13 @@ using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 using Autodesk.Revit.UI;
-using NijhofAddIn.Revit.Commands.Prefab.Views.Extensions;
+using NijhofAddIn.Revit.Commands.Tools.Views.Extensions;
 using NijhofAddIn.Revit.Core.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Views
+namespace NijhofAddIn.Revit.Commands.Tools.Views
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
@@ -189,7 +189,7 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Views
                     }
 
                     string viewTemplateString = string.Empty;
-                    Boolean MorePipesThanDucts = false;
+                    bool MorePipesThanDucts = false;
                     if (elementsPipes > elementsDucts)
                     {
                         viewTemplateString = "04_Plot_Prefab_Riool_3D";
@@ -205,15 +205,15 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Views
                     if (MorePipesThanDucts)
                     {
                         elementsTo3DNew = elementsTo3D
-                            .Where(element => (element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_PipeCurves) ||
-                                                (element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_PipeFitting))
+                            .Where(element => element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_PipeCurves ||
+                                                element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_PipeFitting)
                             .ToList();
                     }
                     else
                     {
                         elementsTo3DNew = elementsTo3D
-                            .Where(element => (element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_DuctCurves) ||
-                                              (element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_DuctFitting))
+                            .Where(element => element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_DuctCurves ||
+                                              element.Category.Id.IntegerValue == (int)BuiltInCategory.OST_DuctFitting)
                             .ToList();
                     }
 
@@ -274,13 +274,13 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Views
                     ViewFamilyType viewFamilyType3D = new FilteredElementCollector(doc)
                         .OfClass(typeof(ViewFamilyType))
                         .Cast<ViewFamilyType>()
-                        .FirstOrDefault<ViewFamilyType>(x => ViewFamily.ThreeDimensional == x.ViewFamily);
+                        .FirstOrDefault(x => ViewFamily.ThreeDimensional == x.ViewFamily);
 
                     //3d view maken
                     View3D view3d = View3D.CreateIsometric(doc, viewFamilyType3D.Id);
 
                     //-----3D view instelleingen-----
-                    String sheetNumber = tempActiveView.get_Parameter(BuiltInParameter.SHEET_NUMBER).AsValueString();
+                    string sheetNumber = tempActiveView.get_Parameter(BuiltInParameter.SHEET_NUMBER).AsValueString();
 
                     var collector3D = new FilteredElementCollector(doc)
                             .OfCategory(BuiltInCategory.OST_Views)
@@ -288,7 +288,7 @@ namespace NijhofAddIn.Revit.Commands.Prefab.Views
                             .Cast<View>()
                             .Where(v => v.ViewType == ViewType.ThreeD);
 
-                    Boolean dublicateName = false;
+                    bool dublicateName = false;
                     int dublicateCount = 1;
 
                     string naamSheet = "Nr " + sheetNumber + " - 3D view";

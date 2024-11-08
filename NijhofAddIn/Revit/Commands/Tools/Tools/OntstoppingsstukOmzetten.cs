@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NijhofAddIn.Revit.Commands.Tools.Wijzigen
+namespace NijhofAddIn.Revit.Commands.Tools.Tools
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

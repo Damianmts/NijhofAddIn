@@ -2,11 +2,11 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 using Autodesk.Revit.UI;
-using NijhofAddIn.Revit.Commands.Prefab.Views.Extensions;
+using NijhofAddIn.Revit.Commands.Tools.Views.Extensions;
 using System;
 using System.Collections.Generic;
 
-namespace NijhofAddIn.Revit.Commands.Tools.Wijzigen
+namespace NijhofAddIn.Revit.Commands.Tools.Tools
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
@@ -118,6 +118,10 @@ namespace NijhofAddIn.Revit.Commands.Tools.Wijzigen
                     }
                     transaction.Commit();
                 }
+            }
+            catch (OperationCanceledException)
+            {
+                return Result.Cancelled;
             }
             catch (Exception e)
             {

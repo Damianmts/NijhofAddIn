@@ -3,12 +3,12 @@ using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 using Autodesk.Revit.UI;
-using NijhofAddIn.Revit.Commands.Prefab.Views.Extensions;
+using NijhofAddIn.Revit.Commands.Tools.Views.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Tag
+namespace NijhofAddIn.Revit.Commands.Tools.Tag
 {
     #region 2.5mm
     [Transaction(TransactionMode.Manual)]

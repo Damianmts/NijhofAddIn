@@ -7,7 +7,7 @@ using Autodesk.Revit.UI.Selection;
 using System;
 using System.Collections.Generic;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Maken
+namespace NijhofAddIn.Revit.Commands.Tools.Prefab
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

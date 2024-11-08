@@ -9,7 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Export
+namespace NijhofAddIn.Revit.Commands.Tools.Export
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

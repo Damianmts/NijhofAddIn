@@ -4,7 +4,7 @@ using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
 using System;
 
-namespace NijhofAddIn.Revit.Commands.Tools.Wijzigen
+namespace NijhofAddIn.Revit.Commands.Tools.Tools
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Maken
+namespace NijhofAddIn.Revit.Commands.Tools.Prefab
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

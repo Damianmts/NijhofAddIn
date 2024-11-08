@@ -3,7 +3,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Linq;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Views.Extensions
+namespace NijhofAddIn.Revit.Commands.Tools.Views.Extensions
 {
     #region Bounding Box Extender
     public class BBE

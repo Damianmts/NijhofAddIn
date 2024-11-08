@@ -2,7 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.Attributes;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Views
+namespace NijhofAddIn.Revit.Commands.Tools.Views
 {
     [Transaction(TransactionMode.Manual)]
     public class RefreshView : IExternalCommand

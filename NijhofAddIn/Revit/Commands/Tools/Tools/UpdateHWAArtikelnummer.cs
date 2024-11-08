@@ -3,7 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 
-namespace NijhofAddIn.Revit.Commands.Tools.Wijzigen
+namespace NijhofAddIn.Revit.Commands.Tools.Tools
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]

@@ -50,7 +50,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            /// Vind het FamilySymbol voor de "GPS Riool" family
+            // Vind het FamilySymbol voor de "GPS Riool" family
             FamilySymbol gpsRioolSymbol = null;
             FilteredElementCollector symbolCollector = new FilteredElementCollector(doc);
             foreach (FamilySymbol fs in symbolCollector.OfClass(typeof(FamilySymbol)).OfCategory(BuiltInCategory.OST_GenericModel))
@@ -68,7 +68,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 return Result.Failed;
             }
 
-            /// Activeer het FamilySymbol binnen een transactie
+            // Activeer het FamilySymbol binnen een transactie
             using (Transaction trans = new Transaction(doc, "Activeer GPS Riool Symbol"))
             {
                 trans.Start();
@@ -80,36 +80,84 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 trans.Commit();
             }
 
-            /// Verzamel alle "SA_End Piece Cover_Circular_MEPcontent_DYKA PE Binnenriolering_Lid" elementen van de categorie "Pipe Fittings"
+            // Verzamel alle relevante Pipes met systeemclassificatie "M524" en die verticaal zijn
             FilteredElementCollector collector = new FilteredElementCollector(doc);
-            collector.OfClass(typeof(FamilyInstance)).OfCategory(BuiltInCategory.OST_PipeFitting);
+            collector.OfClass(typeof(Pipe)).OfCategory(BuiltInCategory.OST_PipeCurves);
 
-            IList<Element> PipeFittings = collector
-                .Where(x => x.Name == "SA_End Piece Cover_Circular_MEPcontent_DYKA PE Binnenriolering_Lid")
+            IList<Pipe> pipes = collector
+                .Cast<Pipe>()
+                .Where(pipe => pipe.LookupParameter("System Abbreviation")?.AsString()?.Contains("M524") == true)
+                .Where(pipe => IsVertical(pipe))
                 .ToList();
 
-            using (Transaction trans = new Transaction(doc, "Plaats element op Speciedeksel"))
+            int addedGPSPoints = 0; // Teller voor toegevoegde GPS-punten
+
+            using (Transaction trans = new Transaction(doc, "Plaats GPS op hoogste open connector"))
             {
                 trans.Start();
 
-                foreach (Element Speciedeksel in PipeFittings)
+                foreach (Pipe pipe in pipes)
                 {
-                    LocationPoint locationPoint = Speciedeksel.Location as LocationPoint;
-                    if (locationPoint != null)
+                    // Zoek de hoogste open connector
+                    Connector highestOpenConnector = GetHighestOpenConnector(pipe);
+
+                    if (highestOpenConnector != null)
                     {
-                        XYZ point = locationPoint.Point;
-                        /// Plaats de "GPS Lucht_Riool" op de locatie van het speciedeksel
-                        doc.Create.NewFamilyInstance(point, gpsRioolSymbol, StructuralType.NonStructural);
+                        // Plaats de GPS Riool family op de locatie van de hoogste open connector
+                        XYZ point = highestOpenConnector.Origin;
+                        FamilyInstance gpsInstance = doc.Create.NewFamilyInstance(point, gpsRioolSymbol, StructuralType.NonStructural);
+
+                        if (gpsInstance != null)
+                        {
+                            // Roep StoreConnectorMapping aan om de Speciedeksel en locatie op te slaan
+                            Synchroniseren sync = new Synchroniseren();
+                            sync.StoreConnectorMapping(gpsInstance, pipe.Id, point);
+
+                            addedGPSPoints++; // Verhoog de teller
+                        }
                     }
                 }
 
                 trans.Commit();
             }
 
+            // Geeft het aantal toegevoegde GPS-punten weer
+            TaskDialog.Show("Resultaat", $"Aantal toegevoegde GPS-punten: {addedGPSPoints}");
+
             return Result.Succeeded;
+        }
+
+        // Controleer of de pipe verticaal is op basis van de richting van de curve
+        private bool IsVertical(Pipe pipe)
+        {
+            Line line = (pipe.Location as LocationCurve).Curve as Line;
+            XYZ direction = line?.Direction;
+            return direction != null && Math.Abs(direction.Z) > Math.Abs(direction.X) && Math.Abs(direction.Z) > Math.Abs(direction.Y);
+        }
+
+        // Vind de hoogste open connector van de pipe
+        private Connector GetHighestOpenConnector(Pipe pipe)
+        {
+            Connector highestConnector = null;
+            double highestElevation = double.MinValue;
+
+            foreach (Connector connector in pipe.ConnectorManager.Connectors)
+            {
+                if (connector.ConnectorType == ConnectorType.End && !connector.IsConnected)
+                {
+                    if (connector.Origin.Z > highestElevation)
+                    {
+                        highestConnector = connector;
+                        highestElevation = connector.Origin.Z;
+                    }
+                }
+            }
+
+            return highestConnector;
         }
     }
     #endregion
+
 
     #region Add Lucht
     [Transaction(TransactionMode.Manual)]

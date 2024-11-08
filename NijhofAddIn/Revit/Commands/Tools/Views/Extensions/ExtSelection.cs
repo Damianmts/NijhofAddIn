@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Views.Extensions
+namespace NijhofAddIn.Revit.Commands.Tools.Views.Extensions
 {
     #region Element Selection Filter
     public class ESF : ISelectionFilter

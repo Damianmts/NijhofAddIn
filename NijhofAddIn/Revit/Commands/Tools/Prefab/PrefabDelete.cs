@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NijhofAddIn.Revit.Commands.Prefab.Maken
+namespace NijhofAddIn.Revit.Commands.Tools.Prefab
 {
     internal class PrefabDelete
     {
