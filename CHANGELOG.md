@@ -19,8 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.3.1] / 2024-00-00
 ### Added
-- 'HWA Lengte' verbind de speciedeksel met de buis.
+- 'HWA Lengte' verbind de speciedeksel weer met de buis.
 - Knop 'Aansluiten Elementen' bij tabblad 'Nijhof Tools'.
+- Knop 'Updaten' bij tabblad 'GPS Punten'.
 
 ### Changed
 - Meerdere knoppen verplaatst naar 'Nijhof Tools' tabblad

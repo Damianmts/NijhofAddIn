@@ -6,6 +6,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.Revit.DB.Mechanical;
 
 namespace NijhofAddIn.Revit.Commands.Tools.GPS
 {
@@ -80,41 +81,34 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 trans.Commit();
             }
 
-            // Verzamel alle relevante Pipes met systeemclassificatie "M524" en die verticaal zijn
+            // Verzamel alle MechanicalFittings die van het type 'Cap' zijn
             FilteredElementCollector collector = new FilteredElementCollector(doc);
-            collector.OfClass(typeof(Pipe)).OfCategory(BuiltInCategory.OST_PipeCurves);
-
-            IList<Pipe> pipes = collector
-                .Cast<Pipe>()
-                .Where(pipe => pipe.LookupParameter("System Abbreviation")?.AsString()?.Contains("M524") == true)
-                .Where(pipe => IsVertical(pipe))
+            IList<FamilyInstance> caps = collector
+                .OfClass(typeof(FamilyInstance))
+                .OfCategory(BuiltInCategory.OST_PipeFitting)
+                .Cast<FamilyInstance>()
+                .Where(fitting => fitting.MEPModel is MechanicalFitting mechanicalFitting && mechanicalFitting.PartType == PartType.Cap)
                 .ToList();
 
             int addedGPSPoints = 0; // Teller voor toegevoegde GPS-punten
 
-            using (Transaction trans = new Transaction(doc, "Plaats GPS op hoogste open connector"))
+            using (Transaction trans = new Transaction(doc, "Plaats GPS op Caps"))
             {
                 trans.Start();
 
-                foreach (Pipe pipe in pipes)
+                foreach (FamilyInstance cap in caps)
                 {
-                    // Zoek de hoogste open connector
-                    Connector highestOpenConnector = GetHighestOpenConnector(pipe);
+                    // Plaats de GPS Riool family op de locatie van de Cap-fitting
+                    XYZ point = cap.Location as LocationPoint != null ? ((LocationPoint)cap.Location).Point : XYZ.Zero;
+                    FamilyInstance gpsInstance = doc.Create.NewFamilyInstance(point, gpsRioolSymbol, StructuralType.NonStructural);
 
-                    if (highestOpenConnector != null)
+                    if (gpsInstance != null)
                     {
-                        // Plaats de GPS Riool family op de locatie van de hoogste open connector
-                        XYZ point = highestOpenConnector.Origin;
-                        FamilyInstance gpsInstance = doc.Create.NewFamilyInstance(point, gpsRioolSymbol, StructuralType.NonStructural);
+                        // Roep StoreConnectorMapping aan om de Speciedeksel en locatie op te slaan
+                        Synchroniseren sync = new Synchroniseren();
+                        sync.StoreConnectorMapping(gpsInstance, cap.Id, point);
 
-                        if (gpsInstance != null)
-                        {
-                            // Roep StoreConnectorMapping aan om de Speciedeksel en locatie op te slaan
-                            Synchroniseren sync = new Synchroniseren();
-                            sync.StoreConnectorMapping(gpsInstance, pipe.Id, point);
-
-                            addedGPSPoints++; // Verhoog de teller
-                        }
+                        addedGPSPoints++; // Verhoog de teller
                     }
                 }
 
@@ -126,38 +120,8 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
 
             return Result.Succeeded;
         }
-
-        // Controleer of de pipe verticaal is op basis van de richting van de curve
-        private bool IsVertical(Pipe pipe)
-        {
-            Line line = (pipe.Location as LocationCurve).Curve as Line;
-            XYZ direction = line?.Direction;
-            return direction != null && Math.Abs(direction.Z) > Math.Abs(direction.X) && Math.Abs(direction.Z) > Math.Abs(direction.Y);
-        }
-
-        // Vind de hoogste open connector van de pipe
-        private Connector GetHighestOpenConnector(Pipe pipe)
-        {
-            Connector highestConnector = null;
-            double highestElevation = double.MinValue;
-
-            foreach (Connector connector in pipe.ConnectorManager.Connectors)
-            {
-                if (connector.ConnectorType == ConnectorType.End && !connector.IsConnected)
-                {
-                    if (connector.Origin.Z > highestElevation)
-                    {
-                        highestConnector = connector;
-                        highestElevation = connector.Origin.Z;
-                    }
-                }
-            }
-
-            return highestConnector;
-        }
     }
     #endregion
-
 
     #region Add Lucht
     [Transaction(TransactionMode.Manual)]

@@ -1,5 +1,6 @@
 using Autodesk.Revit.UI;
 using NijhofAddIn.Resources;
+using NijhofAddIn.Revit.Commands.Tools.Tag;
 using NijhofAddIn.Revit.Core;
 using ricaun.Revit.UI;
 using System.Collections.Generic;
@@ -423,7 +424,7 @@ namespace NijhofAddIn.Revit
                 )
             {
                 ToolTip = "Past de opgaande lengte van HWA aan",
-                LongDescription = "Deze tool zoekt naar alle pipes van het type: HWA 6m, HWA 5,55m en PVC 5,55m en of deze ø80 of ø100 heeft en verandert de lengte naar 800mm.",
+                LongDescription = "Deze tool zoekt naar alle opgaande HWA pipes en veranderd die naar een lengte van 800mm.",
                 Image = iconSources["Regen16"]
             };
             #endregion
@@ -456,13 +457,14 @@ namespace NijhofAddIn.Revit
                 "Muursparingen Toevoegen",
                 "Muur",
                 "Voegt sparingen in de muren toe",
-                "Zoekt naar waar VWA of HWA clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
-                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddMuur",
+                "LET OP! Werkt alleen met Revit modellen/ links. Niet met IFC. Zoekt naar waar VWA of HWA clasht met een muur en zet daar een sparing neer. Gebruiker moet nog controleren!",
+                "NijhofAddIn.Revit.Core.Foutmelding",
                 null,
                 iconSources["MuurSparing32"],
                 "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#muur-sparingen"
             );
-            buttonMS.Enabled = false;
+
+            buttonMS.Enabled = true;
             #endregion
 
             #region pushButton (Vloer Sparingen)
@@ -471,13 +473,14 @@ namespace NijhofAddIn.Revit
                 "Vloersparingen Toevoegen",
                 "Vloer",
                 "Voegt sparingen in de vloeren toe",
-                "Zoekt naar waar een VWA of HWA pipe clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
-                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddVloer",
+                "LET OP! Werkt alleen met Revit modellen/ links. Niet met IFC. Zoekt naar waar een VWA of HWA pipe clasht met een vloer en zet daar een sparing neer. Gebruiker moet nog controleren!",
+                "NijhofAddIn.Revit.Core.Foutmelding",
                 null,
                 iconSources["VloerSparing32"],
                 "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#balk-sparingen"
             );
-            buttonVS.Enabled = false;
+
+            buttonVS.Enabled = true;
             #endregion
 
             #region pushButton (Balk Sparingen)
@@ -486,13 +489,14 @@ namespace NijhofAddIn.Revit
                 "Balksparingen Toevoegen",
                 "Balk",
                 "Voegt sparingen in de balken toe",
-                "Zoekt naar waar een VWA of HWA pipe clasht met een funderingsbalk en zet daar een sparing neer. Gebruiker moet nog controleren!",
-                "NijhofAddIn.Revit.Commands.Tools.Sparingen.AddBalk",
+                "LET OP! Werkt alleen met Revit modellen/ links. Niet met IFC. Zoekt naar waar een VWA of HWA pipe clasht met een funderingsbalk en zet daar een sparing neer. Gebruiker moet nog controleren!",
+                "NijhofAddIn.Revit.Core.Foutmelding",
                 null,
                 iconSources["BalkSparing32"],
                 "https://github.com/Damianmts/NijhofAddIn/wiki/Sparingen#balk-sparingen"
             );
-            buttonBS.Enabled = false;
+
+            buttonBS.Enabled = true;
             #endregion
             #endregion
 
@@ -918,14 +922,12 @@ namespace NijhofAddIn.Revit
             #endregion
 
             #region pushButton (GPS Punten Synchroniseren)
-            panel4.AddSeparator();
-
             PushButton buttonSync = CreatePushButton(
                 panel4,
                 "GPS Update",
                 "Update",
-                "Update de GPS punten met de locatie van de elementen",
-                "Update de GPS punten met de locatie van de elementen",
+                "Update de GPS punten",
+                "Alle GPS punten die met 'GPS Toevoegen' zijn geplaatst worden geüpdate zodat ze weer op de juiste plek staan",
                 "NijhofAddIn.Revit.Commands.Tools.GPS.Synchroniseren",
                 null,
                 iconSources["Refresh32"],
@@ -1052,6 +1054,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
+            btndataVWAtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de tweede knop vwa
             PushButtonData btndataVWAtag35 = new PushButtonData(
                 "VWA 3.5mm",
@@ -1064,6 +1068,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["bruinTag16"]
             };
+
+            btndataVWAtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop vwa
             PushButtonData btndataVWAtag50 = new PushButtonData(
@@ -1078,6 +1084,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
+            btndataVWAtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de vierde knop vwa
             PushButtonData btndataVWAtag75 = new PushButtonData(
                 "VWA 7.5mm",
@@ -1090,6 +1098,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["bruinTag16"]
             };
+
+            btndataVWAtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de vijfde knop vwa
             PushButtonData btndataVWAtag100 = new PushButtonData(
@@ -1104,6 +1114,7 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
+            btndataVWAtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
             #endregion
 
             #region pushButtondata (HWA Lengte)
@@ -1120,6 +1131,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
+            btndataHWAtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de tweede knop hwa
             PushButtonData btndataHWAtag35 = new PushButtonData(
                 "HWA 3.5mm",
@@ -1132,6 +1145,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["groenTag16"]
             };
+
+            btndataHWAtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop hwa
             PushButtonData btndataHWAtag50 = new PushButtonData(
@@ -1146,6 +1161,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
+            btndataHWAtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de vierde knop hwa
             PushButtonData btndataHWAtag75 = new PushButtonData(
                 "HWA 7.5mm",
@@ -1159,6 +1176,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
+            btndataHWAtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de vijfde knop hwa
             PushButtonData btndataHWAtag100 = new PushButtonData(
                 "HWA 10mm",
@@ -1171,6 +1190,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["groenTag16"]
             };
+
+            btndataHWAtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             #endregion
 
@@ -1188,6 +1209,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
+            btndataMVtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de tweede knop mv
             PushButtonData btndataMVtag35 = new PushButtonData(
                 "MV 3.5mm",
@@ -1200,6 +1223,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["blauwTag16"]
             };
+
+            btndataMVtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop mv
             PushButtonData btndataMVtag50 = new PushButtonData(
@@ -1214,6 +1239,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
+            btndataMVtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de vierde knop mv
             PushButtonData btndataMVtag75 = new PushButtonData(
                 "MV 7.5mm",
@@ -1227,6 +1254,8 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
+            btndataMVtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
+
             /// Knopgegevens instellen voor de vijfde knop mv
             PushButtonData btndataMVtag100 = new PushButtonData(
                 "MV 10mm",
@@ -1239,6 +1268,8 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["blauwTag16"]
             };
+
+            btndataMVtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             #endregion
 
