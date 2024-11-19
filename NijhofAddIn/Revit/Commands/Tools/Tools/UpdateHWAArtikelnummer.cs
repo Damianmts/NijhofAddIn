@@ -69,15 +69,15 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
             if (totalPipesToChange == 0)
             {
-                TaskDialog.Show("Resultaat", "Geen pijpen gevonden om te controleren.");
+                TaskDialog.Show("Resultaat", "Geen pijpen gevonden om te updaten.");
             }
             else if (changedPipesCount > 0)
             {
-                TaskDialog.Show("Resultaat", $"{changedPipesCount} pijpen zijn bijgewerkt.");
+                TaskDialog.Show("Resultaat", $"{changedPipesCount} pijpen zijn geüpdate.");
             }
             else
             {
-                TaskDialog.Show("Resultaat", "Alles is al geüpdatet.");
+                TaskDialog.Show("Resultaat", "Alles is al geüpdate.");
             }
 
             return Result.Succeeded;

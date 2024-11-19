@@ -51,7 +51,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            // Vind het FamilySymbol voor de "GPS Riool" family
+            /// Vind het FamilySymbol voor de "GPS Riool" family
             FamilySymbol gpsRioolSymbol = null;
             FilteredElementCollector symbolCollector = new FilteredElementCollector(doc);
             foreach (FamilySymbol fs in symbolCollector.OfClass(typeof(FamilySymbol)).OfCategory(BuiltInCategory.OST_GenericModel))
@@ -69,7 +69,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 return Result.Failed;
             }
 
-            // Activeer het FamilySymbol binnen een transactie
+            /// Activeer het FamilySymbol binnen een transactie
             using (Transaction trans = new Transaction(doc, "Activeer GPS Riool Symbol"))
             {
                 trans.Start();
@@ -81,7 +81,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 trans.Commit();
             }
 
-            // Verzamel alle MechanicalFittings die van het type 'Cap' zijn
+            /// Verzamel alle MechanicalFittings die van het type 'Cap' zijn
             FilteredElementCollector collector = new FilteredElementCollector(doc);
             IList<FamilyInstance> caps = collector
                 .OfClass(typeof(FamilyInstance))
@@ -90,7 +90,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                 .Where(fitting => fitting.MEPModel is MechanicalFitting mechanicalFitting && mechanicalFitting.PartType == PartType.Cap)
                 .ToList();
 
-            int addedGPSPoints = 0; // Teller voor toegevoegde GPS-punten
+            int addedGPSPoints = 0; /// Teller voor toegevoegde GPS-punten
 
             using (Transaction trans = new Transaction(doc, "Plaats GPS op Caps"))
             {
@@ -98,24 +98,24 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
 
                 foreach (FamilyInstance cap in caps)
                 {
-                    // Plaats de GPS Riool family op de locatie van de Cap-fitting
+                    /// Plaats de GPS Riool family op de locatie van de Cap-fitting
                     XYZ point = cap.Location as LocationPoint != null ? ((LocationPoint)cap.Location).Point : XYZ.Zero;
                     FamilyInstance gpsInstance = doc.Create.NewFamilyInstance(point, gpsRioolSymbol, StructuralType.NonStructural);
 
                     if (gpsInstance != null)
                     {
-                        // Roep StoreConnectorMapping aan om de Speciedeksel en locatie op te slaan
+                        /// Roep StoreConnectorMapping aan om de Speciedeksel en locatie op te slaan
                         Synchroniseren sync = new Synchroniseren();
                         sync.StoreConnectorMapping(gpsInstance, cap.Id, point);
 
-                        addedGPSPoints++; // Verhoog de teller
+                        addedGPSPoints++; /// Verhoog de teller
                     }
                 }
 
                 trans.Commit();
             }
 
-            // Geeft het aantal toegevoegde GPS-punten weer
+            /// Geeft het aantal toegevoegde GPS-punten weer
             TaskDialog.Show("Resultaat", $"Aantal toegevoegde GPS-punten: {addedGPSPoints}");
 
             return Result.Succeeded;
