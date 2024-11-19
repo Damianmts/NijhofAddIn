@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System.Drawing.Imaging;
 
 namespace NijhofAddIn.Revit.Core
 {
@@ -9,23 +9,20 @@ namespace NijhofAddIn.Revit.Core
     {
         public BitmapSource GetImageSource(Image img)
         {
-            BitmapImage bmp = new BitmapImage();
-
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
                 img.Save(ms, ImageFormat.Png);
                 ms.Position = 0;
 
+                var bmp = new BitmapImage();
                 bmp.BeginInit();
-
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
-                bmp.UriSource = null;
                 bmp.StreamSource = ms;
-
                 bmp.EndInit();
-            }
+                bmp.Freeze();
 
-            return bmp;
+                return bmp;
+            }
         }
     }
 }

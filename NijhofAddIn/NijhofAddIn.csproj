@@ -79,7 +79,7 @@
 
   <PropertyGroup>
     <PackageId>NijhofAddIn</PackageId>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -105,7 +105,58 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Revit\Commands\Content\ThumbnailExtractor.cs" />
+    <Compile Remove="Revit\Commands\Tools\Content\ThumbnailExtractor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\addblauwgps32.png" />
+    <None Remove="Resources\addgeelgps32.png" />
+    <None Remove="Resources\addgroengps32.png" />
+    <None Remove="Resources\addmagentagps32.png" />
+    <None Remove="Resources\addoranjegps32.png" />
+    <None Remove="Resources\addpipelines32.png" />
+    <None Remove="Resources\addroodgps32.png" />
+    <None Remove="Resources\addzwartgps32.png" />
+    <None Remove="Resources\article16.png" />
+    <None Remove="Resources\basket32.png" />
+    <None Remove="Resources\blauwgps32.png" />
+    <None Remove="Resources\blauwtag16.png" />
+    <None Remove="Resources\blauwtag32.png" />
+    <None Remove="Resources\bruintag16.png" />
+    <None Remove="Resources\bruintag32.png" />
+    <None Remove="Resources\concrete32.png" />
+    <None Remove="Resources\connect32.png" />
+    <None Remove="Resources\delblauwgps32.png" />
+    <None Remove="Resources\deletepipelines32.png" />
+    <None Remove="Resources\delgeelgps32.png" />
+    <None Remove="Resources\delgroengps32.png" />
+    <None Remove="Resources\delmagentagps32.png" />
+    <None Remove="Resources\deloranjegps32.png" />
+    <None Remove="Resources\delroodgps32.png" />
+    <None Remove="Resources\delzwartgps32.png" />
+    <None Remove="Resources\floor32.png" />
+    <None Remove="Resources\geelgps32.png" />
+    <None Remove="Resources\groengps32.png" />
+    <None Remove="Resources\groentag16.png" />
+    <None Remove="Resources\groentag32.png" />
+    <None Remove="Resources\info32.png" />
+    <None Remove="Resources\laadzwartgps32.png" />
+    <None Remove="Resources\length32.png" />
+    <None Remove="Resources\library32.png" />
+    <None Remove="Resources\magentagps32.png" />
+    <None Remove="Resources\mainzwartgps32.png" />
+    <None Remove="Resources\manhole16.png" />
+    <None Remove="Resources\newpipelines32.png" />
+    <None Remove="Resources\oranjegps32.png" />
+    <None Remove="Resources\pipelines32.png" />
+    <None Remove="Resources\prototype32.png" />
+    <None Remove="Resources\question32.png" />
+    <None Remove="Resources\rain16.png" />
+    <None Remove="Resources\refresh32.png" />
+    <None Remove="Resources\roodgps32.png" />
+    <None Remove="Resources\saw32.png" />
+    <None Remove="Resources\wall32.png" />
+    <None Remove="Resources\_3d32.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -152,10 +203,10 @@
   <ItemGroup>
     <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*" IncludeAssets="build; compile" PrivateAssets="All" />
     <PackageReference Include="ricaun.Revit.UI.StatusBar" Version="1.0.0" />
-    <PackageReference Include="Syncfusion.Licensing" Version="27.1.53" />
-    <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="27.1.53" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="27.1.53" />
-    <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="27.1.53" />
+    <PackageReference Include="Syncfusion.Licensing" Version="27.1.57" />
+    <PackageReference Include="Syncfusion.SfBusyIndicator.WPF" Version="27.1.57" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="27.1.57" />
+    <PackageReference Include="Syncfusion.SfTreeView.WPF" Version="27.1.57" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
@@ -176,21 +227,36 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\3d-16.png" />
-    <Resource Include="Resources\3d-32.png" />
-    <Resource Include="Resources\article-16.png" />
-    <Resource Include="Resources\article-32.png" />
+    <Resource Include="Resources\addblauwgps32.png" />
+    <Resource Include="Resources\addgeelgps32.png" />
+    <Resource Include="Resources\addgroengps32.png" />
+    <Resource Include="Resources\addmagentagps32.png" />
+    <Resource Include="Resources\addoranjegps32.png" />
+    <Resource Include="Resources\addpipelines32.png" />
+    <Resource Include="Resources\addroodgps32.png" />
+    <Resource Include="Resources\addzwartgps32.png" />
+    <Resource Include="Resources\article16.png" />
     <Resource Include="Resources\basket16.png" />
     <Resource Include="Resources\basket32.png" />
     <Resource Include="Resources\bbediening_32.png" />
     <Resource Include="Resources\Bedraad_32.png" />
+    <Resource Include="Resources\blauwgps32.png" />
+    <Resource Include="Resources\blauwtag16.png" />
+    <Resource Include="Resources\blauwtag32.png" />
+    <Resource Include="Resources\bruintag16.png" />
+    <Resource Include="Resources\bruintag32.png" />
     <Resource Include="Resources\CAP_32.png" />
     <Resource Include="Resources\centraaldoos_32.png" />
-    <Resource Include="Resources\concrete-16.png" />
-    <Resource Include="Resources\concrete-32.png" />
-    <Resource Include="Resources\delete-16.png" />
-    <Resource Include="Resources\delete-32.png" />
-    <Resource Include="Resources\delete_32.png" />
+    <Resource Include="Resources\concrete32.png" />
+    <Resource Include="Resources\connect32.png" />
+    <Resource Include="Resources\delblauwgps32.png" />
+    <Resource Include="Resources\deletepipelines32.png" />
+    <Resource Include="Resources\delgeelgps32.png" />
+    <Resource Include="Resources\delgroengps32.png" />
+    <Resource Include="Resources\delmagentagps32.png" />
+    <Resource Include="Resources\deloranjegps32.png" />
+    <Resource Include="Resources\delroodgps32.png" />
+    <Resource Include="Resources\delzwartgps32.png" />
     <Resource Include="Resources\deurbel_32.png" />
     <Resource Include="Resources\dimmer_32.png" />
     <Resource Include="Resources\dingdong_32.png" />
@@ -205,61 +271,39 @@
     <Resource Include="Resources\enkelpolig_32.png" />
     <Resource Include="Resources\error-16.png" />
     <Resource Include="Resources\error-32.png" />
-    <Resource Include="Resources\export-excel-16.png" />
-    <Resource Include="Resources\export-excel-32.png" />
-    <Resource Include="Resources\gift16.png" />
-    <Resource Include="Resources\gift32.png" />
-    <Resource Include="Resources\gps-16.png" />
-    <Resource Include="Resources\gps-32.png" />
-    <Resource Include="Resources\gpsdel-16.png" />
-    <Resource Include="Resources\gpsdel-32.png" />
-    <Resource Include="Resources\gpsdel_32.png" />
-    <Resource Include="Resources\gpselektra_32.png" />
-    <Resource Include="Resources\gpsimport-16.png" />
-    <Resource Include="Resources\gpsimport-32.png" />
-    <Resource Include="Resources\gpsinladen_32.png" />
-    <Resource Include="Resources\gpsintercom_32.png" />
-    <Resource Include="Resources\gpskoudwater_32.png" />
-    <Resource Include="Resources\gpsmeterkast_32.png" />
-    <Resource Include="Resources\gpsrioollucht_32.png" />
-    <Resource Include="Resources\gpswarmwater_32.png" />
-    <Resource Include="Resources\gps_32.png" />
+    <Resource Include="Resources\floor32.png" />
+    <Resource Include="Resources\geelgps32.png" />
+    <Resource Include="Resources\groengps32.png" />
+    <Resource Include="Resources\groentag16.png" />
+    <Resource Include="Resources\groentag32.png" />
     <Resource Include="Resources\grondkabel_32.png" />
     <Resource Include="Resources\inbouwspot_32.png" />
-    <Resource Include="Resources\info-16.png" />
-    <Resource Include="Resources\info-32.png" />
+    <Resource Include="Resources\info32.png" />
     <Resource Include="Resources\intercom_32.png" />
     <Resource Include="Resources\jaloezie_32.png" />
     <Resource Include="Resources\kruis_32.png" />
-    <Resource Include="Resources\length16.png" />
+    <Resource Include="Resources\laadzwartgps32.png" />
     <Resource Include="Resources\length32.png" />
-    <Resource Include="Resources\library-16.png" />
-    <Resource Include="Resources\library-32.png" />
-    <Resource Include="Resources\list-16.png" />
+    <Resource Include="Resources\library32.png" />
     <Resource Include="Resources\list-32.png" />
-    <Resource Include="Resources\manhole-16.png" />
-    <Resource Include="Resources\manhole-32.png" />
+    <Resource Include="Resources\magentagps32.png" />
+    <Resource Include="Resources\mainzwartgps32.png" />
+    <Resource Include="Resources\manhole16.png" />
+    <Resource Include="Resources\newpipelines32.png" />
     <Resource Include="Resources\Onbedraad_32.png" />
-    <Resource Include="Resources\pin-16.png" />
-    <Resource Include="Resources\pin-32.png" />
+    <Resource Include="Resources\oranjegps32.png" />
+    <Resource Include="Resources\pipelines32.png" />
     <Resource Include="Resources\plafondlicht_32.png" />
-    <Resource Include="Resources\properties-16.png" />
-    <Resource Include="Resources\properties-32.png" />
-    <Resource Include="Resources\question-16.png" />
-    <Resource Include="Resources\question-32.png" />
+    <Resource Include="Resources\prototype32.png" />
+    <Resource Include="Resources\question32.png" />
     <Resource Include="Resources\rain16.png" />
-    <Resource Include="Resources\rain32.png" />
-    <Resource Include="Resources\reset-16.png" />
-    <Resource Include="Resources\reset-32.png" />
+    <Resource Include="Resources\refresh32.png" />
+    <Resource Include="Resources\roodgps32.png" />
     <Resource Include="Resources\rookmelder_32.png" />
-    <Resource Include="Resources\saw16.png" />
     <Resource Include="Resources\saw32.png" />
     <Resource Include="Resources\serie_32.png" />
     <Resource Include="Resources\switch-32.png" />
-    <Resource Include="Resources\tag-16.png" />
-    <Resource Include="Resources\tag-32.png" />
-    <Resource Include="Resources\wall-16.png" />
-    <Resource Include="Resources\wall-32.png" />
+    <Resource Include="Resources\wall32.png" />
     <Resource Include="Resources\wandlicht_32.png" />
     <Resource Include="Resources\WCDDubbel_32.png" />
     <Resource Include="Resources\WCDEnkel_32.png" />
@@ -272,6 +316,7 @@
     <Resource Include="Resources\wissel2x_32.png" />
     <Resource Include="Resources\wisseldimmer_32.png" />
     <Resource Include="Resources\wissel_32.png" />
+    <Resource Include="Resources\_3d32.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -287,6 +332,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Icons.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Revit\Commands\Tools\Schedules\" />
   </ItemGroup>
 
 </Project>

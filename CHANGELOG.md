@@ -5,16 +5,39 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [UNRELEASED]
-- Schakelaar: Beweging Wand
-- Schakelaar: Beweging Plafond
-- Schakelaar: Schemer
+- Schakelaar: Beweging Wand.
+- Schakelaar: Beweging Plafond.
+- Schakelaar: Schemer.
 
-- Berekenfunctie en toebehoren voor water (wachttijd,etc)
-- Berekenfunctie en toebehoren voor riool 
-- Berekenfunctie en toebehoren voor lucht
+- Berekenfunctie en toebehoren voor water (wachttijd,etc).
+- Berekenfunctie en toebehoren voor riool .
+- Berekenfunctie en toebehoren voor lucht.
 
-- UI verbeteren
-- Optimaliseren
+- Functie polderexpansiestuk omzetten naar 'Pipe Fitting'.
+- Functie om Blok toe te voegen aan een prefabset.
+
+- UI verbeteren.
+- Optimaliseren.
+----------------------------------------------------------------------------------------------------
+
+## [1.3.1] / 2024-00-00
+### Added
+- 'HWA Lengte' verbind de speciedeksel weer met de buis.
+- Knop 'Aansluiten Elementen' bij tabblad 'Nijhof Tools'.
+- Knop 'Updaten' bij tabblad 'GPS Punten'.
+
+### Changed
+- Meerdere knoppen verplaatst naar 'Nijhof Tools' tabblad
+- Icons van knoppen geüpdate
+
+### Fixed
+- 'HWA Artikelnummer' geeft nu de juiste buis het goeie artikelnummer.
+
+### Removed
+- Tabblad 'Nijhof Prefab'.
+- Paneel 'Berekenen' bij tabblad 'Nijhof Tools'.
+- Knop 'Rekenpunten Verwijderen' bij tabblad 'Nijhof Tools'.
+- Knop 'Klik op mij' bij tabblad 'Nijhof Tools'.
 
 ----------------------------------------------------------------------------------------------------
 
