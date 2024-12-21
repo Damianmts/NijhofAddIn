@@ -41,7 +41,6 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                             if (topConnector == null) continue;
 
                             Connector fittingConnector = GetConnectedFittingConnector(topConnector);
-                            if (fittingConnector == null) continue;
 
                             double desiredLength = 800 / 304.8; // Revit gebruikt voet
                             double currentLength = pipeLine.Length;
@@ -54,13 +53,25 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
                             allPipesAlready800 = false; // Er is ten minste één pijp die nog niet 800 mm is
 
-                            XYZ startPoint = pipeLine.GetEndPoint(0);
-                            XYZ newEndPoint = (topConnector.Origin.Z > startPoint.Z)
-                                ? new XYZ(topConnector.Origin.X, topConnector.Origin.Y, startPoint.Z + desiredLength)
-                                : new XYZ(startPoint.X, startPoint.Y, startPoint.Z + desiredLength);
+                            if (fittingConnector != null)
+                            {
+                                // Buislengte aanpassen en opnieuw verbinden met fitting
+                                XYZ startPoint = pipeLine.GetEndPoint(0);
+                                XYZ newEndPoint = (topConnector.Origin.Z > startPoint.Z)
+                                    ? new XYZ(topConnector.Origin.X, topConnector.Origin.Y, startPoint.Z + desiredLength)
+                                    : new XYZ(startPoint.X, startPoint.Y, startPoint.Z + desiredLength);
 
-                            (pipe.Location as LocationCurve).Curve = Line.CreateBound(startPoint, newEndPoint);
-                            MoveAndReconnectElements(doc, topConnector, fittingConnector, newEndPoint.Z);
+                                (pipe.Location as LocationCurve).Curve = Line.CreateBound(startPoint, newEndPoint);
+                                MoveAndReconnectElements(doc, topConnector, fittingConnector, newEndPoint.Z);
+                            }
+                            else
+                            {
+                                // Geen fitting aanwezig, alleen de lengte aanpassen
+                                XYZ startPoint = pipeLine.GetEndPoint(0);
+                                XYZ newEndPoint = new XYZ(startPoint.X, startPoint.Y, startPoint.Z + desiredLength);
+
+                                (pipe.Location as LocationCurve).Curve = Line.CreateBound(startPoint, newEndPoint);
+                            }
 
                             modifiedPipesCount++;
                         }

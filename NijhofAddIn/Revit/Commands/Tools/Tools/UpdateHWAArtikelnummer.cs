@@ -16,6 +16,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
             int changedPipesCount = 0;
             int totalPipesToChange = 0;
+            int nonDykaPipesCount = 0;
 
             using (Transaction trans = new Transaction(doc, "Vervang Pipe Types en Update Parameters"))
             {
@@ -33,6 +34,13 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                         string systemAbbreviationValue = systemAbbreviationParam.AsString();
                         if (systemAbbreviationValue == "M521" || systemAbbreviationValue == "M5210")
                         {
+                            ElementType pipeType = doc.GetElement(pipe.GetTypeId()) as ElementType;
+                            if (pipeType == null || (!pipeType.Name.Contains("DYKA") && !pipeType.Name.Contains("Dyka")))
+                            {
+                                nonDykaPipesCount++;
+                                continue;
+                            }
+
                             Parameter sizeParam = pipe.LookupParameter("Size");
                             if (sizeParam != null)
                             {
@@ -65,6 +73,11 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                 }
 
                 trans.Commit();
+            }
+
+            if (nonDykaPipesCount > 0)
+            {
+                TaskDialog.Show("Waarschuwing", $"{nonDykaPipesCount} HWA-buizen zijn niet van DYKA en zijn overgeslagen.");
             }
 
             if (totalPipesToChange == 0)

@@ -4,14 +4,12 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NijhofAddIn.Revit.Commands.Tools.Tools
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    internal class OntstoppingsstukOmzetten : IExternalCommand
+    internal class AccessoryOmzetten : IExternalCommand
     {
         public Result Execute(ExternalCommandData extCmdData, ref string msg, ElementSet elmtSet)
         {
@@ -21,40 +19,53 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
             try
             {
-                while (OntstoppingsStukken(doc).Count > 0)
+                // Select an element
+                var selectedReference = uiDoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, "Selecteer een element om te converteren naar een fitting.");
+                if (selectedReference == null)
                 {
-                    var ontstoppingsstuk = OntstoppingsStukken(doc);
-                    //TaskDialog.Show("mes", "aantal gevonden stukken: " + ontstoppingsstuk.Count.ToString());
-                    FamilySymbol symbol = doc.GetElement(ontstoppingsstuk[0].GetTypeId()) as FamilySymbol;
+                    return Result.Failed;
+                }
+
+                Element element = doc.GetElement(selectedReference.ElementId);
+
+                // Check if the element is a FamilyInstance
+                if (element is FamilyInstance familyInstance)
+                {
+                    FamilySymbol symbol = doc.GetElement(familyInstance.GetTypeId()) as FamilySymbol;
                     Family family = symbol.Family;
 
-                    // Open de bewerkingsmodus voor de nieuwe familie
+                    // Cache familie bewerkingsdocument
                     Document familyDoc = doc.EditFamily(family);
                     Family f = familyDoc.OwnerFamily;
-                    Category c = f.FamilyCategory;
-                    var partTypeParam = f.get_Parameter(BuiltInParameter.FAMILY_CONTENT_PART_TYPE);
 
-                    using (var t = new Transaction(doc, "NT - Onstp modify"))
+                    // Minimaliseer transacties
+                    using (Transaction t = new Transaction(familyDoc, "Change Category"))
                     {
                         t.Start();
 
+                        // Update category
                         f.FamilyCategoryId = new ElementId(BuiltInCategory.OST_PipeFitting);
 
                         t.Commit();
                     }
 
-                    f = familyDoc.LoadFamily(doc, new CustomFamilyLoadOption());
+                    // Gebruik een snelle FamilyLoad-optie
+                    familyDoc.LoadFamily(doc, new CustomFamilyLoadOption());
                     familyDoc.Close(false);
-                }
 
+                    return Result.Succeeded;
+                }
+                else
+                {
+                    msg = "Het geselecteerde element is geen geldig accessoire.";
+                    return Result.Failed;
+                }
             }
             catch (Exception e)
             {
-                TaskDialog.Show("Error", "Er zijn geen onstoppingsstukken met category Pipe Accessories aanwezig in het model.");
                 msg = e.Message;
-                return Result.Cancelled;
+                return Result.Failed;
             }
-            return Result.Succeeded;
         }
 
         public class CustomFamilyLoadOption : IFamilyLoadOptions
@@ -71,19 +82,6 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                 overwriteParameterValues = true;
                 return true;
             }
-        }
-
-        public List<Element> OntstoppingsStukken(Document doc)
-        {
-            //zoek een ontstoppingsstukken die pipe accesory zijn
-            List<Element> ontstoppingsstuk = new FilteredElementCollector(doc)
-                .OfCategory(BuiltInCategory.OST_PipeAccessory)
-                .WhereElementIsNotElementType()
-                .Where(e => e.Name.Contains("Ontst") && e.Name.Contains("stuk") && (e.Name.Contains("Manchet") || e.Name.Contains("schroefdeksel")))
-                .Cast<Element>()
-                .ToList();
-
-            return ontstoppingsstuk;
         }
     }
 }

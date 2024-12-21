@@ -383,18 +383,17 @@ namespace NijhofAddIn.Revit
             panel2.AddSeparator(); //Voegt een verticale lijn toe
             #endregion
 
-            #region pushButtondata (Ontstoppingsstuk Omzetten)
+            #region pushButtondata (Accessory Omzetten)
             PushButtonData btndataOntstop = new PushButtonData
                 (
-                "Onstoppingsstuk aanpassen",
-                "Ontstoppingsstuk",
+                "Accessory Omzetten",
+                "Accessory",
                 Assembly.GetExecutingAssembly().Location,
-                "NijhofAddIn.Revit.Commands.Tools.Tools.OntstoppingsstukOmzetten"
+                "NijhofAddIn.Revit.Commands.Tools.Tools.AccessoryOmzetten"
                 )
             {
-                ToolTip = "Verandert de 'Family Type' van alle Ontstoppingsstukken",
-                LongDescription = "Deze functie zoekt in het hele model naar Manchet Ontstoppingsstukken van category Pipe Accessories. Deze zet hij om naar Pipe fittings" +
-                                  "en laad deze in het model. Ontstoppingsstukken zonder manchet worden niet omgezet.",
+                ToolTip = "Verandert de 'Family Type' van alle het geselecteerde element",
+                LongDescription = "Met deze functie kan je elementen/ family's van category 'Pipe Accessories' omzetten naar 'Pipe Fittings'",
                 Image = iconSources["Ontstop16"]
             };
             #endregion
