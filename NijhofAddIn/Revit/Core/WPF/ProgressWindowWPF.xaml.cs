@@ -45,7 +45,7 @@ namespace NijhofAddIn.Revit.Core.WPF
         {
             this.Dispatcher.Invoke(() =>
             {
-                statusTextBlock.Text = $"{category} Taggen...";
+                statusTextBlock.Text = $"{category}";
             });
         }
     }

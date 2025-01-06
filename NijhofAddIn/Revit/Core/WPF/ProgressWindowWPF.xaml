@@ -6,6 +6,20 @@
         xmlns:local="clr-namespace:NijhofAddIn.Revit.Core.WPF"
         mc:Ignorable="d"
         Title="Tag Groepnummers" Height="100" Width="350" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Aangepaste stijl voor ProgressBar -->
+        <Style TargetType="ProgressBar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Grid x:Name="PART_Track" Background="#FFE5E5E5" SnapsToDevicePixels="true">
+                            <Rectangle x:Name="PART_Indicator" Fill="#f5d105" HorizontalAlignment="Left" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <!-- De tekst wordt dynamisch bijgewerkt in de code-behind -->
         <TextBlock Name="statusTextBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" FontSize="14" />

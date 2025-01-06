@@ -1,6 +1,5 @@
-﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using NijhofAddIn.Revit.Commands.Elektra.Tag;
 using NijhofAddIn.Revit.Core.WPF;
 using System;
 using System.Collections.Generic;
@@ -20,6 +19,8 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
         private TagEventHandler _handler;
         private readonly ILogger _logger;
 
+        public GroepTag() : this(null) { }
+
         public GroepTag(ILogger logger = null)
         {
             _logger = logger ?? new DefaultLogger();
@@ -36,7 +37,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
         {
             try
             {
-                InitializeComponents(commandData);
+                InitializeComponents();
                 ProcessCategories(commandData.Application.ActiveUIDocument.Document);
                 return Result.Succeeded;
             }
@@ -48,7 +49,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
             }
         }
 
-        private void InitializeComponents(ExternalCommandData commandData)
+        private void InitializeComponents()
         {
             _progressWindow = new ProgressWindowWPF();
             _handler = new TagEventHandler();
@@ -107,7 +108,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
                     var groepParam = el.LookupParameter("Groep");
                     return groepParam != null && !string.IsNullOrWhiteSpace(groepParam.AsString());
                 })
-                .ToList();
+                .ToList(); // Zorg ervoor dat dit een List<Element> is
 
             // Haal alle bestaande tags op voor deze view die de 'Groep' parameter tonen
             var existingGroupTags = new FilteredElementCollector(doc, doc.ActiveView.Id)
@@ -119,12 +120,12 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
                     Parameter parameterToCheck = tag.LookupParameter("Parameter to display");
                     return parameterToCheck != null && parameterToCheck.AsString() == "Groep";
                 })
-                .ToList();
+                .ToList(); // Zorg ervoor dat dit een List<IndependentTag> is
 
             // Filter elementen die nog geen Groep tag hebben
-            var untaggedElements = elementsWithGroup.Where(element =>
-                !existingGroupTags.Any(tag => tag.GetTaggedLocalElementIds().Contains(element.Id))
-                .ToList());
+            var untaggedElements = elementsWithGroup
+                .Where(element => !existingGroupTags.Any(tag => tag.GetTaggedLocalElementIds().Contains(element.Id)))
+                .ToList(); // Dit zet het resultaat om in een List<Element>
 
             return untaggedElements;
         }
@@ -176,7 +177,7 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            _handler.Operation = (UIApplication app) =>
+            _handler.Operation = _ =>
             {
                 using (Transaction tx = new Transaction(doc, "Tag Elements"))
                 {
@@ -192,7 +193,6 @@ namespace NijhofAddIn.Revit.Commands.Elektra.Tag
                             catch (Exception ex)
                             {
                                 _logger.LogError($"Fout bij het taggen van element {element.Id}: {ex.Message}");
-                                continue;
                             }
                         }
                         tx.Commit();
