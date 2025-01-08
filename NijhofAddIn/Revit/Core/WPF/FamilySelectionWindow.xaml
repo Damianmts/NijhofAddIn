@@ -65,7 +65,6 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
 
-
         <!-- ListView Style -->
         <Style TargetType="ListView">
             <Setter Property="BorderThickness" Value="0"/>
@@ -98,7 +97,7 @@
             </Setter>
         </Style>
 
-        <!-- Button Style -->
+        <!-- Button Base Style -->
         <Style x:Key="ButtonBaseStyle" TargetType="Button">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
@@ -137,6 +136,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Quality Button Style -->
+        <Style x:Key="QualityButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                    <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid Margin="5">
@@ -157,7 +166,7 @@
                       Style="{StaticResource HeaderTextStyle}"
                       Grid.Row="0" FontFamily="Arial Unicode MS"/>
 
-            <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid Grid.Row="1" Margin="0,5,0,0">
                 <TextBox x:Name="SearchBox"
                         KeyUp="SearchBox_KeyUp"
                         TextChanged="SearchBox_TextChanged" Margin="0,0,10,0"/>
@@ -172,12 +181,13 @@
             <TreeView x:Name="FolderTreeView"
                      SelectedItemChanged="FolderTreeView_SelectedItemChanged"
                      Grid.Row="1"
-                     Margin="0,25,10,0" Grid.RowSpan="2"/>
+                     Margin="0,40,10,0" Grid.RowSpan="2"/>
         </Grid>
 
         <!-- Right Column -->
         <Grid Grid.Column="1" Margin="10,0,0,35">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -187,10 +197,28 @@
                      Style="{StaticResource HeaderTextStyle}"
                      Grid.Row="0" FontFamily="Arial Unicode MS"/>
 
+            <!-- Image Quality Controls -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Afbeeldingskwaliteit:" 
+                          VerticalAlignment="Center" 
+                          Margin="0,0,10,0" 
+                          FontFamily="Arial Unicode MS" Foreground="#FF006235"/>
+                <Button x:Name="LowQualityButton"
+                        Content="Laag" 
+                        Click="QualityButton_Click"
+                        Style="{StaticResource QualityButtonStyle}"
+                        FontFamily="Arial Unicode MS"/>
+                <Button x:Name="HighQualityButton"
+                        Content="Hoog"
+                        Click="QualityButton_Click"
+                        Style="{StaticResource QualityButtonStyle}"
+                        FontFamily="Arial Unicode MS"/>
+            </StackPanel>
+
             <!-- List View -->
             <ListView x:Name="FamiliesListView"
                      SelectionMode="Extended"
-                     Grid.Row="2"
+                     Grid.Row="3"
                      Visibility="Collapsed">
                 <ListView.View>
                     <GridView>
@@ -216,7 +244,7 @@
             <!-- Image Grid View -->
             <ListView x:Name="ImagesListView"
                      SelectionMode="Single"
-                     Grid.Row="2"
+                     Grid.Row="3"
                      Visibility="Visible"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>

@@ -11,6 +11,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using NijhofAddIn.Revit.Commands.Tools.Content;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace NijhofAddIn.Revit.Core.WPF
 {
@@ -18,21 +20,34 @@ namespace NijhofAddIn.Revit.Core.WPF
     {
         private readonly UIApplication _uiApp;
         private readonly string _rootFolder;
+        private readonly string _cacheDirectory;
         private List<FamilyItem> _allFamilyItems;
         private ExternalEvent _placeFamilyEvent;
         private PlaceFamilyEventHandler _placeFamilyEventHandler;
         private ExternalEvent _loadFamilyEvent;
         private LoadFamilyEventHandler _loadFamilyEventHandler;
         private CancellationTokenSource _cancellationTokenSource;
-        private const int BATCH_SIZE = 10;
+        private const int BATCH_SIZE = 25;
+        private bool _isHighQuality = false;
 
         public FamilySelectionWindow(List<string> familyFiles, UIApplication uiApp)
         {
+            // Zet minimale threads
+            ThreadPool.SetMinThreads(32, 32);
+
             InitializeComponent();
             _uiApp = uiApp;
             _rootFolder = @"F:\Stabiplan\Custom\Families";
             _allFamilyItems = new List<FamilyItem>();
             _cancellationTokenSource = new CancellationTokenSource();
+
+            // Initialiseer cache directory
+            _cacheDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "NijhofAddIn",
+                "ThumbnailCache"
+            );
+            Directory.CreateDirectory(_cacheDirectory);
 
             PopulateTreeView();
             this.Loaded += OnWindowLoaded;
@@ -42,6 +57,10 @@ namespace NijhofAddIn.Revit.Core.WPF
 
             _loadFamilyEventHandler = new LoadFamilyEventHandler();
             _loadFamilyEvent = ExternalEvent.Create(_loadFamilyEventHandler);
+
+            // Zet initieel de lage kwaliteit knop op disabled (geel)
+            LowQualityButton.IsEnabled = false;
+            HighQualityButton.IsEnabled = true;
         }
 
         private async void OnWindowLoaded(object sender, RoutedEventArgs e)
@@ -51,6 +70,8 @@ namespace NijhofAddIn.Revit.Core.WPF
             FamiliesListView.ItemsSource = _allFamilyItems;
             FamiliesListView.Visibility = System.Windows.Visibility.Collapsed;
             ImagesListView.Visibility = System.Windows.Visibility.Visible;
+
+            _isHighQuality = false; // Start with low quality
 
             var progressWindow = new ProgressWindowWPF
             {
@@ -71,6 +92,18 @@ namespace NijhofAddIn.Revit.Core.WPF
             }
         }
 
+        private string GetCacheFilePath(string familyFilePath, bool isHighQuality)
+        {
+            // Genereer een unieke hash gebaseerd op het bestandspad en kwaliteit
+            using (var md5 = MD5.Create())
+            {
+                string hashInput = familyFilePath + isHighQuality.ToString();
+                byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(hashInput));
+                string hash = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                return Path.Combine(_cacheDirectory, $"{hash}.png");
+            }
+        }
+
         private async Task LoadThumbnailsAsync(ProgressWindowWPF progressWindow)
         {
             var batches = _allFamilyItems
@@ -85,13 +118,17 @@ namespace NijhofAddIn.Revit.Core.WPF
                     break;
 
                 var batch = batches[batchIndex];
-                await Task.WhenAll(batch.Select(item =>
-                    Task.Run(() => item.Image = GetThumbnail(item.FilePath, true))
-                ));
+
+                await Task.Run(() =>
+                {
+                    Parallel.ForEach(batch, new ParallelOptions { CancellationToken = _cancellationTokenSource.Token }, item =>
+                    {
+                        item.Image = GetThumbnail(item.FilePath, _isHighQuality);
+                    });
+                });
 
                 int progress = ((batchIndex + 1) * 100) / batches.Count;
                 progressWindow.UpdateProgress(progress);
-                await Task.Delay(10);
             }
         }
 
@@ -144,20 +181,65 @@ namespace NijhofAddIn.Revit.Core.WPF
 
         private BitmapImage GetThumbnail(string filePath, bool large)
         {
+            string cacheFilePath = GetCacheFilePath(filePath, large);
+
+            // Controleer eerst de cache
+            if (File.Exists(cacheFilePath))
+            {
+                try
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = new Uri(cacheFilePath);
+                    image.DecodePixelWidth = large ? 256 : 64;
+                    image.DecodePixelHeight = large ? 256 : 64;
+                    image.EndInit();
+                    image.Freeze();
+                    return image;
+                }
+                catch
+                {
+                    // Bij een fout in het laden van de cache, verwijder het cache bestand
+                    try { File.Delete(cacheFilePath); } catch { }
+                }
+            }
+
+            // Als cache niet bestaat of ongeldig is, genereer nieuwe thumbnail
             try
             {
                 using (ShellObject shellObject = ShellObject.FromParsingName(filePath))
                 {
-                    var bitmapSource = large ? shellObject.Thumbnail.ExtraLargeBitmapSource : shellObject.Thumbnail.LargeBitmapSource;
+                    var bitmapSource = large ?
+                        shellObject.Thumbnail.ExtraLargeBitmapSource :
+                        shellObject.Thumbnail.LargeBitmapSource;
+
                     if (bitmapSource == null) return null;
 
-                    return ConvertToBitmapImage(bitmapSource, large ? 256 : 128);
+                    // Converteer en sla op in cache
+                    var bitmap = ConvertToBitmapImage(bitmapSource, large ? 256 : 64);
+                    SaveToCache(bitmap, cacheFilePath);
+                    return bitmap;
                 }
             }
             catch
             {
                 return null;
             }
+        }
+
+        private void SaveToCache(BitmapImage bitmap, string cacheFilePath)
+        {
+            try
+            {
+                using (var fileStream = new FileStream(cacheFilePath, FileMode.Create))
+                {
+                    var encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bitmap));
+                    encoder.Save(fileStream);
+                }
+            }
+            catch { }
         }
 
         private BitmapImage ConvertToBitmapImage(BitmapSource source, int size)
@@ -221,6 +303,57 @@ namespace NijhofAddIn.Revit.Core.WPF
             var filteredItems = _allFamilyItems.Where(item => item.FilePath.StartsWith(folderPath)).ToList();
             FamiliesListView.ItemsSource = filteredItems;
             ImagesListView.ItemsSource = filteredItems;
+        }
+
+        private async void QualityButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton != null)
+            {
+                // Reset beide buttons
+                LowQualityButton.IsEnabled = true;
+                HighQualityButton.IsEnabled = true;
+
+                // Zet de geklikte button op disabled (voor de gele kleur)
+                clickedButton.IsEnabled = false;
+
+                // Update de kwaliteitsinstelling
+                _isHighQuality = (clickedButton == HighQualityButton);
+
+                // Wis alle bestaande afbeeldingen
+                foreach (var item in _allFamilyItems)
+                {
+                    item.Image = null;
+                }
+
+                // Toon voortgangsvenster en herlaad thumbnails
+                var progressWindow = new ProgressWindowWPF
+                {
+                    Owner = this,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+
+                try
+                {
+                    progressWindow.Show();
+                    progressWindow.UpdateStatusText(_isHighQuality ?
+                        "Hoge kwaliteit afbeeldingen laden..." :
+                        "Lage kwaliteit afbeeldingen laden...");
+
+                    // Annuleer eventuele bestaande laadoperaties
+                    _cancellationTokenSource.Cancel();
+                    _cancellationTokenSource = new CancellationTokenSource();
+
+                    await LoadThumbnailsAsync(progressWindow);
+
+                    // Ververs de ListView
+                    ImagesListView.Items.Refresh();
+                }
+                finally
+                {
+                    progressWindow.Close();
+                }
+            }
         }
 
         private void LoadButton_Click(object sender, RoutedEventArgs e)
@@ -329,16 +462,37 @@ namespace NijhofAddIn.Revit.Core.WPF
         protected override void OnClosed(EventArgs e)
         {
             _cancellationTokenSource.Cancel();
+
+            // Optioneel: verouderde cache bestanden opruimen
+            CleanupOldCache();
+
             GC.Collect();
             base.OnClosed(e);
         }
-    }
 
-    public class FamilyItem
-    {
-        public string Name { get; set; }
-        public string FilePath { get; set; }
-        public string Type { get; set; }
-        public BitmapImage Image { get; set; }
+        private void CleanupOldCache()
+        {
+            try
+            {
+                // Verwijder cache bestanden ouder dan 30 dagen
+                var cutoffDate = DateTime.Now.AddDays(-30);
+                foreach (var file in Directory.GetFiles(_cacheDirectory, "*.png"))
+                {
+                    if (File.GetLastAccessTime(file) < cutoffDate)
+                    {
+                        try { File.Delete(file); } catch { }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        public class FamilyItem
+        {
+            public string Name { get; set; }
+            public string FilePath { get; set; }
+            public string Type { get; set; }
+            public BitmapImage Image { get; set; }
+        }
     }
 }

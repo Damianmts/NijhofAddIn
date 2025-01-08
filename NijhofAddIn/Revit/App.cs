@@ -39,6 +39,9 @@ namespace NijhofAddIn.Revit
 
         public Result OnStartup(UIControlledApplication app)
         {
+            // Syncfusion License
+
+
             // Nijhof Tools
 
             #region Tabblad 1 Nijhof Tools
@@ -1053,8 +1056,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
-            btndataVWAtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de tweede knop vwa
             PushButtonData btndataVWAtag35 = new PushButtonData(
                 "VWA 3.5mm",
@@ -1067,8 +1068,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["bruinTag16"]
             };
-
-            btndataVWAtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop vwa
             PushButtonData btndataVWAtag50 = new PushButtonData(
@@ -1083,8 +1082,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
-            btndataVWAtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vierde knop vwa
             PushButtonData btndataVWAtag75 = new PushButtonData(
                 "VWA 7.5mm",
@@ -1098,8 +1095,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["bruinTag16"]
             };
 
-            btndataVWAtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vijfde knop vwa
             PushButtonData btndataVWAtag100 = new PushButtonData(
                 "VWA 10mm",
@@ -1112,8 +1107,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["bruinTag16"]
             };
-
-            btndataVWAtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
             #endregion
 
             #region pushButtondata (HWA Lengte)
@@ -1130,8 +1123,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
-            btndataHWAtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de tweede knop hwa
             PushButtonData btndataHWAtag35 = new PushButtonData(
                 "HWA 3.5mm",
@@ -1144,8 +1135,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["groenTag16"]
             };
-
-            btndataHWAtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop hwa
             PushButtonData btndataHWAtag50 = new PushButtonData(
@@ -1160,8 +1149,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
-            btndataHWAtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vierde knop hwa
             PushButtonData btndataHWAtag75 = new PushButtonData(
                 "HWA 7.5mm",
@@ -1175,8 +1162,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["groenTag16"]
             };
 
-            btndataHWAtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vijfde knop hwa
             PushButtonData btndataHWAtag100 = new PushButtonData(
                 "HWA 10mm",
@@ -1189,8 +1174,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["groenTag16"]
             };
-
-            btndataHWAtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             #endregion
 
@@ -1208,8 +1191,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
-            btndataMVtag25.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de tweede knop mv
             PushButtonData btndataMVtag35 = new PushButtonData(
                 "MV 3.5mm",
@@ -1222,8 +1203,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["blauwTag16"]
             };
-
-            btndataMVtag35.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
 
             /// Knopgegevens instellen voor de derde knop mv
             PushButtonData btndataMVtag50 = new PushButtonData(
@@ -1238,8 +1217,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
-            btndataMVtag50.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vierde knop mv
             PushButtonData btndataMVtag75 = new PushButtonData(
                 "MV 7.5mm",
@@ -1253,8 +1230,6 @@ namespace NijhofAddIn.Revit
                 Image = iconSources["blauwTag16"]
             };
 
-            btndataMVtag75.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             /// Knopgegevens instellen voor de vijfde knop mv
             PushButtonData btndataMVtag100 = new PushButtonData(
                 "MV 10mm",
@@ -1267,9 +1242,6 @@ namespace NijhofAddIn.Revit
                 LongDescription = "Klik op de knop, selecteer vervolgens de viewport die je getagd wil hebben en tadaa. Je zal waarschijnlijk de tags nog wel moeten verplaatsen.",
                 Image = iconSources["blauwTag16"]
             };
-
-            btndataMVtag100.AvailabilityClassName = typeof(SheetViewOnlyAvailability).FullName;
-
             #endregion
 
             #region Stacked splitButton Lengte
