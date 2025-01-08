@@ -19,9 +19,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - UI verbeteren.
 - Optimaliseren.
 
+
+
 ----------------------------------------------------------------------------------------------------
 
-## [1.3.2] / 2025-00-00
+## [1.3.2] / 2025-01-08
 ### Added
 - 
 
@@ -36,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ----------------------------------------------------------------------------------------------------
 
-## [1.3.1] / 2025-01-08
+## [1.3.1] / 2025-11-09
 ### Added
 - 'HWA Lengte' verbind de speciedeksel weer met de buis.
 - Knop 'Aansluiten Elementen' bij tabblad 'Nijhof Tools'.
