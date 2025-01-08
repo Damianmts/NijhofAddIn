@@ -31,17 +31,17 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
         private bool ConnectElements(UIDocument uidoc, Document doc)
         {
-            Reference movedReference = uidoc.Selection.PickObject(ObjectType.Element, new NoInsulationFilter(), "Pick element to move");
+            Reference movedReference = uidoc.Selection.PickObject(ObjectType.Element, new NoInsulationFilter(), "Selecteer het element wat je wilt verbinden");
             Element movedElement = doc.GetElement(movedReference);
             XYZ movedPoint = movedReference.GlobalPoint;
 
-            Reference targetReference = uidoc.Selection.PickObject(ObjectType.Element, new NoInsulationFilter(), "Pick element to be connected to");
+            Reference targetReference = uidoc.Selection.PickObject(ObjectType.Element, new NoInsulationFilter(), "Selecteer het element waarmee je wilt verbinden");
             Element targetElement = doc.GetElement(targetReference);
             XYZ targetPoint = targetReference.GlobalPoint;
 
             if (targetElement.Id == movedElement.Id)
             {
-                TaskDialog.Show("Attribute Error", "Oops, it looks like you've selected the same object twice.");
+                TaskDialog.Show("Foutmelding", "Oeps, het lijkt erop dat je hetzelfde element hebt geselecteerd.");
                 return true;
             }
 
@@ -50,13 +50,13 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
 
             if (movedConnector == null || targetConnector == null)
             {
-                TaskDialog.Show("AttributeError", "It looks like one of the objects has no unused connector.");
+                TaskDialog.Show("Foutmelding", "Het lijkt erop dat het geselecteerde element geen ongebruikte connector heeft.");
                 return true;
             }
 
             if (movedConnector.Domain != targetConnector.Domain)
             {
-                TaskDialog.Show("Domain Error", "You picked 2 connectors of different domain. Please retry.");
+                TaskDialog.Show("Foutmelding", "Je hebt 2 elementen van verschillende systemen geselecteerd.");
                 return true;
             }
 
@@ -71,7 +71,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                 vector = angle == 0 ? movedConnector.CoordinateSystem.BasisY : movedDirection.CrossProduct(targetDirection);
 
                 Line rotationAxis = Line.CreateBound(movedPoint, movedPoint + vector);
-                using (Transaction t = new Transaction(doc, "Rotate Element"))
+                using (Transaction t = new Transaction(doc, "Draai Element"))
                 {
                     t.Start();
                     movedElement.Location.Rotate(rotationAxis, angle - Math.PI);
@@ -79,7 +79,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.Tools
                 }
             }
 
-            using (Transaction t = new Transaction(doc, "Move and Connect Elements"))
+            using (Transaction t = new Transaction(doc, "Verplaats En Verbind Elementen"))
             {
                 t.Start();
                 ((LocationPoint)movedElement.Location).Move(targetConnector.Origin - movedConnector.Origin);

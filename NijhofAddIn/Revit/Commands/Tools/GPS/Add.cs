@@ -180,8 +180,11 @@ namespace NijhofAddIn.Revit.Commands.Tools.GPS
                     if (locationPoint != null)
                     {
                         XYZ point = locationPoint.Point;
-                        /// Plaats de "GPS Lucht" op de locatie van het ventiel
-                        doc.Create.NewFamilyInstance(point, gpsLuchtSymbol, StructuralType.NonStructural);
+                        /// Verlaag de Z-coördinaat met 100 mm (0.1 meter)
+                        XYZ newPoint = new XYZ(point.X, point.Y, point.Z - 0.1);
+
+                        /// Plaats de "GPS Lucht" op de aangepaste locatie
+                        doc.Create.NewFamilyInstance(newPoint, gpsLuchtSymbol, StructuralType.NonStructural);
                     }
                 }
 

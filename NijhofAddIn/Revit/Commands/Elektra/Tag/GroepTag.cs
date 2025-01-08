@@ -1,204 +1,265 @@
-﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using NijhofAddIn.Revit.Core.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Autodesk.Revit.Attributes;
 
 namespace NijhofAddIn.Revit.Commands.Elektra.Tag
 {
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    internal class GroepTag : IExternalCommand
+    public class GroepTag : IExternalCommand, IDisposable
     {
+        private readonly Dictionary<BuiltInCategory, string> _categories;
+        private ProgressWindowWPF _progressWindow;
+        private ExternalEvent _externalEvent;
+        private TagEventHandler _handler;
+        private readonly ILogger _logger;
+
+        public GroepTag() : this(null) { }
+
+        public GroepTag(ILogger logger = null)
+        {
+            _logger = logger ?? new DefaultLogger();
+            _categories = new Dictionary<BuiltInCategory, string>
+            {
+                { BuiltInCategory.OST_FireAlarmDevices, "Brandmelders" },
+                { BuiltInCategory.OST_LightingDevices, "Schakelaars" },
+                { BuiltInCategory.OST_LightingFixtures, "Verlichting" },
+                { BuiltInCategory.OST_ElectricalFixtures, "Elektra" }
+            };
+        }
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            UIApplication uiApp = commandData.Application;
-            Document doc = uiApp.ActiveUIDocument.Document;
-            View activeView = doc.ActiveView;
-
             try
             {
-                List<BuiltInCategory> categories = new List<BuiltInCategory>
-                {
-                    BuiltInCategory.OST_ElectricalFixtures,
-                    BuiltInCategory.OST_LightingFixtures,
-                    BuiltInCategory.OST_LightingDevices,
-                    BuiltInCategory.OST_FireAlarmDevices,
-                };
-
-                ElementMulticategoryFilter categoryFilter = new ElementMulticategoryFilter(categories);
-                FilteredElementCollector collector = new FilteredElementCollector(doc).WherePasses(categoryFilter);
-
-                List<Element> elementsWithGroepNummer = new List<Element>();
-
-                foreach (Element elem in collector)
-                {
-                    Parameter GroepNumParam = elem.LookupParameter("Groep nummer");
-                    Parameter GroepParam = elem.LookupParameter("Groep");
-
-                    if (GroepNumParam != null && GroepNumParam.HasValue && !string.IsNullOrWhiteSpace(GroepNumParam.AsString()) ||
-                        GroepParam != null && GroepParam.HasValue && !string.IsNullOrWhiteSpace(GroepParam.AsString()))
-                    {
-                        elementsWithGroepNummer.Add(elem);
-                    }
-                }
-
-                FamilySymbol LoadTag(Document docu, string familyName, BuiltInCategory tagCategory, string filePath)
-                {
-                    FilteredElementCollector tagCollector = new FilteredElementCollector(docu)
-                        .OfClass(typeof(FamilySymbol))
-                        .OfCategory(tagCategory);
-                    FamilySymbol tag = tagCollector
-                        .Cast<FamilySymbol>()
-                        .FirstOrDefault(t => t.FamilyName.Equals(familyName, StringComparison.OrdinalIgnoreCase));
-
-                    if (tag == null)
-                    {
-                        Family family;
-                        using (Transaction transaction = new Transaction(docu, "Load Family"))
-                        {
-                            transaction.Start();
-                            bool loaded = docu.LoadFamily(filePath, out family);
-                            transaction.Commit();
-
-                            if (!loaded || family == null)
-                            {
-                                throw new InvalidOperationException($"Kon de familie '{familyName}' niet laden uit '{filePath}'.");
-                            }
-                        }
-
-                        tag = new FilteredElementCollector(docu)
-                            .OfClass(typeof(FamilySymbol))
-                            .Cast<FamilySymbol>()
-                            .FirstOrDefault(t => t.FamilyName.Equals(familyName, StringComparison.OrdinalIgnoreCase));
-
-                        if (tag == null)
-                        {
-                            throw new InvalidOperationException($"Kon het symbool '{familyName}' niet vinden in de geladen familie.");
-                        }
-
-                        using (Transaction transaction = new Transaction(docu, "Activate Symbol"))
-                        {
-                            transaction.Start();
-                            tag.Activate();
-                            docu.Regenerate();
-                            transaction.Commit();
-                        }
-                    }
-
-                    return tag;
-                }
-
-                string multiCategoryTagPath = @"F:\Stabiplan\Custom\Families\Tags\Electrical\Groep Tag.rfa";
-
-                FamilySymbol MCtagGT = LoadTag(doc, "Groep Tag", BuiltInCategory.OST_MultiCategoryTags, multiCategoryTagPath);
-
-                bool ElementHasSpecificTag(Document document, Element elem, View view, ElementId tagSymbolId)
-                {
-                    var tags = new FilteredElementCollector(document, view.Id)
-                        .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_MultiCategoryTags)
-                        .WhereElementIsNotElementType()
-                        .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id) && t.GetTypeId() == tagSymbolId);
-
-                    return tags.Any();
-                }
-
-                bool ElementHasRelevantTag(Document document, Element elem)
-                {
-                    string electricalFixtureTagFamilyName = "Groep Nummer - Electrical Fixture";
-                    string lightingDeviceTagFamilyName = "Groep Nummer - Lighting Device";
-                    string FireAlarmDeviceTagFamilyName = "Groep Nummer - Fire Alarm Device";
-
-                    var electricalFixtureTags = new FilteredElementCollector(document)
-                        .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_ElectricalFixtureTags)
-                        .WhereElementIsNotElementType()
-                        .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                        .Where(t => document.GetElement(t.GetTypeId()).Name == electricalFixtureTagFamilyName);
-
-                    var lightingDeviceTags = new FilteredElementCollector(document)
-                        .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_LightingDeviceTags)
-                        .WhereElementIsNotElementType()
-                        .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                        .Where(t => document.GetElement(t.GetTypeId()).Name == lightingDeviceTagFamilyName);
-
-                    var FireAlarmDeviceTags = new FilteredElementCollector(document)
-                        .OfClass(typeof(IndependentTag))
-                        .OfCategory(BuiltInCategory.OST_FireAlarmDeviceTags)
-                        .WhereElementIsNotElementType()
-                        .Cast<IndependentTag>()
-                        .Where(t => t.GetTaggedLocalElementIds().Contains(elem.Id))
-                        .Where(t => document.GetElement(t.GetTypeId()).Name == FireAlarmDeviceTagFamilyName);
-
-                    return electricalFixtureTags.Any() || lightingDeviceTags.Any() || FireAlarmDeviceTags.Any();
-                }
-
-                using (Transaction tx = new Transaction(doc))
-                {
-                    tx.Start("Tag Electrical Components");
-
-                    foreach (Element elem in elementsWithGroepNummer)
-                    {
-                        XYZ tagPoint = null;
-                        Location loc = elem.Location;
-                        if (loc is LocationPoint locPoint)
-                        {
-                            tagPoint = locPoint.Point;
-                        }
-
-                        if (tagPoint == null)
-                        {
-                            continue;
-                        }
-
-#if REVIT2023
-                        if (categories.Contains((BuiltInCategory)elem.Category.Id.IntegerValue))
-                        {
-                            if (!MCtagGT.IsActive)
-                            {
-                                MCtagGT.Activate();
-                                doc.Regenerate();
-                            }
-#elif REVIT2024 || REVIT2025
-                        if (categories.Contains((BuiltInCategory)elem.Category.Id.Value))
-                        {
-                            if (!MCtagGT.IsActive)
-                            {
-                                MCtagGT.Activate();
-                                doc.Regenerate();
-                            }
-
-#endif
-
-                            if (ElementHasRelevantTag(doc, elem))
-                            {
-                                continue;
-                            }
-
-                            if (!ElementHasSpecificTag(doc, elem, activeView, MCtagGT.Id))
-                            {
-                                IndependentTag.Create(
-                                    doc, MCtagGT.Id, activeView.Id, new Reference(elem), false, TagOrientation.Horizontal, tagPoint);
-                            }
-                        }
-                    }
-
-                    tx.Commit();
-                }
-
+                InitializeComponents();
+                ProcessCategories(commandData.Application.ActiveUIDocument.Document);
                 return Result.Succeeded;
             }
             catch (Exception ex)
             {
-                message = ex.Message;
+                message = $"Er is een fout opgetreden: {ex.Message}";
+                _logger.LogError(ex);
                 return Result.Failed;
             }
+        }
+
+        private void InitializeComponents()
+        {
+            _progressWindow = new ProgressWindowWPF();
+            _handler = new TagEventHandler();
+            _externalEvent = ExternalEvent.Create(_handler);
+            _progressWindow.Show();
+        }
+
+        private void ProcessCategories(Document doc)
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    foreach (var category in _categories)
+                    {
+                        await ProcessCategory(doc, category);
+                    }
+                }
+                finally
+                {
+                    _progressWindow.Dispatcher.Invoke(() => _progressWindow.Close());
+                }
+            });
+        }
+
+        private async Task ProcessCategory(Document doc, KeyValuePair<BuiltInCategory, string> category)
+        {
+            UpdateProgressWindowStatus(category.Value);
+
+            var elements = GetFilteredElements(doc, category.Key);
+            if (!elements.Any()) return;
+
+            var batchSize = CalculateBatchSize(elements.Count);
+            var batches = CreateBatches(elements, batchSize);
+
+            await ProcessBatches(doc, batches, elements.Count);
+        }
+
+        private void UpdateProgressWindowStatus(string categoryName)
+        {
+            _progressWindow.Dispatcher.Invoke(() =>
+            {
+                _progressWindow.UpdateStatusText(categoryName);
+                _progressWindow.ResetProgress();
+            });
+        }
+
+        private IList<Element> GetFilteredElements(Document doc, BuiltInCategory category)
+        {
+            // Haal eerst alle elementen op van de categorie met een Groep parameter
+            var elementsWithGroup = new FilteredElementCollector(doc)
+                .OfCategory(category)
+                .WhereElementIsNotElementType()
+                .Where(el =>
+                {
+                    var groepParam = el.LookupParameter("Groep");
+                    return groepParam != null && !string.IsNullOrWhiteSpace(groepParam.AsString());
+                })
+                .ToList(); // Zorg ervoor dat dit een List<Element> is
+
+            // Haal alle bestaande tags op voor deze view die de 'Groep' parameter tonen
+            var existingGroupTags = new FilteredElementCollector(doc, doc.ActiveView.Id)
+                .OfClass(typeof(IndependentTag))
+                .Cast<IndependentTag>()
+                .Where(tag =>
+                {
+                    // Controleer of de tag de 'Groep' parameter weergeeft
+                    Parameter parameterToCheck = tag.LookupParameter("Parameter to display");
+                    return parameterToCheck != null && parameterToCheck.AsString() == "Groep";
+                })
+                .ToList(); // Zorg ervoor dat dit een List<IndependentTag> is
+
+            // Filter elementen die nog geen Groep tag hebben
+            var untaggedElements = elementsWithGroup
+                .Where(element => !existingGroupTags.Any(tag => tag.GetTaggedLocalElementIds().Contains(element.Id)))
+                .ToList(); // Dit zet het resultaat om in een List<Element>
+
+            return untaggedElements;
+        }
+
+        private int CalculateBatchSize(int totalElements) =>
+            totalElements switch
+            {
+                <= 100 => 5,
+                <= 250 => 10,
+                <= 750 => 50,
+                _ => 100
+            };
+
+        private IEnumerable<List<Element>> CreateBatches(IList<Element> elements, int batchSize)
+        {
+            for (int i = 0; i < elements.Count; i += batchSize)
+            {
+                yield return elements.Skip(i).Take(batchSize).ToList();
+            }
+        }
+
+        private async Task ProcessBatches(Document doc, IEnumerable<List<Element>> batches, int totalElements)
+        {
+            int processedElements = 0;
+            int updateFrequency = Math.Max(1, totalElements / 50);
+
+            foreach (var batch in batches)
+            {
+                await ExecuteBatchAsync(doc, batch);
+                processedElements += batch.Count;
+
+                if (processedElements % updateFrequency == 0 || processedElements == totalElements)
+                {
+                    UpdateProgress(processedElements, totalElements);
+                }
+            }
+        }
+
+        private void UpdateProgress(int processedElements, int totalElements)
+        {
+            _progressWindow.Dispatcher.Invoke(() =>
+            {
+                int progress = (processedElements * 100) / totalElements;
+                _progressWindow.UpdateProgress(progress);
+            });
+        }
+
+        private async Task ExecuteBatchAsync(Document doc, List<Element> batch)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            _handler.Operation = _ =>
+            {
+                using (Transaction tx = new Transaction(doc, "Tag Elements"))
+                {
+                    tx.Start();
+                    try
+                    {
+                        foreach (var element in batch)
+                        {
+                            try
+                            {
+                                CreateTagForElement(doc, element);
+                            }
+                            catch (Exception ex)
+                            {
+                                _logger.LogError($"Fout bij het taggen van element {element.Id}: {ex.Message}");
+                            }
+                        }
+                        tx.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError($"Transactie fout: {ex.Message}");
+                        tx.RollBack();
+                        throw;
+                    }
+                }
+                tcs.SetResult(true);
+            };
+
+            _externalEvent.Raise();
+            await tcs.Task;
+        }
+
+        private void CreateTagForElement(Document doc, Element element)
+        {
+            LocationPoint locationPoint = element.Location as LocationPoint;
+            if (locationPoint == null)
+            {
+                throw new InvalidOperationException($"Element {element.Id} heeft geen LocationPoint");
+            }
+
+            var tag = IndependentTag.Create(
+                doc,
+                doc.ActiveView.Id,
+                new Reference(element),
+                false,
+                TagMode.TM_ADDBY_MULTICATEGORY,
+                TagOrientation.Horizontal,
+                locationPoint.Point
+            );
+
+            // Zorg ervoor dat de nieuwe tag de Groep parameter weergeeft
+            Parameter parameterToDisplay = tag.LookupParameter("Parameter to display");
+            if (parameterToDisplay != null)
+            {
+                parameterToDisplay.Set("Groep");
+            }
+        }
+
+        public void Dispose()
+        {
+            _externalEvent?.Dispose();
+            _progressWindow?.Close();
+        }
+    }
+
+    public interface ILogger
+    {
+        void LogError(string message);
+        void LogError(Exception ex);
+    }
+
+    public class DefaultLogger : ILogger
+    {
+        public void LogError(string message)
+        {
+            TaskDialog.Show("Error", message);
+        }
+
+        public void LogError(Exception ex)
+        {
+            LogError(ex.Message);
         }
     }
 }
