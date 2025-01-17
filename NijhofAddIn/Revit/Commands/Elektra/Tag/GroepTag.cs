@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autodesk.Revit.Attributes;
 
+//TODO Tag functie maken voor Diameter. Kan dit kopieren en andere tag gebruiken
+
+
 namespace NijhofAddIn.Revit.Commands.Elektra.Tag
 {
     [Transaction(TransactionMode.Manual)]

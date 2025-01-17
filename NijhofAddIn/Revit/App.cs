@@ -16,7 +16,12 @@ namespace NijhofAddIn.Revit
     public class App : IExternalApplication
     {
         // Nijhof Tools
+#if RELEASE
         const string RIBBON_TAB1 = "Nijhof Tools";
+#elif DEBUG
+        const string RIBBON_TAB1 = "Nijhof Tools DEV";
+#endif
+
         const string RIBBON_PANEL1 = "Content";
         const string RIBBON_PANEL2 = "Tools";
         const string RIBBON_PANEL3 = "Sparingen";
@@ -29,7 +34,12 @@ namespace NijhofAddIn.Revit
         const string RIBBON_PANEL10 = "Overig";
 
         // Nijhof Elektra
+#if RELEASE
         const string RIBBON_TAB2 = "Nijhof Elektra";
+#elif DEBUG
+        const string RIBBON_TAB2 = "Nijhof Elektra DEV";
+#endif
+
         //const string RIBBON_PANEL11 = "Content";
         const string RIBBON_PANEL12 = "Toevoegen";
         const string RIBBON_PANEL13 = "Tag";
@@ -39,7 +49,8 @@ namespace NijhofAddIn.Revit
 
         public Result OnStartup(UIControlledApplication app)
         {
-            // Syncfusion License
+            // Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzY2MTIyNkAzMjM4MmUzMDJlMzBWVTRoVjlWcERiUDA5NXpwOWVBdkVqUlhCdmU0V2FIWk9tTVFWdWJlVmlRPQ==");
 
 
             // Nijhof Tools
