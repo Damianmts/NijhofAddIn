@@ -20,7 +20,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.TEST
                 string exePathDynamic = Path.Combine(pluginDirectory, "WPFNetFrame48.exe");
 
                 // Hardcoded pad als fallback
-                string exePathHardcoded = @"C:\Users\damia\Documents\Revit Plugins\NijhofAddIn\NijhofAddIn\bin\Debug\WPFNetFrame48.exe";
+                string exePathHardcoded = @"C:\Users\damia\Documents\Revit Plugins\NijhofAddIn\WPFNetFrame48\bin\Debug\WPFNetFrame48.exe";
 
                 // Controleer of het dynamische pad geldig is
                 string exePath = File.Exists(exePathDynamic) ? exePathDynamic : exePathHardcoded;
@@ -33,7 +33,7 @@ namespace NijhofAddIn.Revit.Commands.Tools.TEST
                 }
 
                 // Specifiek argument voor de pagina die je wilt openen
-                string pageArgument = "settings"; // Bijvoorbeeld 'settings', 'treeview', etc.
+                string pageArgument = "treeview"; // Bijvoorbeeld 'settings', 'treeview', etc.
 
                 // Start de WPF applicatie met het argument
                 Process.Start(exePath, pageArgument);
