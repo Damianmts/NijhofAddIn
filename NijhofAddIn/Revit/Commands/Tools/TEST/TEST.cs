@@ -1,9 +1,9 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using NijhofAddInWPF2024.Contracts.Views;
 using System;
-using System.Windows;
+using System.IO;
+using System.Diagnostics;
 
 namespace NijhofAddIn.Revit.Commands.Tools.TEST
 {
@@ -15,29 +15,37 @@ namespace NijhofAddIn.Revit.Commands.Tools.TEST
         {
             try
             {
-                // Start de WPF-applicatie en initialiseer DI
-                var app = new NijhofAddInWPF2024.App();
-                app.InitializeDI(); // Initialiseer handmatig de DI-container
+                // Dynamisch pad naar de uitvoermap van de plugin
+                string pluginDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string exePathDynamic = Path.Combine(pluginDirectory, "WPFNetFrame48.exe");
 
-                // Haal de ShellWindow op via DI
-                var shellWindow = app.GetService<IShellWindow>() as Window;
+                // Hardcoded pad als fallback
+                string exePathHardcoded = @"C:\Users\damia\Documents\Revit Plugins\NijhofAddIn\NijhofAddIn\bin\Debug\WPFNetFrame48.exe";
 
-                if (shellWindow == null)
+                // Controleer of het dynamische pad geldig is
+                string exePath = File.Exists(exePathDynamic) ? exePathDynamic : exePathHardcoded;
+
+                // Controleer of het uiteindelijke pad geldig is
+                if (!File.Exists(exePath))
                 {
-                    message = "ShellWindow kon niet worden geladen.";
+                    TaskDialog.Show("Error", $"Kan het bestand niet vinden. Geprobeerd:\n{exePathDynamic}\n{exePathHardcoded}");
                     return Result.Failed;
                 }
 
-                // Toon het venster
-                shellWindow.ShowDialog();
+                // Specifiek argument voor de pagina die je wilt openen
+                string pageArgument = "settings"; // Bijvoorbeeld 'settings', 'treeview', etc.
+
+                // Start de WPF applicatie met het argument
+                Process.Start(exePath, pageArgument);
+
+                return Result.Succeeded;
             }
             catch (Exception ex)
             {
-                message = $"Fout bij het openen van de WPF-toepassing: {ex.Message}";
+                // Foutafhandeling
+                TaskDialog.Show("Error", ex.Message);
                 return Result.Failed;
             }
-
-            return Result.Succeeded;
         }
     }
 }
